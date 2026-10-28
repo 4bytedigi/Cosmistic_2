@@ -10,7 +10,11 @@ npm install
 npm start
 ```
 
-Open http://localhost:4173. Node.js 22 or newer is required. The current development server is bound to the local computer. Nothing has been deployed.
+Open http://localhost:4173. Node.js 22 or newer is required. The development server binds to the local computer by default.
+
+## Server deployment
+
+Use the `oliveco` root directory with Node.js 22 or newer. Install dependencies with `npm ci`, run `npm run check` as the build command, and start with `npm start` on port 4173. For a container deployment, set `HOST=0.0.0.0` so the reverse proxy can reach the app. Set `PUBLIC_ORIGIN=https://oliveco2.aungmyin.com` to allow product-guide requests from the public website. Local development keeps its loopback-only default.
 
 ## Included
 

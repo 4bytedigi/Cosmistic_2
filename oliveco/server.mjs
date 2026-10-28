@@ -6,6 +6,9 @@ import vm from 'node:vm';
 const project=path.dirname(fileURLToPath(import.meta.url));
 const root=path.join(project,'dist');
 const port=Number(process.env.PORT||4173);
+const host=process.env.HOST||'127.0.0.1';
+const allowedOrigins=new Set([`http://localhost:${port}`,`http://127.0.0.1:${port}`]);
+if(process.env.PUBLIC_ORIGIN)allowedOrigins.add(new URL(process.env.PUBLIC_ORIGIN).origin);
 const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.webp':'image/webp','.woff2':'font/woff2','.txt':'text/plain; charset=utf-8'};
 const context=vm.createContext({window:{},Intl});
 for(const file of ['products.js','i18n.js','assistant-engine.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),context,{filename:file});
@@ -19,7 +22,7 @@ const json=(res,code,body)=>{res.writeHead(code,{'Content-Type':'application/jso
 async function readJson(req){let body='';for await(const chunk of req){body+=chunk;if(Buffer.byteLength(body)>16000)throw new Error('Request is too large')}return JSON.parse(body)}
 async function chat(req,res){
   const origin=req.headers.origin;
-  if(origin&&!new Set([`http://localhost:${port}`,`http://127.0.0.1:${port}`]).has(origin)){json(res,403,{error:'Origin not allowed'});return}
+  if(origin&&!allowedOrigins.has(origin)){json(res,403,{error:'Origin not allowed'});return}
   if(!String(req.headers['content-type']||'').startsWith('application/json')){json(res,415,{error:'JSON required'});return}
   let input;try{input=await readJson(req)}catch{json(res,400,{error:'Invalid request'});return}
   if(typeof input.message!=='string'||!input.message.trim()||input.message.length>500){json(res,400,{error:'A question of 1 to 500 characters is required'});return}
@@ -44,4 +47,4 @@ const server=http.createServer(async(req,res)=>{
   if(!file.startsWith(root+path.sep)||name.includes('\\')){res.writeHead(403);res.end('Forbidden');return}
   fs.readFile(file,(error,data)=>{if(error){res.writeHead(404);res.end('Not found');return}res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','Cache-Control':'no-cache','X-Content-Type-Options':'nosniff'});res.end(req.method==='HEAD'?undefined:data)});
 });
-server.listen(port,'127.0.0.1',()=>console.log(`Oliveco: http://localhost:${port}\nAssistant: ${aiConfigured?'AI provider configured':'Local product guide — API key not configured'}`));
+server.listen(port,host,()=>console.log(`Oliveco: http://${host}:${port}\nAssistant: ${aiConfigured?'AI provider configured':'Local product guide — API key not configured'}`));
