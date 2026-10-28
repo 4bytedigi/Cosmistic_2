@@ -1,0 +1,19 @@
+{
+  "name": "oliveco",
+  "version": "1.0.0",
+  "description": "A responsive, buildless product catalogue for Olive Marketing Group Co., Ltd. It uses the supplied Oliveco mark and product photographs extracted from the three supplied catalogues.",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.mjs",
+    "dev": "node --env-file-if-exists=.env server.mjs",
+    "check": "node --check server.mjs && node --check dist/app.js && node --check dist/prices.js && node --check dist/i18n.js && node --check dist/assistant.js && node --check dist/assistant-engine.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@ai-sdk/openai-compatible": "^3.0.79",
+    "ai": "^7.0.154"
+  }
+}

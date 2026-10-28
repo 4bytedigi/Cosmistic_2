@@ -1,0 +1,6 @@
+node_modules/
+.sites-cache/
+*.log
+.env
+.env.*
+!.env.example

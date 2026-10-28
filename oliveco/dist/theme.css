@@ -1,0 +1,297 @@
+/* Oliveco: #8BC34A accents with white, pastel gradients and photographic bokeh. */
+:root {
+  --moss: #8bc34a;
+  --brand-green: #8bc34a;
+  --mustard: #ffd95d;
+  --eggshell: #ffffff;
+  --forest: #283d1c;
+  --green: #8bc34a;
+  --leaf: #8bc34a;
+  --lime: #ffd95d;
+  --paper: #ffffff;
+  --sage: #e8f4da;
+  --muted: #5a6b50;
+  --line: #dce7d3;
+  --shadow: 0 18px 60px #526d3720;
+  --moss-gradient: linear-gradient(120deg, #a5d36b, #8bc34a 78%);
+  --mustard-gradient: linear-gradient(120deg, #fff0a0, #ffdb68);
+  --surface-gradient: linear-gradient(140deg, #e0f1cb, #f7fbed 58%, #fff4dc);
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 0% 18%, #e6f4d7 0, transparent 35%),
+    radial-gradient(ellipse at 100% 46%, #f8ecf5 0, transparent 33%),
+    radial-gradient(ellipse at 4% 80%, #fff3d8 0, transparent 31%),
+    #fffefc;
+}
+:focus-visible { outline-color: #4a6a2e; }
+.header { background: linear-gradient(115deg, #f8fcf2, #ffffff 58%, #fdf8fc); }
+.announcement { background: linear-gradient(100deg, #8bc34a, #c9e89a 52%, #edf7db); }
+
+.hero {
+  background: #ffffff;
+  box-shadow: 0 12px 48px #7b9a4110;
+}
+.hero-photo {
+  background:
+    radial-gradient(ellipse at 4% 77%, #cce9aa 0, transparent 48%),
+    radial-gradient(ellipse at 53% 8%, #fff0c1 0, transparent 42%),
+    radial-gradient(ellipse at 91% 67%, #ead9f2 0, transparent 47%),
+    radial-gradient(ellipse at 93% 8%, #d6edbc 0, transparent 42%),
+    linear-gradient(115deg, #ffffff 5%, #f9fff2 47%, #fcf1f8 100%);
+}
+.hero-photo::before, .hero-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero-photo::before {
+  background:
+    radial-gradient(circle 47px at 8% 16%, #ffffffd9 0%, #ffffff8c 62%, transparent 100%),
+    radial-gradient(circle 25px at 5% 61%, #fff8dfdb 0%, #ffffff77 65%, transparent 100%),
+    radial-gradient(circle 72px at 31% 88%, #fffffff0 0%, #ffffff55 65%, transparent 100%),
+    radial-gradient(circle 39px at 48% 22%, #fff6d9cc 0%, #ffffff55 65%, transparent 100%),
+    radial-gradient(circle 24px at 43% 60%, #ffffffdd 0%, #ffffff77 65%, transparent 100%),
+    radial-gradient(circle 58px at 57% 78%, #e9f9d7e8 0%, #ffffff44 67%, transparent 100%),
+    radial-gradient(circle 43px at 83% 15%, #ffffffe8 0%, #ffffff66 64%, transparent 100%),
+    radial-gradient(circle 24px at 94% 46%, #fff1daf0 0%, #ffffff77 65%, transparent 100%),
+    radial-gradient(circle 65px at 96% 90%, #ffffffec 0%, #ffffff55 68%, transparent 100%);
+  filter: blur(1.8px);
+}
+.hero-photo::after {
+  background: radial-gradient(ellipse at 15% 42%, #ffffff82 0, transparent 52%);
+}
+.hero-portrait {
+  position: absolute;
+  right: 1.4%;
+  bottom: 0;
+  width: 52%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  object-position: center bottom;
+  z-index: 1;
+  filter: drop-shadow(-12px 14px 25px #75934c0c);
+}
+.hero-copy > p, .hero-footnote, .hero-index { color: #526448; }
+.hero-index { z-index: 2; }
+.story-link { border-color: #94b67a; }
+
+.button-primary, .filter-tab.selected { background: var(--moss-gradient); color: var(--forest); }
+.button-primary:hover, .filter-tab.selected:hover { background: linear-gradient(120deg, #a0d061, #81bb40); }
+.hero-actions > .button-primary { background: var(--moss-gradient); color: var(--forest); }
+.hero-actions > .button-primary:hover { background: linear-gradient(120deg, #a0d061, #81bb40); }
+.button-lime { background: var(--mustard-gradient); color: var(--forest); }
+.button-lime:hover { background: linear-gradient(120deg, #ffe987, #ffd456); }
+.button-outline { border-color: #97b67e; }
+.icon-button:hover, .button-outline:hover, .filter-tab:hover { background: #e2f1d0; }
+.strip-dot { background: #8bc34a; }
+
+.category-image, .category-card:nth-child(5) .category-image { background: var(--surface-gradient); }
+.category-card:nth-child(2) .category-image { background: linear-gradient(140deg, #d8edbe, #f3fae8 68%, #fff4da); }
+.category-card:nth-child(3) .category-image { background: linear-gradient(145deg, #f9fbf3, #e0efd0); }
+.category-card:nth-child(4) .category-image { background: linear-gradient(140deg, #fff0da, #fcf6eb 60%, #eff6e5); }
+.product-visual { background: linear-gradient(140deg, #e7f3d7, #fdfdf7 70%, #fff2da); }
+.product-card:nth-child(4n+2) .product-visual { background: linear-gradient(145deg, #edf6e1, #fbfdf6 68%, #f5f0fc); }
+.product-card:nth-child(4n+3) .product-visual { background: linear-gradient(140deg, #dff0ca, #f6faef 65%, #fff7e9); }
+.product-card:nth-child(4n) .product-visual { background: linear-gradient(145deg, #f9eef6, #ffffff 48%, #eaf4dc); }
+.product-tag, .product-label-icon { background: var(--mustard-gradient); }
+.quick-add:hover { background: var(--brand-green); }
+.quick-add, .save-product { background-color: #ffffffd9; }
+.saved-count { background: #ffdf76; }
+.bag-button > span:last-child { background: #8bc34a; color: var(--forest); }
+
+.botanical-banner { background-color: #e6f0d5; }
+.botanical-banner::before { background: linear-gradient(100deg, #f1f8e7fa, #f7faefe8 32%, #edf6db40 65%, transparent 100%); }
+.story-art { background: linear-gradient(140deg, #c5e59f, #edf7dd 52%, #fdf1d9); }
+.story-art::before, .story-art::after { border-color: #a2c77e; }
+.guide-steps > div > span { background: #dff0ca; }
+.contact-section { background: linear-gradient(115deg, #b1d97b, #8bc34a 60%, #98ca5d); color: var(--forest); }
+.contact-inner p { color: #354c25; }
+
+.detail-dialog, .bag-dialog, .search-panel, #mobile-nav { background: linear-gradient(145deg, #ffffff, #f5faee); }
+.bag-heading { background: #ffffff; }
+.detail-image, .bag-item-image { background: var(--surface-gradient); }
+.detail-dialog::backdrop, .bag-dialog::backdrop { background: #283d1c66; }
+.toast { background: var(--forest); color: #ffffff; }
+.chat-launcher, .chat-header, .chat-bubble.user, .chat-send { background: var(--moss-gradient); color: var(--forest); }
+.chat-launcher:hover, .chat-is-open { background: linear-gradient(120deg, #a0d061, #81bb40); }
+.chat-launcher-dot { background: #fff5bd; }
+.chat-panel { background: linear-gradient(155deg, #ffffff, #f5faef); border-color: var(--line); }
+.chat-header p, .chat-header .icon-button { color: var(--forest); }
+.chat-header .icon-button:hover { background: #ffffff45; }
+.chat-bubble { background: linear-gradient(140deg, #e6f3d6, #f5f8ea); }
+.chat-bubble.user p { color: var(--forest); }
+.chat-product { background: #ffffff; }
+.chat-product > span:first-child { background: #e8f4dc; }
+.chat-action { border-color: #9fc67c; }
+.chat-action:hover { background: #dcefc5; }
+.chat-suggestions button { background: #ffffff; }
+.chat-suggestions button:hover { background: #e4f2d3; }
+.chat-form input, .enquiry-fallback { background: #ffffff; }
+::-webkit-scrollbar-thumb { background: #b0cf90; }
+
+@media (max-width: 1150px) {
+  .hero-portrait { width: 50%; right: 0; }
+}
+@media (max-width: 700px) {
+  .hero-photo {
+    background:
+      radial-gradient(ellipse at 0% 56%, #d9edbf 0, transparent 55%),
+      radial-gradient(ellipse at 95% 68%, #ecdcf4 0, transparent 54%),
+      radial-gradient(ellipse at 52% 96%, #fff0c9 0, transparent 48%),
+      linear-gradient(155deg, #ffffff 8%, #f8fff0 47%, #fcf3fb 100%);
+  }
+  .hero-photo::before {
+    background:
+      radial-gradient(circle 31px at 10% 8%, #ffffffed 0, #ffffff77 65%, transparent 100%),
+      radial-gradient(circle 21px at 90% 21%, #ffefc9d9 0, #ffffff55 62%, transparent 100%),
+      radial-gradient(circle 40px at 4% 58%, #ffffffeb 0, #ffffff77 62%, transparent 100%),
+      radial-gradient(circle 26px at 87% 54%, #ffffffef 0, #ffffff55 64%, transparent 100%),
+      radial-gradient(circle 45px at 14% 87%, #fff4d8ed 0, #ffffff77 62%, transparent 100%),
+      radial-gradient(circle 31px at 96% 94%, #ffffffed 0, #ffffff55 65%, transparent 100%);
+  }
+  .hero-photo::after { background: linear-gradient(180deg, #ffffff33 0, transparent 55%); }
+  .hero-portrait { right: 0; bottom: 0; width: 100%; height: 50%; object-position: center bottom; }
+  .botanical-banner::before { background: linear-gradient(180deg, #f1f8e7fa 0%, #f7faefeb 31%, #edf6db11 66%, transparent 100%); }
+  .selection-summary { background: linear-gradient(110deg, #f4faeb, #ffffff); }
+  .category-grid { scrollbar-color: #adcf8a transparent; }
+}
+@media (max-width: 375px) {
+  .hero-portrait { height: 46%; }
+}
+
+/* Quiet typography and aligned branding, following the compact skincare reference. */
+html { scroll-padding-top: 90px; }
+.header { height: 90px; }
+.wordmark, .header .wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+.wordmark > span, .header .wordmark > span {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  font-size: 36px;
+  font-weight: 750;
+  letter-spacing: -1.4px;
+}
+.wordmark > img, .header .wordmark > img { width: 42px; height: 42px; }
+.footer .wordmark > span { font-size: 30px; }
+.footer .wordmark > img { width: 36px; height: 36px; }
+.footer .footer-bottom > span:last-child { display: inline; }
+.search-panel { top: calc(100% - 8px); }
+#mobile-nav { top: calc(100% - 6px); }
+.hero { height: 600px; }
+.hero-copy, html[lang=my] .hero-copy {
+  height: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-actions, html[lang=my] .hero-actions { margin-top: 32px; }
+.categories-section { padding-top: 54px; padding-bottom: 50px; }
+.section-heading { margin-bottom: 25px; }
+.category-image, .product-visual { border-radius: 18px; }
+.category-text { margin-top: 14px; }
+.load-more-row { margin-top: 34px; }
+.banner-copy { display: flex; height: 100%; flex-direction: column; justify-content: center; align-items: flex-start; padding-top: 0; }
+.story-art { min-height: 310px; }
+.story-brand { flex-direction: row; justify-content: center; gap: 17px; }
+.story-brand img { width: 80px; height: 80px; }
+.story-brand > span { font-size: 66px; line-height: 1; }
+.guide-steps > div > span { margin-bottom: 12px; }
+.guide-steps h3 { font-size: 14px; }
+.bag-heading { align-items: center; }
+.product-card { display: flex; flex-direction: column; }
+.product-visual { flex-shrink: 0; }
+.product-card .product-name { margin-bottom: 4px; }
+.product-price {
+  color: var(--forest);
+  font-size: 17px;
+  line-height: 1.5;
+  font-weight: 750;
+  letter-spacing: -.2px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.product-price.price-pending { color: var(--muted); font-weight: 650; }
+.product-visual .quick-add {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  flex-shrink: 0;
+  background: var(--brand-green);
+  color: var(--forest);
+  box-shadow: none;
+}
+.product-visual .quick-add:hover { background: #a5d36b; }
+
+/* Keep navigation available and separate it from the hero. */
+html { scroll-padding-top: 114px; }
+.header { position: sticky; top: 0; z-index: 20; box-shadow: 0 6px 24px #283d1c08; }
+.hero { margin-top: 24px; }
+.categories-section, .collection-section { scroll-margin-top: 0; }
+.botanical-banner {
+  background-image: url('assets/king-pharmacy-feature-upright.webp');
+  background-color: #edf3d9;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.botanical-banner::before { content: none; background: none; }
+
+@media (max-width: 900px) {
+  .story-brand { gap: 13px; }
+  .story-brand img { width: 63px; height: 63px; }
+  .story-brand > span { font-size: 53px; }
+}
+@media (max-width: 700px) {
+  html { scroll-padding-top: 92px; }
+  .header { height: 76px; }
+  .hero { margin-top: 16px; }
+  .header .wordmark { gap: 8px; }
+  .header .wordmark > span { font-size: 28px; line-height: 1; letter-spacing: -1px; }
+  .header .wordmark > img { width: 34px; height: 34px; }
+  .hero { height: 730px; }
+  .hero-copy, html[lang=my] .hero-copy { height: auto; padding-top: 35px; padding-bottom: 0; justify-content: flex-start; }
+  .hero-actions, html[lang=my] .hero-actions { margin-top: 26px; }
+  .hero-portrait { height: 54%; }
+  .categories-section { padding-top: 35px; padding-bottom: 38px; }
+  .section-heading { margin-bottom: 20px; }
+  .category-image, .product-visual { border-radius: 16px; }
+  .product-price { font-size: 15px; }
+  .product-visual .quick-add { width: 44px; height: 44px; min-width: 44px; min-height: 44px; }
+  .product-image-button { padding-bottom: 30px; }
+  .category-text { margin-top: 12px; }
+  .botanical-banner { height: 450px; }
+  .botanical-banner { background-size: auto 58%; background-position: right bottom; }
+  .botanical-banner::before { content: ''; background: linear-gradient(180deg, #f5f9e9 0%, #edf3d9 43%, #edf3d900 52%, transparent 100%); }
+  .banner-copy { height: auto; padding-top: 28px; justify-content: flex-start; }
+  .story-art { min-height: 250px; }
+  .story-brand { gap: 14px; }
+  .story-brand img { width: 66px; height: 66px; }
+  .story-brand > span { font-size: 58px; }
+  .guide-steps > div > span { margin-bottom: 0; }
+  .guide-steps > div { align-items: center; }
+}
+@media (max-width: 375px) {
+  .header .wordmark > span { font-size: 25px; }
+  .header .wordmark > img { width: 31px; height: 31px; }
+  .hero { height: 690px; }
+  .hero-portrait { height: 50%; }
+  .story-brand { gap: 12px; }
+  .story-brand img { width: 56px; height: 56px; }
+  .story-brand > span { font-size: 48px; }
+}
