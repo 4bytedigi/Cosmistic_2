@@ -37,7 +37,25 @@
   bag = Object.fromEntries(Object.entries(bag).filter(([id, n]) => products.some(p => p.id === id) && Number.isInteger(n) && n > 0 && n <= 99));
   const rawSaved = readState('oliveco-saved-v1', []);
   let saved = new Set(Array.isArray(rawSaved) ? rawSaved.filter(id => products.some(p => p.id === id)) : []);
-  const state = {category:'all',query:'',sort:'featured',limit:8,savedOnly:false};
+  const isShopPage = document.body.dataset.page === 'shop';
+  const defaultLimit = isShopPage ? products.length : 8;
+  const params = new URLSearchParams(isShopPage ? location.search : '');
+  const state = {
+    category:Object.hasOwn(categoryNames,params.get('category'))?params.get('category'):'all',
+    query:(params.get('q')||'').slice(0,120),
+    sort:['az','za'].includes(params.get('sort'))?params.get('sort'):'featured',
+    limit:defaultLimit,
+    savedOnly:params.get('saved')==='1'
+  };
+  function shopUrl(filters=state) {
+    const query = new URLSearchParams();
+    if (filters.category && filters.category !== 'all') query.set('category',filters.category);
+    if (filters.query) query.set('q',filters.query);
+    if (filters.sort && filters.sort !== 'featured') query.set('sort',filters.sort);
+    if (filters.savedOnly) query.set('saved','1');
+    return '/shop' + (query.size ? '?' + query : '');
+  }
+  function syncSearchInputs() { $$('#header-search, #shop-search').forEach(input => { input.value = state.query; }); }
   const grid = $('#product-grid');
   const detailDialog = $('#detail-dialog');
   const bagDialog = $('#bag-dialog');
@@ -76,6 +94,7 @@
     });
   }
   function renderCategories() {
+    if (!$('#category-grid')) return;
     const cats = [{key:'skin',image:'cosmetics-8',second:'cosmetics-13'},{key:'hair',image:'cosmetics-11',second:'cosmetics-9'},{key:'personal',image:'cosmetics-2'},{key:'home',image:'consumer-2',second:'consumer-4'},{key:'medical',image:'medical-2',second:'medical-4'}];
     $('#category-grid').innerHTML = cats.map(c => `<button class="category-card" data-category="${c.key}" aria-label="${esc(t('browse',{name:categoryNames[c.key]}))}"><span class="category-image"><img src="assets/${c.image}.webp" alt="" loading="lazy">${c.second ? `<img class="secondary-category-img" src="assets/${c.second}.webp" alt="" loading="lazy">` : ''}</span><span class="category-text">${categoryNames[c.key]}${icon('arrow-up-right')}</span></button>`).join('');
   }
@@ -101,17 +120,26 @@
     else grid.innerHTML = `<div class="empty-state"><span>${icon(state.savedOnly ? 'heart' : 'search')}</span><h3>${t(state.savedOnly?'emptySaved':'emptySearch')}</h3><p>${t(state.savedOnly?'emptySavedBody':'emptySearchBody')}</p><button class="button button-primary" data-reset>${t('explore')} ${icon('arrow-right')}</button></div>`;
     $('#collection-count').textContent = filtered.length===1?t('oneProduct'):t('products',{n:I.num(filtered.length)});
     $('#product-progress').textContent = filtered.length?t('progress',{shown:I.num(shown.length),total:I.num(filtered.length)}):'';
-    $('#load-more').hidden = shown.length >= filtered.length;
-    $('.load-more-row').hidden = !filtered.length;
+    const viewAll = $('#load-more');
+    if (viewAll) { viewAll.href = shopUrl(); $('.load-more-row').hidden = !filtered.length; }
     $$('.filter-tab').forEach(b => { const active = b.dataset.filter === state.category; b.classList.toggle('selected', active); b.setAttribute('aria-pressed', String(active)); });
-    $('#collection-heading').textContent = state.savedOnly?t('savedHeading'):state.category==='all'?t('allHeading'):t('categoryHeading',{name:categoryNames[state.category]});
+    $('#collection-heading').textContent = state.savedOnly?t('savedHeading'):state.category==='all'?t(isShopPage?'shopHeading':'allHeading'):t('categoryHeading',{name:categoryNames[state.category]});
     $('#active-query').hidden = !state.query && !state.savedOnly;
     $('#active-query>span').textContent = [state.savedOnly?t('savedProducts'):'',state.query?t('searchResults',{query:state.query}):''].filter(Boolean).join(' · ');
+    if (isShopPage) history.replaceState(null,'',shopUrl()+location.hash);
     updateCounts();
   }
   function scrollToCollection() { $('#collection').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block:'start'}); }
-  function chooseCategory(key) { state.category = key; state.limit = 8; state.savedOnly = false; state.query = ''; $('#header-search').value = ''; renderProducts(); scrollToCollection(); }
-  function resetFilters() { Object.assign(state,{category:'all',query:'',savedOnly:false,limit:8}); $('#header-search').value = ''; renderProducts(); }
+  function chooseCategory(key) {
+    if (!Object.hasOwn(categoryNames,key)) return;
+    if (!isShopPage) { location.assign(shopUrl({category:key})); return; }
+    Object.assign(state,{category:key,limit:defaultLimit,savedOnly:false,query:''}); syncSearchInputs(); renderProducts(); scrollToCollection();
+  }
+  function resetFilters() { Object.assign(state,{category:'all',query:'',savedOnly:false,limit:defaultLimit}); syncSearchInputs(); renderProducts(); }
+  function showSaved(force=false) {
+    if (!isShopPage) { location.assign('/shop?saved=1'); return; }
+    Object.assign(state,{savedOnly:force||!state.savedOnly,category:'all',query:'',limit:defaultLimit}); syncSearchInputs(); renderProducts(); scrollToCollection();
+  }
   function openDetails(id) {
     const p = products.find(p => p.id === id); if (!p) return;
     activeDetailId=id;
@@ -136,7 +164,7 @@
     const save = e.target.closest('[data-save]'); if (save) { saveProduct(save.dataset.save); return; }
     const detail = e.target.closest('[data-detail]'); if (detail) { openDetails(detail.dataset.detail); return; }
     const category = e.target.closest('[data-category]'); if (category) { chooseCategory(category.dataset.category); return; }
-    const filter = e.target.closest('[data-filter]'); if (filter) { state.category = filter.dataset.filter; state.limit = 8; renderProducts(); return; }
+    const filter = e.target.closest('[data-filter]'); if (filter) { state.category = filter.dataset.filter; state.limit = defaultLimit; renderProducts(); return; }
     const close = e.target.closest('[data-close-dialog]'); if (close) { close.closest('dialog').close(); return; }
     if (e.target.closest('[data-reset]')) { resetFilters(); return; }
     if (e.target.closest('[data-browse]')) { bagDialog.close(); resetFilters(); scrollToCollection(); return; }
@@ -149,19 +177,18 @@
     const bagDetail = e.target.closest('[data-bag-detail]'); if (bagDetail) { bagDialog.close(); openDetails(bagDetail.dataset.bagDetail); return; }
     if (!e.target.closest('.header')) closeSearch();
   });
-  $('#load-more').addEventListener('click', () => { state.limit = products.length; renderProducts(); });
   $('#sort-products').addEventListener('change', e => { state.sort = e.target.value; renderProducts(); });
   $('#clear-filters').addEventListener('click', resetFilters);
-  $('#saved-toggle').addEventListener('click', () => { state.savedOnly = !state.savedOnly; state.category = 'all'; state.query = ''; state.limit = 8; $('#header-search').value = ''; renderProducts(); scrollToCollection(); });
-  $('#mobile-saved').addEventListener('click',()=>{$('#mobile-nav').hidden=true;$('#menu-toggle').setAttribute('aria-expanded','false');state.savedOnly=true;state.category='all';state.query='';state.limit=8;$('#header-search').value='';renderProducts();scrollToCollection()});
+  $('#saved-toggle').addEventListener('click',()=>showSaved());
+  $('#mobile-saved').addEventListener('click',()=>{$('#mobile-nav').hidden=true;$('#menu-toggle').setAttribute('aria-expanded','false');showSaved(true)});
   $('#selection-summary-open').addEventListener('click',()=>{renderBag();bagDialog.showModal()});
   $('#bag-toggle').addEventListener('click', () => { if (detailDialog.open) detailDialog.close(); renderBag(); bagDialog.showModal(); closeSearch(); });
   $('#copy-enquiry').addEventListener('click', copyEnquiry);
   function closeSearch() { $('#search-panel').hidden = true; $('#search-toggle').setAttribute('aria-expanded','false'); }
   $('#search-toggle').addEventListener('click', () => { const open = $('#search-panel').hidden; $('#search-panel').hidden = !open; $('#search-toggle').setAttribute('aria-expanded',String(open)); $('#mobile-nav').hidden = true; $('#menu-toggle').setAttribute('aria-expanded','false'); if (open) $('#header-search').focus(); });
   $('#search-close').addEventListener('click', () => { closeSearch(); $('#search-toggle').focus(); });
-  $('#header-search').addEventListener('input', e => { state.query = e.target.value.slice(0,120); state.limit = 8; state.savedOnly = false; state.category = 'all'; renderProducts(); });
-  $('#header-search').addEventListener('keydown', e => { if (e.key === 'Enter') { closeSearch(); scrollToCollection(); } });
+  $$('#header-search, #shop-search').forEach(input => input.addEventListener('input', e => { state.query = e.target.value.slice(0,120); state.limit = defaultLimit; state.savedOnly = false; state.category = 'all'; syncSearchInputs(); renderProducts(); }));
+  $('#header-search').addEventListener('keydown', e => { if (e.key === 'Enter') { if (!isShopPage) { location.assign(shopUrl()); return; } closeSearch(); scrollToCollection(); } });
   $('#menu-toggle').addEventListener('click', () => { const open = $('#mobile-nav').hidden; $('#mobile-nav').hidden = !open; $('#menu-toggle').setAttribute('aria-expanded',String(open)); closeSearch(); });
   $$('#mobile-nav a').forEach(a => a.addEventListener('click', () => { $('#mobile-nav').hidden = true; $('#menu-toggle').setAttribute('aria-expanded','false'); }));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSearch(); $('#mobile-nav').hidden = true; $('#menu-toggle').setAttribute('aria-expanded','false'); } });
@@ -170,5 +197,5 @@
   $('#language-switch').addEventListener('change',e=>I.setLanguage(e.target.value));
   document.addEventListener('oliveco:language',()=>{categoryNames=I.categories();hydrateIcons();renderCategories();renderProducts();if(bagDialog.open)renderBag();if(detailDialog.open&&activeDetailId)openDetails(activeDetailId)});
   window.OlivecoShop={openDetails,chooseCategory,addToBag,showSelection(){renderBag();bagDialog.showModal()},icon};
-  I.apply();hydrateIcons();renderCategories();renderProducts();updateCounts();
+  I.apply();hydrateIcons();renderCategories();syncSearchInputs();$('#sort-products').value=state.sort;renderProducts();updateCounts();
 })();

@@ -21,6 +21,7 @@ Use the `oliveco` root directory with Node.js 22 or newer. Install dependencies 
 - Myanmar is the default, with an English language switch. The choice persists in the browser.
 - 28 product entries with real packaging photos extracted from the supplied source materials.
 - Five collections, bilingual search, sorting, product details and saved products.
+- A dedicated `/shop` page with the full catalogue and shareable category, search, sort and saved-product filters. The homepage shows eight products and links to the Shop page.
 - A product selection list with quantities, persistent browser storage, and a copyable enquiry in the selected language.
 - Phone layouts, horizontal collection tabs, larger touch controls, and a bottom selection summary.
 - A contextual chat panel that answers product questions and shows relevant product cards.
