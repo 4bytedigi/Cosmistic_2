@@ -30,8 +30,9 @@ test('client-approved hours are answered without guessing or using AI',async()=>
 });
 
 test('missing delivery and payment information is not fabricated',async()=>{
+  const unconfirmed=structuredClone(knowledge);unconfirmed.business.phone=null;
   for(const message of ['Do you deliver to Yangon?','Do you accept cash on delivery?','Can I return an item?','What is your phone number?','Are you open?']){
-    const result=await make().reply({message,language:'en'});
+    const result=await make({knowledge:unconfirmed}).reply({message,language:'en'});
     assert.match(result.text,/don't have confirmed information/,message);
   }
 });

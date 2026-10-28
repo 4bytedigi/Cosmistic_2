@@ -110,6 +110,16 @@ body {
 .guide-steps > div > span { background: #dff0ca; }
 .contact-section { background: linear-gradient(115deg, #b1d97b, #8bc34a 60%, #98ca5d); color: var(--forest); }
 .contact-inner p { color: #354c25; }
+.contact-copy { min-width: 0; }
+.contact-details { display: flex; flex-wrap: wrap; gap: 16px 28px; margin-top: 24px; }
+.contact-link { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; }
+.contact-link-label { display: block; font-size: 12px; }
+.contact-link-value { display: block; font-size: 16px; font-weight: 600; overflow-wrap: anywhere; }
+.contact-link:hover .contact-link-value { text-decoration: underline; text-underline-offset: 4px; }
+.footer-contact-links { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+.footer-contact-links .contact-link-value { font-size: 12px; font-weight: 500; }
+.footer-contact-links [data-icon] { width: 16px; height: 16px; }
+.footer .footer-bottom { flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 12px 32px; }
 
 .detail-dialog, .bag-dialog, .search-panel, #mobile-nav { background: linear-gradient(145deg, #ffffff, #f5faee); }
 .bag-heading { background: #ffffff; }

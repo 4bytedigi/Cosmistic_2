@@ -43,6 +43,8 @@ Send [the client questionnaire](CLIENT-CHATBOT-QUESTIONS.md) to the client. Ente
 
 Keep confirmed retail prices in `dist/prices.js` so product cards and chat use the same amounts. Real-time stock, order tracking, payment processing and sending enquiries are not connected.
 
+Contact phone and email use plain strings in `assistant-knowledge.json`. Run `npm run build` after changing them: this renders clickable links in the homepage contact section and both page footers from the same record used by the chatbot. Leave missing contacts as `null`; no placeholder contact is published. The current phone was checked on the official Facebook About page on 28 October 2026. That page does not list an email address.
+
 ## Product prices
 
 Edit `dist/prices.js` to replace each product's `null` with its confirmed numeric price. All prices currently remain unset, so each card displays `MMK —` in English or `— ကျပ်` in Myanmar directly below the product name. The selection button sits inside the bottom-right corner of the product image. No sample amounts are presented as real prices.

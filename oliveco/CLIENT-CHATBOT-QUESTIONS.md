@@ -2,7 +2,7 @@
 
 Please provide confirmed, current answers. If something is unknown, mark it “not confirmed” so the chatbot can refer customers to your team.
 
-We already have the company name, Facebook contact, 28 catalogue entries, product photographs, and some product names, pack sizes and label information. We still need the business policies and fuller product details below.
+We already have the company name, Facebook contact, the public phone number +95 9 797 536795 (checked on the official Facebook Page on 28 October 2026), 28 catalogue entries, product photographs, and some product names, pack sizes and label information. The Page does not list an email address. Please confirm your preferred customer contact details, business policies and fuller product details below.
 
 ## 1. Opening hours and contact details — highest priority
 

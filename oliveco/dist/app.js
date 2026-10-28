@@ -7,6 +7,8 @@
   const $ = (s, p = document) => p.querySelector(s);
   const $$ = (s, p = document) => [...p.querySelectorAll(s)];
   const iconPaths = {
+    phone:'<path d="M5 3h4l2 5-3 2a15 15 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2C10 21 3 14 3 5a2 2 0 0 1 2-2Z"/>',
+    email:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
     'arrow-right':'<path d="M4 12h15m-6-6 6 6-6 6"/>',
     'arrow-up-right':'<path d="M6 18 18 6M6 6h12v12"/>',
     'chevron-down':'<path d="m6 9 6 6 6-6"/>',
