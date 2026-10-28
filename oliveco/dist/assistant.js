@@ -9,7 +9,7 @@
   let conversation=[],context=[],busy=false,requestController=null,aiConfigured=false,lastReplyWarning=null;
   const knownIds=new Set(window.OLIVECO_PRODUCTS.map(p=>p.id));
   const cleanIds=ids=>Array.isArray(ids)?[...new Set(ids.filter(id=>knownIds.has(id)))].slice(0,3):[];
-  const cleanActions=actions=>Array.isArray(actions)?actions.filter(action=>typeof action==='string'&&['contact','selection','category:skin','category:hair','category:personal','category:home','category:medical'].includes(action)):[];
+  const cleanActions=actions=>Array.isArray(actions)?actions.filter(action=>typeof action==='string'&&['contact','enquiry','selection','category:skin','category:hair','category:personal','category:home','category:medical'].includes(action)):[];
   try{const saved=JSON.parse(sessionStorage.getItem('oliveco-chat')||'[]');if(Array.isArray(saved))conversation=saved.filter(x=>x&&['user','assistant'].includes(x.role)&&typeof x.text==='string').slice(-20).map(m=>({role:m.role,text:m.text.slice(0,4000),products:cleanIds(m.products),actions:cleanActions(m.actions),context:cleanIds(m.context||m.products)}));context=[...conversation].reverse().find(m=>m.role==='assistant'&&m.context.length)?.context||[]}catch{}
   function persist(){try{sessionStorage.setItem('oliveco-chat',JSON.stringify(conversation.slice(-20)))}catch{}}
   function updateMode(){
@@ -24,7 +24,8 @@
   function decorateReply(reply){
     const ids=Array.isArray(reply.products)?reply.products:[];
     const cards=ids.slice(0,3).map(id=>{const p=window.OLIVECO_PRODUCTS.find(p=>p.id===id);if(!p)return'';return`<button class="chat-product" data-detail="${p.id}"><span><img src="assets/${p.image}.webp" alt="" loading="lazy"></span><span><strong>${esc(I.name(p))}</strong><small>${t('chatView')} ${icon('arrow-up-right')}</small></span></button>`}).join('');
-    const actions=(reply.actions||[]).map(action=>action==='contact'?`<a class="chat-action" href="https://www.facebook.com/olivecomdy/" target="_blank" rel="noopener">${t('facebookContact')} ${icon('arrow-up-right')}</a>`:action==='selection'?`<button class="chat-action" data-chat-selection>${t('bagTitle')} ${icon('bag')}</button>`:action.startsWith('category:')?`<button class="chat-action" data-category="${esc(action.split(':')[1])}">${t('chatMore')} ${icon('arrow-right')}</button>`:'').join('');
+    const viber=window.OLIVECO_CONTACT?.viber;
+    const actions=(reply.actions||[]).map(action=>action==='contact'?`<a class="chat-action" href="${esc(viber?.href||'https://www.facebook.com/olivecomdy/')}"${viber?'':' target="_blank" rel="noopener"'}>${t(viber?'viberContact':'facebookContact')} ${icon('arrow-up-right')}</a>`:action==='enquiry'?`<button class="chat-action" data-chat-enquiry="${esc((reply.context||ids).join(','))}">${t('prepareEnquiry')} ${icon('message')}</button>`:action==='selection'?`<button class="chat-action" data-chat-selection>${t('bagTitle')} ${icon('bag')}</button>`:action.startsWith('category:')?`<button class="chat-action" data-category="${esc(action.split(':')[1])}">${t('chatMore')} ${icon('arrow-right')}</button>`:'').join('');
     return cards+actions;
   }
   function draw(){
@@ -49,9 +50,10 @@
   $('#chat-launcher').addEventListener('click',()=>panel.hidden?open():close());$('#chat-close').addEventListener('click',()=>{close();$('#chat-launcher').focus()});
   $('#chat-reset').addEventListener('click',()=>{if(busy)return;conversation=[];context=[];lastReplyWarning=null;persist();updateMode();draw();input.focus()});
   $('#chat-form').addEventListener('submit',e=>{e.preventDefault();send(input.value)});
-  host.addEventListener('click',e=>{const prompt=e.target.closest('[data-chat-prompt]');if(prompt)send(prompt.dataset.chatPrompt);if(e.target.closest('[data-chat-selection]')){close();shop.showSelection()}if(e.target.closest('[data-detail],[data-category]'))close()});
+  host.addEventListener('click',e=>{const prompt=e.target.closest('[data-chat-prompt]');if(prompt)send(prompt.dataset.chatPrompt);const enquiry=e.target.closest('[data-chat-enquiry]');if(enquiry){document.dispatchEvent(new CustomEvent('oliveco:enquire',{detail:{productIds:cleanIds(enquiry.dataset.chatEnquiry.split(',')),question:[...conversation].reverse().find(m=>m.role==='user')?.text||''}}));}if(e.target.closest('[data-chat-selection]')){close();shop.showSelection()}if(e.target.closest('[data-detail],[data-category]'))close()});
   host.addEventListener('keydown',e=>{if(e.key==='Escape'){close();$('#chat-launcher').focus()}});
   document.addEventListener('oliveco:ask',e=>{open();if(e.detail?.productId){const p=window.OLIVECO_PRODUCTS.find(p=>p.id===e.detail.productId);if(p){context=[p.id];send(t('chatAskName',{name:I.name(p)}))}}});
   document.addEventListener('oliveco:language',translate);
+  document.addEventListener('oliveco:enquiry-opening',close);
   translate();refreshConnection();
 })();

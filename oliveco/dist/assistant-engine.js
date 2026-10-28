@@ -46,6 +46,8 @@
     const response=(text,extra={})=>({text,products:ids,actions:[],context:ids.length?ids:validContext,mode:'guide',...extra});
     if(/cure|treat|diagnos|dosage|dose|pregnan|baby|children|allerg|safe for|swallow|drink|ကုသ|ကိုယ်ဝန်|ကလေး|ဘေးကင်း|သောက်|ဘယ်နှစ်|ဓာတ်မတည့်/.test(q))return response(choose('ပစ္စည်းအချက်အလက်ကို ကူညီရှာပေးနိုင်ပါတယ်။ ရောဂါကုသမှု၊ သောက်သုံးပမာဏ၊ ကလေး၊ ကိုယ်ဝန်ဆောင်နှင့် ဓာတ်မတည့်မှုအတွက် သင့်တော်မှုကို မူရင်းဘူးအညွှန်းနှင့် ကျန်းမာရေးပညာရှင်ထံ အတည်ပြုပါ။ ပြင်ပသုံးပစ္စည်းကို မသောက်သုံးပါနှင့်။','I can help with product information, but a qualified healthcare professional should confirm treatment, dosage, and suitability for children, pregnancy or allergies. Follow the original label. Do not ingest external-use products.'),{actions:['contact'],definitive:true});
     const business=knowledge.business||{};
+    const seller=business.viber?choose(`Viber ${business.viber}`,`Viber at ${business.viber}`):'Facebook';
+    const salesActions=business.viber?['enquiry','contact']:['contact'];
     const policies=[
       {test:/opening|closing|\bhours\b|what time.*(?:open|close)|\bopen (?:today|now|on)|\b(?:are you|is (?:the )?(?:shop|store)) open\b|\bclose[sd]?\b|ဆိုင်ဖွင့်|ဆိုင်ပိတ်|ဖွင့်ချိန်|ပိတ်ချိန်|ဘယ်အချိန်/,key:'hours',label:['ဆိုင်ဖွင့်ပိတ်ချိန်','Opening and closing hours']},
       {test:/where.*(?:shop|store|office|located)|\baddress\b|\blocation\b|ဆိုင်လိပ်စာ|ဘယ်မှာရှိ|တည်နေရာ/,key:'address',label:['ဆိုင်လိပ်စာ','The shop address']},
@@ -53,22 +55,23 @@
       {test:/payment|\bpay\b|cash on delivery|\bcod\b|ငွေပေး|ငွေချေ/,key:'payment',label:['လက်ခံသော ငွေပေးချေနည်းများ','Accepted payment methods']},
       {test:/return|refund|exchange|ပြန်လဲ|ပြန်အမ်း/,key:'returns',label:['ပစ္စည်းပြန်လဲခြင်းနှင့် ငွေပြန်အမ်းခြင်း မူဝါဒ','Returns and refunds']},
       {test:/wholesale|minimum order|\bmoq\b|လက်ကား/,key:'wholesale',label:['လက်ကားဈေးနှုန်းနှင့် အနည်းဆုံးမှာယူရမည့် အရေအတွက်','Wholesale terms and minimum quantities']},
+      {test:/\bviber\b|ဗိုက်ဘာ|ဗိုင်ဘာ/,key:'viber',label:['Viber နံပါတ်','The Viber number']},
       {test:/\bphone\b|ဖုန်း/,key:'phone',label:['ဆက်သွယ်ရန် ဖုန်းနံပါတ်','The contact phone number']},
       {test:/\bemail\b|အီးမေးလ်/,key:'email',label:['ဆက်သွယ်ရန် အီးမေးလ်','The contact email']}
     ];
     const policy=policies.find(item=>item.test.test(q));
     if(policy){
-      const fact=business[policy.key];
+      const fact=policy.key==='phone'&&Array.isArray(business.phones)?business.phones.join(', '):business[policy.key];
       const confirmed=typeof fact==='string'?fact:fact&&(my?(fact.my||fact.en):(fact.en||fact.my));
-      const text=confirmed||choose(`${policy.label[0]}ကို အတည်ပြုထားသော အချက်အလက် မရရှိသေးပါ။ Oliveco အဖွဲ့ကို Facebook မှ ဆက်သွယ်မေးမြန်းနိုင်ပါတယ်။`,`I don't have confirmed information about ${policy.label[1].toLowerCase()} yet. Please contact the Oliveco team on Facebook to confirm.`);
-      return response(text,{products:[],actions:['contact'],definitive:matches.length===0});
+      const text=confirmed||choose(`${policy.label[0]}ကို အတည်ပြုထားသော အချက်အလက် မရရှိသေးပါ။ Oliveco အဖွဲ့ကို ${seller} မှ ဆက်သွယ်မေးမြန်းနိုင်ပါတယ်။`,`I don't have confirmed information about ${policy.label[1].toLowerCase()} yet. Please contact the Oliveco team on ${seller} to confirm.`);
+      return response(text,{products:[],actions:salesActions,definitive:matches.length===0});
     }
     if(/price|cost|how much|ဈေး|စျေး|ဘယ်လောက်/.test(q)&&matches.length===1){
       const amount=pricing.amounts?.[matches[0].id];
       if(typeof amount==='number'&&Number.isFinite(amount)&&amount>=0)return response(`${my?(I.names[matches[0].id]||matches[0].name):matches[0].name}: ${pricing.currency||'MMK'} ${new Intl.NumberFormat('en').format(amount)}`,{actions:['selection'],definitive:true});
     }
-    if(/price|cost|how much|buy|purchase|order|delivery|shipping|payment|wholesale|stock|available|ဈေး|စျေး|ဘယ်လောက်|ဝယ်|မှာယူ|ပို့ဆောင်|လက်ကား|ရနိုင်/.test(q))return response(choose('ဈေးနှုန်း၊ ပစ္စည်းရရှိနိုင်မှု၊ ပို့ဆောင်မှုနဲ့ လက်ကားအရေအတွက်ကို Oliveco အရောင်းအဖွဲ့က အတည်ပြုပေးပါမယ်။ စိတ်ဝင်စားတဲ့ပစ္စည်းတွေကို ရွေးချယ်စာရင်းထဲ ထည့်ပြီး စာရင်းကူးယူကာ Facebook မှာ ပို့မေးနိုင်ပါတယ်။ ဒီနေရာမှာ ငွေပေးချေစနစ် မရှိပါဘူး။','The Oliveco team confirms prices, stock, delivery and wholesale quantities. Add the products you like to your selection, copy the list, and share it with the seller on Facebook. No payment is taken here.'),{actions:['selection','contact'],definitive:true});
-    if(/contact|facebook|seller|ဆက်သွယ်|အရောင်း/.test(q))return response(choose('Oliveco အရောင်းအဖွဲ့ကို Facebook မှ တိုက်ရိုက်ဆက်သွယ်နိုင်ပါတယ်။ ရွေးထားတဲ့ ပစ္စည်းစာရင်းကို ကူးယူပြီး တစ်ခါတည်း ပို့မေးနိုင်ပါတယ်။','You can contact the Oliveco team directly on Facebook. Copy your selected product list and share it with them in one enquiry.'),{products:[],actions:['selection','contact']});
+    if(/price|cost|how much|buy|purchase|order|stock|available|more detail|detailed information|talk.*(?:human|person|sales)|speak.*(?:human|person|sales)|call me|callback|ဈေး|စျေး|ဘယ်လောက်|ဝယ်|မှာယူ|ရနိုင်|အသေးစိတ်.*(?:မေး|သိ)|လူနဲ့|ပြန်ဆက်သွယ်/.test(q))return response(choose(`ဈေးနှုန်း၊ ရရှိနိုင်မှုနှင့် အသေးစိတ်အတွက် Oliveco အရောင်းအဖွဲ့ကို ${seller} မှ ဆက်သွယ်ပါ။ မေးမြန်းစာတွင် သင့်အမည်၊ ပြန်ဆက်သွယ်ရန် ဖုန်းနှင့် စိတ်ဝင်စားသော ပစ္စည်းများကို ဖြည့်ပြီး Viber မှာ ကူးထည့်ပို့နိုင်ပါတယ်။`,`For prices, availability or detailed enquiries, contact the Oliveco sales team on ${seller}. Prepare an enquiry with your name, callback phone and products, then paste and send it in Viber.`),{actions:[...salesActions,'selection'],definitive:true});
+    if(/contact|facebook|seller|ဆက်သွယ်|အရောင်း/.test(q))return response(choose(`Oliveco အရောင်းအဖွဲ့ကို ${seller} မှ ဆက်သွယ်နိုင်ပါတယ်။ အမည်၊ ပြန်ဆက်သွယ်ရန် ဖုန်းနှင့် မေးမြန်းလိုသည်ကို ပြင်ဆင်ပြီး ပို့ပါ။`,`Contact the Oliveco team on ${seller}. Prepare your name, callback phone and question, then send the enquiry there.`),{products:[],actions:salesActions,definitive:true});
     if(matches.length){
       let text=matches.map(p=>`${my?(I.names[p.id]||p.name):p.name}\n${(I.facts[p.id]||[p.description,p.description])[my?0:1]}${my?'\nထုပ်ပိုးမှု: ':'\nFormat: '}${my?I.size(p):p.size}`).join('\n\n');
       if(/ingredient|ပါဝင်/.test(q)&&!matches.some(p=>['herbal-q10','silk-shine','olive-tonic-60','olive-tonic-tall','herbal-lotion'].includes(p.id)))text+='\n\n'+choose('ပါဝင်ပစ္စည်းစာရင်း အပြည့်အစုံကို အတည်ပြုဖို့ Oliveco ကို ဆက်သွယ်မေးမြန်းပါ။','Contact Oliveco to confirm the complete ingredient list.');

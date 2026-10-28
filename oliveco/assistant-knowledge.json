@@ -1,13 +1,18 @@
 {
-  "updatedAt": "2026-10-28",
+  "updatedAt": "2026-10-29",
   "business": {
     "name": "Olive Marketing Group Co., Ltd.",
     "facebook": "https://www.facebook.com/olivecomdy/",
     "hours": null,
     "timeZone": null,
     "holidayHours": null,
-    "address": null,
-    "phone": "+95 9 797 536795",
+    "address": {
+      "my": "မဟာမြိုင် (၂) ရပ်ကွက်၊ မဟာအောင်မြေမြို့နယ်၊ မန္တလေးမြို့။",
+      "en": "Maha Myaing (2) Ward, Maha Aung Myay Township, Mandalay, Myanmar."
+    },
+    "phone": "09-4150440",
+    "phones": ["02-4036795", "02-2832238", "09-4150440"],
+    "viber": "092150440",
     "email": null,
     "delivery": null,
     "payment": null,
@@ -17,8 +22,16 @@
   },
   "sources": {
     "phone": {
-      "url": "https://www.facebook.com/olivecomdy/about",
-      "checkedAt": "2026-10-28"
+      "source": "Client contact details supplied by the user in the 29 October 2026 screenshot; supersedes the Facebook phone.",
+      "checkedAt": "2026-10-29"
+    },
+    "viber": {
+      "source": "User explicitly supplied 092150440 as the Viber number. It differs from the mobile call number in the client screenshot.",
+      "checkedAt": "2026-10-29"
+    },
+    "address": {
+      "source": "Ward, township and city from the client screenshot. Exact building/street transcription awaits confirmation.",
+      "checkedAt": "2026-10-29"
     }
   },
   "products": {},

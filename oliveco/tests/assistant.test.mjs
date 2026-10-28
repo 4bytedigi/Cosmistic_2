@@ -30,7 +30,7 @@ test('client-approved hours are answered without guessing or using AI',async()=>
 });
 
 test('missing delivery and payment information is not fabricated',async()=>{
-  const unconfirmed=structuredClone(knowledge);unconfirmed.business.phone=null;
+  const unconfirmed=structuredClone(knowledge);unconfirmed.business.phone=null;unconfirmed.business.phones=[];
   for(const message of ['Do you deliver to Yangon?','Do you accept cash on delivery?','Can I return an item?','What is your phone number?','Are you open?']){
     const result=await make({knowledge:unconfirmed}).reply({message,language:'en'});
     assert.match(result.text,/don't have confirmed information/,message);
@@ -64,13 +64,34 @@ test('product follow-ups carry bounded history and confirmed product details',as
 test('structured product cards accept only real catalogue IDs',async()=>{
   const result=await make({generate:async()=>({output:{...fakeAnswer,productIds:['invented','herbal-q10','herbal-q10','silk-shine'],contactSeller:true}})}).reply({message:'Compare the facial foam and hair coat oil',language:'en'});
   assert.deepEqual(result.products,['herbal-q10','silk-shine']);
-  assert.deepEqual(result.actions,['contact']);
+  assert.deepEqual(result.actions,['enquiry','contact']);
 });
 
 test('business-only answers retain the previous product context without unrelated cards',async()=>{
   const result=await make({generate:async()=>({output:{answer:'Please confirm that detail with the seller.',productIds:[],contactSeller:true}})}).reply({message:'Tell me more',language:'en',context:['herbal-q10']});
   assert.deepEqual(result.products,[]);
   assert.deepEqual(result.context,['herbal-q10']);
+});
+
+test('client call numbers and the separate Viber number stay distinct without AI calls',async()=>{
+  const service=make({generate:async()=>{throw new Error('Must not run');}});
+  const call=await service.reply({message:'What is your phone number?',language:'en'});
+  const viber=await service.reply({message:'Viber number?',language:'en'});
+  assert.equal(call.text,'02-4036795, 02-2832238, 09-4150440');
+  assert.equal(viber.text,'092150440');
+  assert.equal(viber.mode,'guide');
+});
+
+test('purchase and human-detail requests offer the enquiry handoff with product context',async()=>{
+  const service=make({generate:async()=>{throw new Error('Must not run');}});
+  for(const message of ['I want to buy this','I want more detailed information','Can a person call me?','ဒီပစ္စည်းကို ဝယ်ချင်ပါတယ်']){
+    const result=await service.reply({message,language:'en',context:['herbal-q10']});
+    assert.ok(result.actions.includes('enquiry'),message);
+    assert.match(result.text,/092150440/);
+    assert.deepEqual(result.context,['herbal-q10']);
+    assert.equal(result.definitive,true);
+    assert.doesNotMatch(result.text,/has been sent|order is confirmed/);
+  }
 });
 
 test('provider errors fall back to product facts',async()=>{

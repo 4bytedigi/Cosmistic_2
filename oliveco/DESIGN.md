@@ -28,7 +28,15 @@ Navigation stays pinned while browsing, with 24px separation from the hero on de
 
 Portrait hero → five collections → browsable product grid → skincare feature → company introduction → three-step selection/enquiry guide → direct seller contact. Product details explain uses and formats. A contextual assistant opens from either the floating launcher or a product detail.
 
-No prices, ratings, shipping promises, testimonials, certifications or inventory claims are fabricated. The PDFs remain offline source materials. The assistant states that it is a product guide while the future AI provider remains unconfigured.
+No prices, ratings, shipping promises, testimonials, certifications or inventory claims are fabricated. The PDFs remain offline source materials. The assistant uses the server-side low-cost AI connection for conversation and the local guide for confirmed business answers and fallback replies.
+
+## Customer enquiries — 29 October 2026
+
+The original logo remains unchanged at the user's request. The contact section shows the client-supplied call numbers, separate Viber destination and the confirmed ward/township/city in the selected language. The shared business record drives page links and chatbot answers.
+
+The new enquiry dialog follows the existing green/yellow palette, Manrope/Noto Sans Myanmar type, pill actions and soft dialog corners. The task uses a native modal to protect focus while collecting a name, callback phone and question. Selected product names, pack sizes and quantities carry into the message. Labels remain visible; field errors sit beside their controls; the form reflows into one column on narrow phones. There are no new fonts, animation libraries or decorative captions.
+
+“Copy enquiry” prepares the complete message and exposes the Viber chat link with explicit paste/send instructions. Personal details are kept in the current page and cleared on close. The interface never claims delivery; no Viber API is configured. The full message remains available for manual copy if clipboard access fails.
 
 ## Applied design checks
 

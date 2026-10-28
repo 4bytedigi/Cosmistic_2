@@ -1,6 +1,6 @@
 # Oliveco
 
-A local, Myanmar-first product showcase for Olive Marketing Group Co., Ltd. Visitors browse products, choose a few, copy their enquiry list, and contact the seller on the supplied Facebook page. There is no checkout or payment system. The original PDFs are source materials only and are not included or linked in the website.
+A local, Myanmar-first product showcase for Olive Marketing Group Co., Ltd. Visitors browse products, choose a few and prepare an enquiry for the seller on Viber. There is no checkout or payment system. The original PDFs are source materials only and are not included or linked in the website.
 
 ## Run locally
 
@@ -27,7 +27,7 @@ Use the `oliveco` root directory with Node.js 22 or newer. Install dependencies 
 - A contextual chat panel that answers product questions and shows relevant product cards.
 - The supplied brand portrait against white and pastel bokeh gradients, with `#8BC34A` green accents.
 
-## Assistant and API key later
+## Assistant
 
 The assistant supports conversation history, follow-up product questions and customer enquiries. It uses the confirmed catalogue facts and `assistant-knowledge.json`. Missing hours, prices, stock and policies remain unknown and are referred to the seller.
 
@@ -43,7 +43,19 @@ Send [the client questionnaire](CLIENT-CHATBOT-QUESTIONS.md) to the client. Ente
 
 Keep confirmed retail prices in `dist/prices.js` so product cards and chat use the same amounts. Real-time stock, order tracking, payment processing and sending enquiries are not connected.
 
-Contact phone and email use plain strings in `assistant-knowledge.json`. Run `npm run build` after changing them: this renders clickable links in the homepage contact section and both page footers from the same record used by the chatbot. Leave missing contacts as `null`; no placeholder contact is published. The current phone was checked on the official Facebook About page on 28 October 2026. That page does not list an email address.
+Contacts live in `assistant-knowledge.json`: `phone` is the primary call number, `phones` lists all call numbers, `viber` is the separate Viber number, and `email` remains `null` until confirmed. The client-supplied call numbers on 29 October 2026 supersede the earlier Facebook number. Viber uses **092150440** as explicitly requested; the screenshot's **09-4150440** remains a call number. Run `npm run build` after contact changes: this renders both page footers, the homepage contact section and `dist/contact-data.js` from the chatbot's same record. No placeholder contact is published. The published address includes only the legible ward, township and city; the building/street details still need confirmation.
+
+## Customer enquiries and Viber
+
+The contact section, product selection and purchase/detail requests in chat open a bilingual enquiry form. It collects the customer's name, callback phone and question, includes selected products with pack sizes/quantities, and prepares the complete message. Myanmar digits in callback numbers are accepted and normalized for the copied message. Customers copy the enquiry, open the supplied Viber chat, paste and send it themselves. If clipboard access is unavailable, the full message is available to select and copy manually. If Viber does not open, the number stays visible so customers can save/message it in Viber.
+
+There is **no Viber API connection or automatic delivery**. A copied enquiry is never reported as sent. The personal-number chat link contains only the business destination, not customer data. Enquiry fields stay in memory in the current page, are cleared when the form closes, and are not sent to the AI/server or saved in browser storage. Existing product selection and chat history persistence are separate from the enquiry form.
+
+Automatic delivery later requires a supported Viber bot/business integration, private server credentials and the appropriate subscribed recipient/account setup. A bot cannot send to an arbitrary phone number alone. See [Viber's send-message API](https://developers.viber.com/docs/api/rest-bot-api/#send-message). The actual device launch and delivery still need testing on the client's Viber account; browser checks verify message content and destination without sending a test message to the client.
+
+## Growing the catalogue
+
+Add each confirmed product to `dist/products.js` with a unique stable ID, an existing category and a matching WebP packaging image in `dist/assets/`. Add its Myanmar name and bilingual approved facts to the matching maps in `dist/i18n.js`, its confirmed numeric price (or `null`) to `dist/prices.js`, and any fuller approved details under the same ID in `assistant-knowledge.json`. Counts, filters, selection and the assistant catalogue use this shared product list. Run the build/tests, review both languages and publish. A client-editable administration system is not part of the current site.
 
 ## Product prices
 

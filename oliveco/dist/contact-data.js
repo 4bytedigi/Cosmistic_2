@@ -1,0 +1,2 @@
+// Generated from assistant-knowledge.json by npm run build.
+window.OLIVECO_CONTACT={"viber":{"number":"092150440","international":"+9592150440","href":"viber://chat?number=%2B9592150440"},"facebook":"https://www.facebook.com/olivecomdy/","phones":[{"number":"02-4036795","href":"tel:+9524036795"},{"number":"02-2832238","href":"tel:+9522832238"},{"number":"09-4150440","href":"tel:+9594150440"}],"address":{"my":"မဟာမြိုင် (၂) ရပ်ကွက်၊ မဟာအောင်မြေမြို့နယ်၊ မန္တလေးမြို့။","en":"Maha Myaing (2) Ward, Maha Aung Myay Township, Mandalay, Myanmar."}};

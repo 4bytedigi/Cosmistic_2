@@ -2,7 +2,7 @@
 
 Please provide confirmed, current answers. If something is unknown, mark it “not confirmed” so the chatbot can refer customers to your team.
 
-We already have the company name, Facebook contact, the public phone number +95 9 797 536795 (checked on the official Facebook Page on 28 October 2026), 28 catalogue entries, product photographs, and some product names, pack sizes and label information. The Page does not list an email address. Please confirm your preferred customer contact details, business policies and fuller product details below.
+We have the company name, Facebook contact, client-supplied call numbers 02-4036795 / 02-2832238 / 09-4150440, and the user-supplied Viber number 092150440. The call numbers supplied on 29 October 2026 replace the earlier Facebook number. We also have 28 catalogue entries, product photographs, and some product names, pack sizes and label information. Email and opening hours remain unconfirmed. Please confirm your preferred contact details, business policies and fuller product details below.
 
 ## 1. Opening hours and contact details — highest priority
 
@@ -11,6 +11,9 @@ We already have the company name, Facebook contact, the public phone number +95 
 - What happens on public holidays or temporary closures? Who will keep these hours updated?
 - What is the full shop/office address and map link? Can customers visit or collect orders?
 - Which phone number, email, Facebook page, Messenger, Viber or WhatsApp links may the chatbot share?
+- Confirm that **092150440** is the intended Viber account; it is different from **09-4150440** in the supplied call-number list. Send its official Viber chat link if available.
+- Send the exact address as typed text so the building and street details can be published accurately. The site currently shows only the ward, township and city.
+- When ready for automatic website-to-Viber delivery, confirm the supported business/bot account and arrange its server-side API credentials and recipient/subscription setup. The current form prepares a message for the customer to paste and send; it does not deliver automatically.
 - How quickly should customers expect a human reply? Which contact should it use for urgent order questions?
 
 ## 2. Delivery, ordering and payments — highest priority

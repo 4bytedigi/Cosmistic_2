@@ -8,6 +8,7 @@
   const $$ = (s, p = document) => [...p.querySelectorAll(s)];
   const iconPaths = {
     phone:'<path d="M5 3h4l2 5-3 2a15 15 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2C10 21 3 14 3 5a2 2 0 0 1 2-2Z"/>',
+    viber:'<path d="M20 12a8 8 0 0 1-8 8H7l-4 2 1.5-5A8 8 0 1 1 20 12Z"/><path d="m8 7 2 3-1 1a8 8 0 0 0 3 3l1-1 3 2-1 2c-5 0-9-4-9-9l2-1Z"/>',
     email:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
     'arrow-right':'<path d="M4 12h15m-6-6 6 6-6 6"/>',
     'arrow-up-right':'<path d="M6 18 18 6M6 6h12v12"/>',
@@ -198,6 +199,6 @@
   $('#year').textContent = new Date().getFullYear();
   $('#language-switch').addEventListener('change',e=>I.setLanguage(e.target.value));
   document.addEventListener('oliveco:language',()=>{categoryNames=I.categories();hydrateIcons();renderCategories();renderProducts();if(bagDialog.open)renderBag();if(detailDialog.open&&activeDetailId)openDetails(activeDetailId)});
-  window.OlivecoShop={openDetails,chooseCategory,addToBag,showSelection(){renderBag();bagDialog.showModal()},icon};
+  window.OlivecoShop={openDetails,chooseCategory,addToBag,selection:()=>products.filter(p=>bag[p.id]).map(p=>({id:p.id,quantity:bag[p.id]})),showSelection(){renderBag();bagDialog.showModal()},icon};
   I.apply();hydrateIcons();renderCategories();syncSearchInputs();$('#sort-products').value=state.sort;renderProducts();updateCounts();
 })();
