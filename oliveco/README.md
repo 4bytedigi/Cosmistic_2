@@ -41,6 +41,8 @@ Edit `dist/prices.js` to replace each product's `null` with its confirmed numeri
 
 ## Checks
 
+Run `npm run build` before committing script or stylesheet changes. This refreshes the content versions in both HTML pages, preventing cached files from an earlier deployment from being mixed with a new page.
+
 Run `npm run check` for JavaScript syntax checks. Browser verification covered Myanmar/English switching, search, category filtering, saved items, product details, selection quantities and persistence, list copying, and contextual chat. Phone views were checked at 320px and 390px widths. No PDF links, broken product images or browser console errors were found in the checked views.
 
 See [DESIGN.md](DESIGN.md) for visual decisions and [ASSETS.md](ASSETS.md) for image sources and generation prompts.

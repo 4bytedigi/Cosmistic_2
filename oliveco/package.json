@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node --env-file-if-exists=.env server.mjs",
     "dev": "node --env-file-if-exists=.env server.mjs",
+    "build": "node version-assets.mjs && npm run check",
     "check": "node --check server.mjs && node --check dist/app.js && node --check dist/prices.js && node --check dist/i18n.js && node --check dist/assistant.js && node --check dist/assistant-engine.js"
   },
   "keywords": [],
