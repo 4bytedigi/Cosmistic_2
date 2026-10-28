@@ -29,11 +29,19 @@ Use the `oliveco` root directory with Node.js 22 or newer. Install dependencies 
 
 ## Assistant and API key later
 
-The assistant currently runs as a local product guide using the supplied product information. It is labelled as a product guide, and does not claim that a generative AI service is connected.
+The assistant supports conversation history, follow-up product questions and customer enquiries. It uses the confirmed catalogue facts and `assistant-knowledge.json`. Missing hours, prices, stock and policies remain unknown and are referred to the seller.
 
-The server-side AI integration is prepared using the installed AI SDK and its OpenAI-compatible provider. When ready, copy `.env.example` to `.env`, configure `AI_API_KEY`, `AI_BASE_URL` and `AI_MODEL` for your chosen provider, then restart `npm start`. No API key has been added. Keys remain on the server and are never served from `dist/`.
+For local AI testing, copy `.env.example` to `.env` and set `AI_API_KEY`. The defaults use OpenAI's Responses API with `gpt-5-nano`. In production, keep the key in the project's private server environment settings. Never commit it or put it in `dist/`. Set `AI_PROVIDER=compatible` with an appropriate `AI_BASE_URL` and `AI_MODEL` only for another OpenAI-compatible provider.
 
-`POST /api/chat` accepts a question, language and bounded chat history. Without the configuration it returns local product-guide replies. When configured, it calls the selected AI model with grounded product facts and constraints against invented prices, availability, certifications or medical dosage advice. `/api/status` reports whether AI is configured without exposing credentials. Real AI generation remains untested until a provider and key are supplied.
+`POST /api/chat` accepts a question, language, product context and bounded chat history. The response includes validated catalogue IDs for product cards. Without a key, or if AI fails, it returns local product-guide replies. `/api/status` reports configuration and the model name without exposing credentials. The browser restores the recent conversation and product context across page navigation within the tab.
+
+Cost controls: the default model is `gpt-5-nano`, with minimal reasoning, low verbosity, a 700-token output limit, at most six history messages (900 characters each), no automatic retries, no paid tools and no switch to a more expensive model. Confirmed business FAQ replies and missing-policy notices can be answered locally. AI calls are limited to ten per client per minute and three concurrent calls. Set `TRUST_PROXY=true` only behind the trusted Cloudflare/reverse-proxy deployment so client rate limits use Cloudflare's client address. OpenAI response storage is disabled.
+
+## Confirmed chatbot information
+
+Send [the client questionnaire](CLIENT-CHATBOT-QUESTIONS.md) to the client. Enter approved business answers in `assistant-knowledge.json`, using a string or `{ "en": "...", "my": "..." }` for each business field. Leave unconfirmed values as `null`. Product additions go under `products`, keyed by the existing product ID; approved question/answer pairs go in `faqs`. Include source/confirmation dates in supplied details. Never infer medical directions or marketing claims from a product name. Restart/redeploy after changing this server-side file.
+
+Keep confirmed retail prices in `dist/prices.js` so product cards and chat use the same amounts. Real-time stock, order tracking, payment processing and sending enquiries are not connected.
 
 ## Product prices
 

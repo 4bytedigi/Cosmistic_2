@@ -7,14 +7,17 @@
     "start": "node --env-file-if-exists=.env server.mjs",
     "dev": "node --env-file-if-exists=.env server.mjs",
     "build": "node version-assets.mjs && npm run check",
-    "check": "node --check server.mjs && node --check dist/app.js && node --check dist/prices.js && node --check dist/i18n.js && node --check dist/assistant.js && node --check dist/assistant-engine.js"
+    "check": "node --check server.mjs && node --check assistant-service.mjs && node --check dist/app.js && node --check dist/prices.js && node --check dist/i18n.js && node --check dist/assistant.js && node --check dist/assistant-engine.js",
+    "test": "node --test tests/*.test.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@ai-sdk/openai": "^4.0.104",
     "@ai-sdk/openai-compatible": "^3.0.79",
-    "ai": "^7.0.154"
+    "ai": "^7.0.154",
+    "zod": "^4.6.7"
   }
 }

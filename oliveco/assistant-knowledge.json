@@ -1,0 +1,20 @@
+{
+  "updatedAt": null,
+  "business": {
+    "name": "Olive Marketing Group Co., Ltd.",
+    "facebook": "https://www.facebook.com/olivecomdy/",
+    "hours": null,
+    "timeZone": null,
+    "holidayHours": null,
+    "address": null,
+    "phone": null,
+    "email": null,
+    "delivery": null,
+    "payment": null,
+    "returns": null,
+    "wholesale": null,
+    "responseTime": null
+  },
+  "products": {},
+  "faqs": []
+}

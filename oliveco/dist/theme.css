@@ -255,6 +255,7 @@ html[lang=my] .shop-collection h1 { font-size: clamp(26px, 3vw, 42px); line-heig
 .shop-search input { width: 100%; min-width: 0; border: 0; background: transparent; color: var(--forest); font: inherit; font-size: 16px; outline: none; }
 .shop-search input::placeholder { color: var(--muted); opacity: 1; }
 @media (max-width: 700px) {
+  .chat-suggestions { flex-wrap: wrap; overflow: visible; }
   .shop-collection { padding-top: 28px; padding-bottom: 48px; }
   .shop-collection .section-heading { gap: 12px; }
   .shop-count { font-size: 12px; }
