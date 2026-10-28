@@ -32,7 +32,10 @@
 - 17 automated tests passed. Browser checks passed for English/Myanmar clipboard content, Myanmar phone normalization, validation/focus, draft clearing, selected quantities, chat-to-form context and the 28-product Shop page. The 320px layout had no horizontal overflow or footer links obscured by chat.
 - Declared color pairs measured: form text 11.83:1, secondary text/input borders 5.75:1, errors 7.32:1, primary button text 5.64:1. Static detector findings were existing navigation sizing and section/hover heuristics; rendered theme gradients and padded children supersede those false positives. No new enquiry-specific detector finding was returned.
 - No browser console errors in the checked Shop flow. Native Viber launch/delivery and physical-device/screen-reader checks remain unverified. Clipboard success was exercised; the manual-copy error path was reviewed in code.
-- Next: refresh asset hashes after the final focus refinement, publish main and verify live HTML, chatbot actions and the enquiry dialog.
+- Functional change `b2e6187` was pushed to GitHub main and automatically deployed. Production HTML on both pages contains the Viber destination; `/api/status` reports the existing `gpt-5-nano` configuration; purchase requests return the enquiry/contact actions with the correct product context.
+- The live dialog opened correctly, copied the complete selected-product enquiry and showed explicit paste/send instructions for 092150440. Test draft cleared on close. No live browser console errors were observed. No message was sent to the client during testing.
+- The final mobile refinement was confirmed at 390px: opening focuses the heading without forcing the phone keyboard, closing from a selection enquiry restores focus to the selection button, and the form has no horizontal overflow. The full 320px form/contact layout was checked earlier in the same run.
+- Proof screenshot: `output/viber-enquiry-live.jpg` (local, ignored build evidence). The implementation is complete for the agreed customer-controlled handoff; follow-ups are listed below and in `CLIENT-CHATBOT-QUESTIONS.md`.
 
 ## Skill routing for this change
 
