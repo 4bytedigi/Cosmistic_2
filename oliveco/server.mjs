@@ -50,7 +50,7 @@ async function chat(req,res){
   const sessionQuota=security.allow('session:'+sessionId);
   if(!sessionQuota.allowed){res.setHeader('Retry-After',sessionQuota.retryAfter);json(res,429,{error:'chat_rate_limited',retryAfter:sessionQuota.retryAfter});return}
   if(Number(req.headers['content-length'])>MAX_BODY_BYTES){req.resume();json(res,413,{error:'request_too_large'});return}
-  let input;try{input=await readJson(req)}catch(error){json(res,error.status||400,{error:error.status===413?'request_too_large':'invalid_request'});return}
+  let input;try{input=await readJson(req)}catch(error){if(!res.destroyed)json(res,error.status||400,{error:error.status===413?'request_too_large':'invalid_request'});return}
   if(!input||typeof input.message!=='string'||!input.message.trim()||input.message.length>500||/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(input.message)){json(res,400,{error:'invalid_question'});return}
   const language=input.language==='en'?'en':'my';
   if(res.destroyed)return;
@@ -63,11 +63,14 @@ async function chat(req,res){
   }finally{res.off('close',disconnect);}
 }
 const server=http.createServer({maxHeaderSize:8192,requestTimeout:15000,headersTimeout:10000},async(req,res)=>{
+  // Aborted/oversized bodies may emit transport errors after parsing has stopped.
+  req.on('error',()=>{});
+  res.on('error',()=>{});
   res.setHeader('X-Content-Type-Options','nosniff');
   res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');
   res.setHeader('X-Frame-Options','SAMEORIGIN');
   let name;try{name=decodeURIComponent(new URL(req.url,`http://localhost:${port}`).pathname)}catch{res.writeHead(400);res.end('Bad request');return}
-  if(name==='/api/chat'&&req.method==='POST'){try{await chat(req,res)}catch{if(!res.headersSent)json(res,500,{error:'Chat unavailable'})}return}
+  if(name==='/api/chat'&&req.method==='POST'){try{await chat(req,res)}catch{if(!res.headersSent&&!res.destroyed)json(res,500,{error:'chat_unavailable'})}return}
   if(name==='/api/status'&&req.method==='GET'){security.session(req,res);json(res,200,service.status());return}
   if(req.method!=='GET'&&req.method!=='HEAD'){res.writeHead(405);res.end('Method not allowed');return}
   if(name==='/shop/'){res.writeHead(308,{'Location':'/shop'+new URL(req.url,`http://localhost:${port}`).search});res.end();return}

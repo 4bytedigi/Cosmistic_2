@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import http from 'node:http';
 import {createWindowLimiter,createChatSecurity,clientAddress} from '../chat-security.mjs';
 import {createAppServer} from '../server.mjs';
 
@@ -52,7 +53,7 @@ async function fixture(t,extra={}){
   const cookie=session.headers.get('set-cookie').split(';')[0];
   const headers={Origin:'http://oliveco.test','Content-Type':'application/json',Cookie:cookie};
   const post=(body={message:'About Oliveco'},replace={})=>fetch(base+'/api/chat',{method:'POST',headers:{...headers,...replace},body:typeof body==='string'?body:JSON.stringify(body)});
-  return {post,calls,headers,base};
+  return {post,calls,headers,base,server};
 }
 
 test('chat requires the configured origin and a signed browser session',async t=>{
@@ -82,6 +83,17 @@ test('bounded Myanmar history fits the UTF-8 request budget',async t=>{
   const {post}=await fixture(t);
   const history=Array.from({length:6},()=>({role:'user',content:'က'.repeat(900)}));
   assert.equal((await post({message:'က'.repeat(500),history})).status,200);
+});
+
+test('disconnecting during an incomplete JSON body leaves the server usable',async t=>{
+  const {post,calls,headers,base,server}=await fixture(t);
+  const started=new Promise(resolve=>server.once('request',req=>req.once('data',resolve)));
+  const request=http.request(base+'/api/chat',{method:'POST',headers:{...headers,'Content-Length':'1000'}});
+  request.on('error',()=>{});
+  request.write('{"message":');
+  await started;request.destroy();
+  await new Promise(resolve=>setTimeout(resolve,30));
+  assert.equal((await post()).status,200);assert.equal(calls.length,1);
 });
 
 test('HTTP spam limits include free answers and cannot be reset by a new cookie or spoofed IP',async t=>{

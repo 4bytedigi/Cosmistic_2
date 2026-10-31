@@ -33,8 +33,8 @@ Configure these in the host's private environment settings. The tracked [`olivec
 | `AI_MODEL` | `gpt-5-nano` | Configured text model |
 | `AI_MAX_OUTPUT_TOKENS` | `700` | AI output cap, bounded by the server to 256–1000 |
 | `AI_REQUESTS_PER_MINUTE` | `10` | Per-client AI limit, bounded by the server to 1–60 |
-| `AI_REQUESTS_PER_DAY` | `40` | Per-client AI attempts per rolling 24-hour window, bounded to 1–200 |
-| `AI_GLOBAL_REQUESTS_PER_DAY` | `500` | Site-wide AI attempts per rolling 24-hour window, bounded to 1–2000 |
+| `AI_REQUESTS_PER_DAY` | `40` | Per-client AI attempts per 24-hour window, bounded to 1–200 |
+| `AI_GLOBAL_REQUESTS_PER_DAY` | `500` | Site-wide AI attempts per 24-hour window, bounded to 1–2000 |
 | `CHAT_REQUESTS_PER_MINUTE` | `20` | All chat POST requests per client/session per minute, bounded to 1–60 |
 | `CHAT_REQUESTS_PER_HOUR` | `120` | All chat POST requests per client/session per hour, bounded to 1–500 |
 | `CHAT_SESSION_SECRET` | random per process | Optional private random cookie-signing secret, at least 32 characters recommended |

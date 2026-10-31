@@ -75,4 +75,6 @@ Optional browser regression checks: install Python Playwright (`python -m pip in
 
 Browser verification on 29 October 2026 covered Myanmar/English switching, search, category filtering, saved items, product details, selection quantities and persistence, list copying, contextual chat and the Viber enquiry form. Phone views were checked at 320px and 390px widths. No PDF links, broken product images or browser console errors were found in those checked views. Actual Viber app delivery and physical-device/screen-reader testing remain separate checks.
 
+On 1 November 2026, 36 automated tests passed, including chat abuse limits and interrupted uploads. Headless Edge checks covered both pages, pending-request restart, retry, rate-limit recovery, server/malformed-response failures, a simulated timeout, and 320px Myanmar/390px English/1440px English layouts. Live HTTPS checks also verified a real nano-model comparison, the corrected contact, company replies, signed sessions, cross-origin rejection and the mobile enquiry handoff.
+
 See [DESIGN.md](DESIGN.md) for visual decisions and [ASSETS.md](ASSETS.md) for image sources and generation prompts.
