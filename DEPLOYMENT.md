@@ -33,13 +33,30 @@ Configure these in the host's private environment settings. The tracked [`olivec
 | `AI_MODEL` | `gpt-5-nano` | Configured text model |
 | `AI_MAX_OUTPUT_TOKENS` | `700` | AI output cap, bounded by the server to 256–1000 |
 | `AI_REQUESTS_PER_MINUTE` | `10` | Per-client AI limit, bounded by the server to 1–60 |
-| `TRUST_PROXY` | `false` | Enable only behind the trusted Cloudflare/reverse proxy so rate limits use its client address |
+| `AI_REQUESTS_PER_DAY` | `40` | Per-client AI attempts per rolling 24-hour window, bounded to 1–200 |
+| `AI_GLOBAL_REQUESTS_PER_DAY` | `500` | Site-wide AI attempts per rolling 24-hour window, bounded to 1–2000 |
+| `CHAT_REQUESTS_PER_MINUTE` | `20` | All chat POST requests per client/session per minute, bounded to 1–60 |
+| `CHAT_REQUESTS_PER_HOUR` | `120` | All chat POST requests per client/session per hour, bounded to 1–500 |
+| `CHAT_SESSION_SECRET` | random per process | Optional private random cookie-signing secret, at least 32 characters recommended |
+| `TRUST_PROXY` | `false` | Trust Cloudflare's client header only from a private/loopback proxy peer; direct public access must remain blocked |
 
 For the existing public domain, use `PUBLIC_ORIGIN=https://oliveco2.aungmyin.com`. Restart/redeploy after server environment or knowledge changes. Keep real keys outside Git, browser scripts, screenshots and issue/commit descriptions.
 
+## Chat protection and recovery
+
+The browser first gets a signed, HttpOnly, SameSite=Strict chat cookie from `/api/status`. Chat POST requests require that cookie and an allowed `Origin`. Expired sessions refresh once. Cross-origin requests, malformed JSON, control characters, messages longer than 500 characters and bodies larger than 24,000 UTF-8 bytes are rejected before generation. HTTP limits apply to free guide answers and invalid requests too; changing chat cookies or restarting the conversation does not reset the client-address quota. IPv6 addresses share a /64 quota.
+
+AI calls additionally have client/day and site/day caps, a fixed site cap of 30 attempts/minute, one in-flight call per client and three across the site. Failed attempts count. Provider authorization/rate errors and repeated failures temporarily pause new paid calls. The guide remains available. Recent history and output are bounded; prompts restrict the assistant to confirmed Oliveco facts; product IDs and generated text are validated. No AI tools or messaging capability are enabled.
+
+Counters and provider cooldowns are bounded in-memory state for one Node process. A process restart resets them; multiple replicas need a shared limiter. Provider-side project budgets remain the durable spending control. Keep this deployment's app port reachable only through its trusted reverse proxy before enabling `TRUST_PROXY`.
+
+The browser has explicit offline, timeout, busy and rate-limit states, local product/company fallback and a manual retry. Restart cancels the current request and clears chat history/context, while server quotas continue. Existing pre-update chat history is invalidated once so superseded contact numbers are not restored.
+
+Implementation guidance: [OpenAI safety best practices](https://developers.openai.com/api/docs/guides/safety-best-practices). These layers reduce abuse; a public anonymous chatbot does not authenticate a buyer or accept an order.
+
 ## Current production connection
 
-The last verified production configuration, on 29 October 2026, deployed `4bytedigi/Cosmistic_2` on `main` through the self-hosted server manager. This repository handoff does not change the host configuration, DNS or Cloudflare tunnel. Check the host's current source settings before relying on pushes here to trigger a live deployment.
+The production source was checked again on 1 November 2026: the self-hosted server manager still follows `4bytedigi/Cosmistic_2` on `main`. `OliveCo_Website` is the canonical local `origin`. Until a separate hosting-source migration, publish the same verified commit to the retained `legacy` remote for an automatic live deployment. The repository handoff did not change DNS or the Cloudflare tunnel.
 
 To deploy future changes from `OliveCo_Website`:
 

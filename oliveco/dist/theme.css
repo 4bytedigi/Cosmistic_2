@@ -189,6 +189,17 @@ html[lang="my"] .enquiry-heading h2 { letter-spacing: 0; }
 .chat-suggestions button { background: #ffffff; }
 .chat-suggestions button:hover { background: #e4f2d3; }
 .chat-form input, .enquiry-fallback { background: #ffffff; }
+.chat-header > div { min-width: 0; }
+.chat-header .icon-button { min-width: 44px; min-height: 44px; flex-shrink: 0; }
+.chat-header svg { width: 20px; height: 20px; }
+.chat-bubble p { font-size: 14px; }
+html[lang=my] .chat-bubble p { font-size: 14px; }
+.chat-panel :focus-visible { outline: 2px solid var(--forest); outline-offset: 2px; }
+.chat-recovery { flex-shrink: 0; padding-inline: 16px; }
+.chat-recovery p { color: var(--forest); font-size: 12px; line-height: 1.7; margin: 6px 0; overflow-wrap: anywhere; }
+.chat-recovery p:empty { display: none; }
+.chat-recovery .chat-action { min-height: 44px; margin-block: 6px; color: var(--forest); font-size: 12px; }
+.chat-suggestions button:disabled, .chat-recovery button:disabled { opacity: .55; cursor: wait; }
 ::-webkit-scrollbar-thumb { background: #b0cf90; }
 
 @media (max-width: 1150px) {

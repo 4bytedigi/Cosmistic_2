@@ -1,7 +1,12 @@
 {
-  "updatedAt": "2026-10-29",
+  "updatedAt": "2026-11-01",
   "business": {
     "name": "Olive Marketing Group Co., Ltd.",
+    "founded": 1986,
+    "profile": {
+      "en": "Oliveco was established in 1986. Its company profile describes combining Myanmar traditional and Indian Ayurvedic cosmetic methods with modern research and manufacturing. The profile mentions locally sourced aloe vera, neem, thanaka and herbs in its cosmetic ranges.",
+      "my": "Oliveco ကို မြန်မာနိုင်ငံတွင် ၁၉၈၆ ခုနှစ်က စတင်တည်ထောင်ခဲ့ပါတယ်။ ကုမ္ပဏီမိတ်ဆက်အရ သုတေသနနှင့် ခေတ်မီထုတ်လုပ်နည်းများကို မြန်မာ့ရိုးရာ အလှကုန်နည်းများ၊ အိန္ဒိယ အာယုဗေဒ အလှကုန်နည်းများနှင့် ပေါင်းစပ်ထားပါတယ်။ အလှကုန်အမျိုးအစားများတွင် ဒေသထွက် ရှားစောင်းလက်ပပ်၊ တမာ၊ သနပ်ခါးနှင့် ဆေးဖက်ဝင်အပင်များကို အသုံးပြုကြောင်း ဖော်ပြထားပါတယ်။"
+    },
     "facebook": "https://www.facebook.com/olivecomdy/",
     "hours": null,
     "timeZone": null,
@@ -12,7 +17,7 @@
     },
     "phone": "09-4150440",
     "phones": ["02-4036795", "02-2832238", "09-4150440"],
-    "viber": "092150440",
+    "viber": "09-4150440",
     "email": null,
     "delivery": null,
     "payment": null,
@@ -26,8 +31,12 @@
       "checkedAt": "2026-10-29"
     },
     "viber": {
-      "source": "User explicitly supplied 092150440 as the Viber number. It differs from the mobile call number in the client screenshot.",
-      "checkedAt": "2026-10-29"
+      "source": "Corrected at the user's request on 1 November 2026 to the mobile number 09-4150440 repeated in the client screenshot. Supersedes the earlier typed 092150440. Actual Viber account identity still needs verification on a device with Viber.",
+      "checkedAt": "2026-11-01"
+    },
+    "profile": {
+      "source": "Oliveco company profile image supplied by the user on 1 November 2026. Company-level ingredient examples do not confirm the ingredients or medical efficacy of individual products.",
+      "checkedAt": "2026-11-01"
     },
     "address": {
       "source": "Ward, township and city from the client screenshot. Exact building/street transcription awaits confirmation.",

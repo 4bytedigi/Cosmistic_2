@@ -2,7 +2,7 @@
 
 Please provide confirmed, current answers. If something is unknown, mark it “not confirmed” so the chatbot can refer customers to your team.
 
-We have the company name, Facebook contact, client-supplied call numbers 02-4036795 / 02-2832238 / 09-4150440, and the user-supplied Viber number 092150440. The call numbers supplied on 29 October 2026 replace the earlier Facebook number. We also have 28 catalogue entries, product photographs, and some product names, pack sizes and label information. Email and opening hours remain unconfirmed. Please confirm your preferred contact details, business policies and fuller product details below.
+We have the company profile and 1986 founding year, Facebook contact, and client-supplied call numbers 02-4036795 / 02-2832238 / 09-4150440. At the user's correction on 1 November 2026, 09-4150440 is also the Viber destination. We also have 28 catalogue entries, product photographs, and some names, pack sizes and label information. Email and opening hours remain unconfirmed. Please confirm your preferred contact details, business policies and fuller product details below.
 
 ## 1. Opening hours and contact details — highest priority
 
@@ -11,7 +11,7 @@ We have the company name, Facebook contact, client-supplied call numbers 02-4036
 - What happens on public holidays or temporary closures? Who will keep these hours updated?
 - What is the full shop/office address and map link? Can customers visit or collect orders?
 - Which phone number, email, Facebook page, Messenger, Viber or WhatsApp links may the chatbot share?
-- Confirm that **092150440** is the intended Viber account; it is different from **09-4150440** in the supplied call-number list. Send its official Viber chat link if available.
+- Verify that the corrected **09-4150440** opens the intended Viber account on a device with Viber. Send its official Viber chat link if available.
 - Send the exact address as typed text so the building and street details can be published accurately. The site currently shows only the ward, township and city.
 - When ready for automatic website-to-Viber delivery, confirm the supported business/bot account and arrange its server-side API credentials and recipient/subscription setup. The current form prepares a message for the customer to paste and send; it does not deliver automatically.
 - How quickly should customers expect a human reply? Which contact should it use for urgent order questions?

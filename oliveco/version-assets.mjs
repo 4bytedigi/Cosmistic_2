@@ -19,7 +19,8 @@ if(business.email){
   contacts.push({kind:'email',label:'Email us',value:business.email,href:'mailto:'+business.email});
 }
 const publicContact={viber,facebook:business.facebook,phones:contacts.filter(c=>c.kind==='phone').map(c=>({number:c.value,href:c.href})),address:business.address||null};
-fs.writeFileSync(path.join(dist,'contact-data.js'),'// Generated from assistant-knowledge.json by npm run build.\nwindow.OLIVECO_CONTACT='+JSON.stringify(publicContact)+';\n');
+const publicKnowledge={business:Object.fromEntries(['name','founded','profile','facebook','hours','address','phone','phones','viber','email','delivery','payment','returns','wholesale'].map(key=>[key,business[key]??null]))};
+fs.writeFileSync(path.join(dist,'contact-data.js'),'// Generated from assistant-knowledge.json by npm run build.\nwindow.OLIVECO_CONTACT='+JSON.stringify(publicContact)+';\nwindow.OLIVECO_KNOWLEDGE='+JSON.stringify(publicKnowledge)+';\n');
 function anchor(c,compact=false){
   return `<a class="contact-link" data-contact="${c.kind}" data-contact-value="${escape(c.value)}" href="${escape(c.href)}" aria-label="${c.label}: ${escape(c.value)}"><span data-icon="${c.kind}"></span><span class="contact-link-value">${compact&&c.kind==='viber'?'Viber · ':''}${escape(c.value)}</span></a>`;
 }
