@@ -8,13 +8,13 @@ Noto Sans Myanmar is self-hosted from Google Fonts under the SIL Open Font Licen
 
 ## Supplied King Pharmacy feature banner
 
-Saved asset: `D:/Programing/Cosmistic_2/oliveco/dist/assets/king-pharmacy-feature-upright.webp`.
+Web asset: [`dist/assets/king-pharmacy-feature-upright.webp`](dist/assets/king-pharmacy-feature-upright.webp).
 
 This is the latest user-supplied Glycerin Pure / Vaseline Pure composition with all three packs upright, imported directly with WebP encoding for the website. The original is preserved at `source-assets/king-pharmacy-feature-upright.png`, supplied as `codex-clipboard-cbb98e50-5e14-4b19-9490-9cbb5374409f.png`. No image generation was used for this replacement. The earlier angled composition remains in the source assets.
 
 ## Current portrait hero
 
-Saved asset: `D:/Programing/Cosmistic_2/oliveco/dist/assets/oliveco-reference-cutout.webp`.
+Web asset: [`dist/assets/oliveco-reference-cutout.webp`](dist/assets/oliveco-reference-cutout.webp).
 
 Source: the user's supplied portrait, preserved in `source-assets/portrait-reference.png`. The built-in image generation tool removed the advertisement background and the carousel-arrow overlay while preserving the supplied woman's identity, clothing and pose. The final image has an alpha channel and is placed over CSS bokeh and white/pastel gradients. The web asset is a WebP encoding of the edited transparent PNG.
 
@@ -24,7 +24,7 @@ Final edit prompt:
 
 ## Previous portrait hero
 
-Saved asset: `D:/Programing/Cosmistic_2/oliveco/dist/assets/oliveco-portrait.webp`.
+Web asset: [`dist/assets/oliveco-portrait.webp`](dist/assets/oliveco-portrait.webp).
 
 Generated with the built-in image generation tool. Final prompt:
 
@@ -32,7 +32,7 @@ Generated with the built-in image generation tool. Final prompt:
 
 ## Generated botanical backdrop
 
-Saved asset: `D:/Programing/Cosmistic_2/oliveco/dist/assets/botanical-hero.webp`. Previous feature background, retained as an earlier asset; the current feature uses the supplied King Pharmacy composition.
+Web asset: [`dist/assets/botanical-hero.webp`](dist/assets/botanical-hero.webp). Previous feature background, retained as an earlier asset; the current feature uses the supplied King Pharmacy composition.
 
 Generated with the built-in image generation tool. Final prompt:
 

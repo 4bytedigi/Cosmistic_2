@@ -1,5 +1,15 @@
 # Oliveco project context
 
+## Repository handoff — 1 November 2026
+
+- The user requested the complete code in `4bytedigi/OliveCo_Website` with refreshed READMEs and supporting documentation.
+- The target is private and initially contained only `README.md` at `ae9bde5`. The user accepted repository access during this task; the local GitHub account then verified read/write access.
+- Preserve the original project history and target initial commit with a normal merge, then push `main` and the existing `working-version1` tag without force-pushing.
+- Make the new repository the local `origin` after successful verification; retain `Cosmistic_2` as `legacy`. The live server's source configuration remains unchanged by this repository-only handoff.
+- Refresh clone/setup commands, document the current deployment connection, use portable asset links and keep the existing business/AI/Viber limitations explicit. Runtime credentials and ignored output/research files remain outside the upload.
+- Both READMEs and asset links were refreshed, and a root deployment guide was added. A clean tracked-source export installed with `npm ci`, built successfully and passed all 17 tests. All 28 product images and both pages' local assets were present. Documentation links passed validation; no private environment files or credential patterns were found in the inspected source/history.
+- Validation is complete; publishing `main` and the existing tag is in progress. See the root `README.md` and `DEPLOYMENT.md` for maintainer instructions.
+
 ## Current brief — 29 October 2026
 
 - Preserve the existing Oliveco green/yellow identity and logo. Logo replacement is explicitly deferred until the user supplies the new asset.

@@ -1,20 +1,23 @@
-# Oliveco
+# Oliveco application
 
 A local, Myanmar-first product showcase for Olive Marketing Group Co., Ltd. Visitors browse products, choose a few and prepare an enquiry for the seller on Viber. There is no checkout or payment system. The original PDFs are source materials only and are not included or linked in the website.
 
 ## Run locally
 
-```powershell
-cd D:\Programing\Cosmistic_2\oliveco
-npm install
+Clone [4bytedigi/OliveCo_Website](https://github.com/4bytedigi/OliveCo_Website), then run from its repository root:
+
+```sh
+cd oliveco
+npm ci
+npm run build
 npm start
 ```
 
-Open http://localhost:4173. Node.js 22 or newer is required. The development server binds to the local computer by default.
+Open [localhost:4173](http://localhost:4173/). Node.js 22 or newer is required. The development server binds to the local computer by default. All commands below run inside `oliveco/` unless stated otherwise.
 
 ## Server deployment
 
-Use the `oliveco` root directory with Node.js 22 or newer. Install dependencies with `npm ci`, run `npm run check` as the build command, and start with `npm start` on port 4173. For a container deployment, set `HOST=0.0.0.0` so the reverse proxy can reach the app. Set `PUBLIC_ORIGIN=https://oliveco2.aungmyin.com` to allow product-guide requests from the public website. Local development keeps its loopback-only default.
+Use `oliveco/` as the application root with Node.js 22 or newer: install with `npm ci`, build with `npm run build`, and start with `npm start`. The default port is 4173. For a container deployment, set `HOST=0.0.0.0` and `PUBLIC_ORIGIN=https://oliveco2.aungmyin.com`. See the [deployment guide](../DEPLOYMENT.md) for environment settings, verification and the existing production repository connection.
 
 ## Included
 
@@ -25,13 +28,14 @@ Use the `oliveco` root directory with Node.js 22 or newer. Install dependencies 
 - A product selection list with quantities, persistent browser storage, and a copyable enquiry in the selected language.
 - Phone layouts, horizontal collection tabs, larger touch controls, and a bottom selection summary.
 - A contextual chat panel that answers product questions and shows relevant product cards.
+- Shared call/Viber contacts and an enquiry form reachable from chat, the contact section and product selection.
 - The supplied brand portrait against white and pastel bokeh gradients, with `#8BC34A` green accents.
 
 ## Assistant
 
 The assistant supports conversation history, follow-up product questions and customer enquiries. It uses the confirmed catalogue facts and `assistant-knowledge.json`. Missing hours, prices, stock and policies remain unknown and are referred to the seller.
 
-For local AI testing, copy `.env.example` to `.env` and set `AI_API_KEY`. The defaults use OpenAI's Responses API with `gpt-5-nano`. In production, keep the key in the project's private server environment settings. Never commit it or put it in `dist/`. Set `AI_PROVIDER=compatible` with an appropriate `AI_BASE_URL` and `AI_MODEL` only for another OpenAI-compatible provider.
+For local AI testing, copy `.env.example` to `.env` and set `AI_API_KEY`. The defaults use OpenAI's Responses API with `gpt-5-nano`; this is the project's configured default, not a promise about future provider pricing. In production, keep the key in the project's private server environment settings. Never commit it or put it in `dist/`. Set `AI_PROVIDER=compatible` with an appropriate `AI_BASE_URL` and `AI_MODEL` only for another OpenAI-compatible provider. The [environment reference](../DEPLOYMENT.md#environment-settings) lists the supported settings.
 
 `POST /api/chat` accepts a question, language, product context and bounded chat history. The response includes validated catalogue IDs for product cards. Without a key, or if AI fails, it returns local product-guide replies. `/api/status` reports configuration and the model name without exposing credentials. The browser restores the recent conversation and product context across page navigation within the tab.
 
@@ -65,6 +69,8 @@ Edit `dist/prices.js` to replace each product's `null` with its confirmed numeri
 
 Run `npm run build` before committing script or stylesheet changes. This refreshes the content versions in both HTML pages, preventing cached files from an earlier deployment from being mixed with a new page.
 
-Run `npm run check` for JavaScript syntax checks. Browser verification covered Myanmar/English switching, search, category filtering, saved items, product details, selection quantities and persistence, list copying, and contextual chat. Phone views were checked at 320px and 390px widths. No PDF links, broken product images or browser console errors were found in the checked views.
+Run `npm run check` for JavaScript syntax checks and `npm test` for the automated assistant/enquiry tests. The tests use mocked generation and do not need a real API key or make paid model calls.
+
+Browser verification on 29 October 2026 covered Myanmar/English switching, search, category filtering, saved items, product details, selection quantities and persistence, list copying, contextual chat and the Viber enquiry form. Phone views were checked at 320px and 390px widths. No PDF links, broken product images or browser console errors were found in those checked views. Actual Viber app delivery and physical-device/screen-reader testing remain separate checks.
 
 See [DESIGN.md](DESIGN.md) for visual decisions and [ASSETS.md](ASSETS.md) for image sources and generation prompts.
