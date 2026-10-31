@@ -8,7 +8,8 @@
 - Make the new repository the local `origin` after successful verification; retain `Cosmistic_2` as `legacy`. The live server's source configuration remains unchanged by this repository-only handoff.
 - Refresh clone/setup commands, document the current deployment connection, use portable asset links and keep the existing business/AI/Viber limitations explicit. Runtime credentials and ignored output/research files remain outside the upload.
 - Both READMEs and asset links were refreshed, and a root deployment guide was added. A clean tracked-source export installed with `npm ci`, built successfully and passed all 17 tests. All 28 product images and both pages' local assets were present. Documentation links passed validation; no private environment files or credential patterns were found in the inspected source/history.
-- Validation is complete; publishing `main` and the existing tag is in progress. See the root `README.md` and `DEPLOYMENT.md` for maintainer instructions.
+- Published the handoff merge `4f40fa3` to `4bytedigi/OliveCo_Website/main`, together with `working-version1`. GitHub verification confirmed all 77 tracked files match by blob hash, and both the original project history and target initial commit are ancestors of `main`.
+- The local default `origin` now points to `OliveCo_Website`; the previous `Cosmistic_2` remote is retained as `legacy`, and `main` tracks `origin/main`. No hosting source, domain, tunnel or runtime settings were changed. The repository handoff is complete; a future production-source switch follows `DEPLOYMENT.md`.
 
 ## Current brief — 29 October 2026
 
