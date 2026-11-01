@@ -532,3 +532,6 @@ html[lang=my] .heritage-intro h1 { line-height: 1.7; letter-spacing: 0; font-siz
 .product-image-button:hover img { transform: scale(1.02); }
 .faq-answer { overflow: hidden; }
 .faq-list details[open] > .faq-answer > p { animation: none; }
+
+/* Give expanded catalogue descriptions a clear reading rhythm. */
+.product-description p + p { margin-top: 1em; }

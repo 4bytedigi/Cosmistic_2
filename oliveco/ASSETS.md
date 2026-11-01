@@ -59,3 +59,9 @@ The user approved studio-style mockups for all 28 catalogue products, preserving
 ## Favicon and upright packshot corrections
 
 The browser icon was newly generated from the reference concept and cleaned; `favicon-high-resolution.png` retains the high-resolution PNG, with dedicated 32px, 192px and 512px PNG exports. All three pages reference the refreshed PNG favicon. Perfect, Mega-10 and Thai-Tha packshots were corrected to upright presentations; the Olive Oil Plus 60 ml image has its centre seam removed.
+
+## Catalogue product information — 1 November 2026
+
+All 29 scanned pages of the user-supplied `Cosmetics .pdf` (13 pages), `Consumer (2).pdf` (6 pages) and `Medical (2).pdf` (10 pages) were visually reviewed. They map to 28 catalogue products; medical pages 8–9 repeat the small methylated-spirit bottle. Bilingual descriptions in `dist/products.js` and `dist/i18n.js` now cover the supplied product uses, listed ingredients, directions and handling notes. `assistant-knowledge.json` carries the same source-attributed details for the assistant. Ingredient lists are not represented as complete formulations. Oral medicine dosing remains a current-label/pharmacist enquiry.
+
+Source discrepancies are retained explicitly: the body-lotion sheet states 120 g while its pictured tube states 100 g; Denny’s ingredient sheet prints “Aluminum Chlorohydrace”; the blue cream box reads B&C. The two small glycerin formats are 4 oz (glass/plastic), and the floral hair oil is jasmine coconut oil. Sources do not establish current prices, stock or clinical suitability. Original PDFs remain outside the public website.
