@@ -20,5 +20,6 @@
   toggle.addEventListener('click', () => { menu.hidden = !menu.hidden; toggle.setAttribute('aria-expanded', String(!menu.hidden)); });
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { closeMenu(); toggle.focus(); } });
+  document.querySelectorAll('[data-icon="viber"]').forEach(el => { el.innerHTML = '<img class="viber-icon" src="assets/viber-white.svg" alt="" width="24" height="24">'; });
   apply();
 })();

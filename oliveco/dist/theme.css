@@ -529,3 +529,10 @@ html[lang=my] .heritage-intro h1 { line-height: 1.7; letter-spacing: 0; font-siz
 
 /* Give expanded catalogue descriptions a clear reading rhythm. */
 .product-description p + p { margin-top: 1em; }
+
+/* White Viber mark stays legible on light contact surfaces. */
+.viber-icon { display: inline-block; width: 24px; height: 24px; flex-shrink: 0; vertical-align: middle; }
+.contact-link[data-contact="viber"] [data-icon] { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; padding: 5px; border-radius: 50%; background: var(--forest); flex-shrink: 0; }
+.contact-link[data-contact="viber"] .viber-icon { width: 20px; height: 20px; }
+.footer-contact-links .contact-link[data-contact="viber"] [data-icon] { width: 26px; height: 26px; padding: 4px; }
+.footer-contact-links .contact-link[data-contact="viber"] .viber-icon { width: 18px; height: 18px; }
