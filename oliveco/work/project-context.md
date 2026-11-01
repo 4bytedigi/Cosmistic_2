@@ -1,5 +1,11 @@
 # Oliveco project context
 
+## Product clicks preserve chat — 1 November 2026
+
+- User correction: selecting a product from the assistant must not close the chat.
+- Keep the assistant open while the native product details dialog is displayed. Closing details should return focus to the selected chat card, preserve messages/product context and allow follow-up questions. Explicit collection navigation keeps its existing behaviour.
+- Removed the automatic close on assistant product-card clicks. Build/syntax checks and the targeted browser regression passed on the homepage and `/shop?category=home` at 390px and 1440px: details open, chat remains expanded, close/Escape restores card focus, history is unchanged and the next product follow-up works. Publish through both existing remotes and the current hosting connection.
+
 ## Current chatbot hardening — 1 November 2026
 
 - Improve the existing chatbot as a bilingual sales/customer-service assistant, including products, company enquiries, reliable error recovery, a header restart button and protection against spam/misuse. Preserve the existing logo and design.

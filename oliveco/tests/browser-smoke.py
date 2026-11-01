@@ -56,6 +56,34 @@ async def main():
                     await page.locator('#chat-input').press('Enter')
                     await expect(page.locator('.chat-loading')).to_have_count(0)
 
+                for width in [390, 1440]:
+                    for path in ['/', '/shop?category=home']:
+                        context, page = await open_chat(width=width, path=path)
+                        await ask(page, 'Tell me about Herbal Q10')
+                        card = page.locator('.chat-product[data-detail="herbal-q10"]').last
+                        history = await page.evaluate("sessionStorage.getItem('oliveco-chat')")
+                        await card.click()
+                        await expect(page.locator('#detail-dialog')).to_be_visible()
+                        await expect(page.locator('#detail-title')).to_have_text('Herbal Q10+ Facial Foam')
+                        await expect(page.locator('#chat-panel')).to_be_visible()
+                        await expect(page.locator('#chat-launcher')).to_have_attribute('aria-expanded', 'true')
+                        if width == 390:
+                            await page.locator('#detail-dialog [data-close-dialog]').click()
+                        else:
+                            await page.keyboard.press('Escape')
+                        await expect(page.locator('#detail-dialog')).to_be_hidden()
+                        await expect(page.locator('#chat-panel')).to_be_visible()
+                        await expect(card).to_be_focused()
+                        assert await page.evaluate("sessionStorage.getItem('oliveco-chat')") == history
+                        await ask(page, 'What size is it?')
+                        await expect(page.locator('.chat-bubble.assistant').last).to_contain_text('100 g')
+                        await context.close()
+                print('PASS product details preserve open chat, history, focus and follow-ups on both pages at mobile/desktop widths')
+                if '--product-chat-only' in sys.argv:
+                    assert errors == [], errors
+                    await browser.close()
+                    return
+
                 context, page = await open_chat()
                 await ask(page, 'Tell me about your company')
                 await expect(page.locator('.chat-bubble.assistant').last).to_contain_text('1986')
