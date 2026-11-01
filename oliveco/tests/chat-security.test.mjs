@@ -108,7 +108,7 @@ test('HTTP spam limits include free answers and cannot be reset by a new cookie 
 
 test('Viber SVG is served as an image with nosniff enabled',async t=>{
   const {base}=await fixture(t);
-  const result=await fetch(base+'/assets/viber-white.svg');
+  const result=await fetch(base+'/assets/viber-white-v2.svg');
   assert.equal(result.status,200);
   assert.equal(result.headers.get('content-type'),'image/svg+xml');
   assert.equal(result.headers.get('x-content-type-options'),'nosniff');
