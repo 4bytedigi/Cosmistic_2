@@ -1,17 +1,6 @@
 (() => {
   'use strict';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
-    entries.forEach(entry => entry.target.classList.toggle('category-in-view', entry.isIntersecting));
-  }, {threshold: .15}) : null;
-  function observeProducts() {
-    observer?.disconnect();
-    document.querySelectorAll('.category-card').forEach(card => observer?.observe(card));
-  }
-  observeProducts();
-  document.addEventListener('oliveco:language', observeProducts);
-  document.addEventListener('visibilitychange', () => document.documentElement.classList.toggle('page-idle', document.hidden));
-
   const states = new WeakMap();
   document.querySelectorAll('.faq-list details').forEach(details => {
     const summary = details.querySelector('summary');

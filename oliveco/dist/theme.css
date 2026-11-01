@@ -517,18 +517,12 @@ html[lang=my] .heritage-intro h1 { line-height: 1.7; letter-spacing: 0; font-siz
 .bag-item-image img, .chat-product img { mix-blend-mode: normal; }
 .footer .brand-art > img { width: 105.3%; height: auto; border-radius: 0; object-fit: contain; mix-blend-mode: normal; }
 
-/* One upright product per collection, with gentle vertical movement only. */
+/* Collection products stay still until hovered with a mouse or trackpad. */
 .category-card .category-image > img { width: 70%; height: 78%; transform: none; }
-@media (prefers-reduced-motion: no-preference) {
-  .category-card .category-image > img { transition: transform 280ms cubic-bezier(.16, 1, .3, 1); animation: product-drift 5s ease-in-out infinite; animation-play-state: paused; }
-  .category-card:nth-child(2n) img { animation-delay: -1.5s; }
-  .category-card:nth-child(3n) img { animation-delay: -3s; }
-  .category-card.category-in-view img { animation-play-state: running; }
-  .page-idle .category-card img { animation-play-state: paused; }
-  .category-card:focus-visible .category-image > img { transform: scale(1.035); }
-  @media (hover: hover) and (pointer: fine) { .category-card:hover .category-image > img { transform: scale(1.035); } }
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .category-card .category-image > img { transition: transform 280ms cubic-bezier(.16, 1, .3, 1); }
+  .category-card:hover .category-image > img { transform: scale(1.035); }
 }
-@keyframes product-drift { 0%, 100% { translate: 0 0; } 50% { translate: 0 -5px; } }
 .product-image-button:hover img { transform: scale(1.02); }
 .faq-answer { overflow: hidden; }
 .faq-list details[open] > .faq-answer > p { animation: none; }
