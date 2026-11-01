@@ -40,7 +40,7 @@ function contactLinks(compact=false){
   }
   return `<div class="contact-details">${html}</div>`;
 }
-for(const page of ['index.html','shop.html']){
+for(const page of ['index.html','shop.html','our-story.html']){
   const file=path.join(dist,page);
   const original=fs.readFileSync(file,'utf8');
   const rendered=original

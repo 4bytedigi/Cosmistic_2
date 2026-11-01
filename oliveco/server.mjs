@@ -8,7 +8,7 @@ import {createChatSecurity} from './chat-security.mjs';
 const project=path.dirname(fileURLToPath(import.meta.url));
 const root=path.join(project,'dist');
 const MAX_BODY_BYTES=24000;
-const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.webp':'image/webp','.woff2':'font/woff2','.txt':'text/plain; charset=utf-8'};
+const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.woff2':'font/woff2','.txt':'text/plain; charset=utf-8'};
 const context=vm.createContext({window:{},Intl});
 for(const file of ['products.js','prices.js','i18n.js','assistant-engine.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),context,{filename:file});
 const catalogue=context.window.OLIVECO_PRODUCTS;
@@ -75,7 +75,7 @@ const server=http.createServer({maxHeaderSize:8192,requestTimeout:15000,headersT
   if(req.method!=='GET'&&req.method!=='HEAD'){res.writeHead(405);res.end('Method not allowed');return}
   if(name==='/shop/'){res.writeHead(308,{'Location':'/shop'+new URL(req.url,`http://localhost:${port}`).search});res.end();return}
   if(name==='/__qa/mobile'){const requested=Number(new URL(req.url,`http://localhost:${port}`).searchParams.get('width')||390);const width=[320,360,375,390,430,768,1440].includes(requested)?requested:390;const html=`<!doctype html><html><head><title>Oliveco ${width}px preview</title><style>body{margin:0;display:flex;justify-content:center;background:#d5dccb}iframe{width:${width}px;height:844px;border:0;flex-shrink:0;background:white}</style></head><body><iframe title="Oliveco ${width}px preview" src="/"></iframe></body></html>`;res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});res.end(html);return}
-  const file=path.resolve(root,'.'+(name==='/'?'/index.html':name==='/shop'?'/shop.html':name));
+  const file=path.resolve(root,'.'+(name==='/'?'/index.html':name==='/shop'?'/shop.html':name==='/our-story'?'/our-story.html':name));
   if(!file.startsWith(root+path.sep)||name.includes('\\')){res.writeHead(403);res.end('Forbidden');return}
   fs.readFile(file,(error,data)=>{if(error){res.writeHead(404);res.end('Not found');return}res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','Cache-Control':'no-cache','X-Content-Type-Options':'nosniff'});res.end(req.method==='HEAD'?undefined:data)});
 });

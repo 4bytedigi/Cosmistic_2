@@ -28,3 +28,6 @@ window.OLIVECO_PRODUCTS = [
   {id:'methylated-small',name:'Methylated Spirit · Small Bottle',brand:'King Pharmacy',category:'medical',size:'Small bottle',image:'medical-8',catalogue:'medical',page:8,description:'King Pharmacy Methylated Spirit, marked for external use on its original label. The small bottle appears on pages 8 and 9 of the medical catalogue. Confirm the pack size with our team.'},
   {id:'methylated-500',name:'Methylated Spirit · 500 ml',brand:'King Pharmacy',category:'medical',size:'500 ml',image:'medical-10',catalogue:'medical',page:10,description:'King Pharmacy Methylated Spirit in the 500 ml bottle shown in the medical catalogue. The packaging is marked for external use. Refer to the original label for handling instructions.'}
 ];
+
+// Shared studio packshots keep catalogue, selection and chat imagery consistent.
+window.OLIVECO_PRODUCTS.forEach(product => { product.imageSrc = `studio/${product.image}.webp`; });

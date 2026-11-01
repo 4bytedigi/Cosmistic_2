@@ -51,3 +51,7 @@ Frontend Design guided the reference-based composition and brand restraint. UI/U
 | Narrow English heading wrapped over the portrait | Responsive display size and simplified narrow-screen actions | Keeps text clear of the face |
 
 Focus rings, icon labels, native dialog focus handling, responsive images, local font assets, button feedback, loading/empty/error states and `prefers-reduced-motion` support are included. The product images are cropped source photographs rather than invented packaging.
+
+## Banner and company content, 1 November 2026
+
+The complete user-supplied pastel banner replaces the cutout image and synthetic bokeh. Mobile places the full composition below the headline with a soft blend at its top edge. The brand, existing fonts and low-motion behavior remain. Four native details/summary FAQ disclosures use the reference site’s topics with confirmed contact and Viber instructions. The dedicated `/our-story` page uses an open editorial layout, the original logo, bilingual profile content and shared generated contacts.

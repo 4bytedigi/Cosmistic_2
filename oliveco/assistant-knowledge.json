@@ -12,11 +12,15 @@
     "timeZone": null,
     "holidayHours": null,
     "address": {
-      "my": "မဟာမြိုင် (၂) ရပ်ကွက်၊ မဟာအောင်မြေမြို့နယ်၊ မန္တလေးမြို့။",
-      "en": "Maha Myaing (2) Ward, Maha Aung Myay Township, Mandalay, Myanmar."
+      "en": "No. N-8/(29+36), 69th Street, between 37th and 38th Streets, Maha Myaing (1) Ward, Maha Aung Myay Township, Mandalay, Myanmar.",
+      "my": "အမှတ် N-8/(29+36)၊ ၆၉ လမ်း၊ ၃၇ လမ်းနှင့် ၃၈ လမ်းကြား၊ မဟာမြိုင် (၁) ရပ်ကွက်၊ မဟာအောင်မြေမြို့နယ်၊ မန္တလေးမြို့၊ မြန်မာ။"
     },
     "phone": "09-4150440",
-    "phones": ["02-4036795", "02-2832238", "09-4150440"],
+    "phones": [
+      "02-4036795",
+      "02-2832238",
+      "09-4150440"
+    ],
     "viber": "09-4150440",
     "email": null,
     "delivery": null,
@@ -39,10 +43,55 @@
       "checkedAt": "2026-11-01"
     },
     "address": {
-      "source": "Ward, township and city from the client screenshot. Exact building/street transcription awaits confirmation.",
-      "checkedAt": "2026-10-29"
+      "source": "Full address supplied by the user on 1 November 2026, superseding the earlier partial Ward (2) address.",
+      "checkedAt": "2026-11-01"
+    },
+    "faqs": {
+      "source": "Four FAQ topics from https://oliver.aungmyin.com/, adapted to the confirmed Viber flow and latest client contacts.",
+      "checkedAt": "2026-11-01"
     }
   },
   "products": {},
-  "faqs": []
+  "faqs": [
+    {
+      "question": {
+        "en": "How do I order or check a price?",
+        "my": "ဘယ်လိုမှာယူပြီး ဈေးနှုန်းမေးရမလဲ။"
+      },
+      "answer": {
+        "en": "Add products to My selection, then prepare an enquiry. Copy your message, open Viber and paste and send it to 09-4150440. You can also call Oliveco directly. Our team will confirm current prices, pack sizes and availability before you place an order.",
+        "my": "စိတ်ဝင်စားသောပစ္စည်းများကို ရွေးချယ်စာရင်းထဲ ထည့်ပြီး မေးမြန်းမှုဖောင်ကို ဖြည့်ပါ။ မေးမြန်းစာကို ကူးယူ၍ Viber ဖွင့်ပြီး 09-4150440 သို့ ကူးထည့်ပို့ပါ။ Oliveco ကို တိုက်ရိုက်ဖုန်းဆက်နိုင်ပါသည်။ မမှာယူမီ လက်ရှိဈေးနှုန်း၊ ထုပ်ပိုးအရွယ်အစားနှင့် လက်ကျန်ကို အဖွဲ့က အတည်ပြုပေးပါမည်။"
+      }
+    },
+    {
+      "question": {
+        "en": "What can the product guide help with?",
+        "my": "ထုတ်ကုန်လမ်းညွှန်က ဘာတွေကူညီပေးနိုင်သလဲ။"
+      },
+      "answer": {
+        "en": "The guide helps you find products, compare catalog descriptions, check listed ingredients and sizes, and contact Oliveco. It uses the supplied Oliveco catalogs. Product information is not personal medical advice.",
+        "my": "ပစ္စည်းရှာဖွေရန်၊ ကတ်တလောက်ဖော်ပြချက်များ နှိုင်းယှဉ်ရန်၊ ပါဝင်ပစ္စည်းနှင့် အရွယ်အစားကြည့်ရန်၊ Oliveco ကို ဆက်သွယ်ရန် ကူညီပေးပါသည်။ Oliveco ကတ်တလောက်အချက်အလက်များကို အသုံးပြုထားပါသည်။ ပစ္စည်းအချက်အလက်သည် တစ်ဦးချင်းဆေးကုသမှုအကြံပြုချက် မဟုတ်ပါ။"
+      }
+    },
+    {
+      "question": {
+        "en": "Are these the original product photographs?",
+        "my": "ဒါတွေက မူရင်းပစ္စည်းဓာတ်ပုံတွေလား။"
+      },
+      "answer": {
+        "en": "The studio-style product images are based on photographs from the supplied Oliveco catalogues. Some products have multiple packaging formats. Ask our team to confirm current packaging and sizes before ordering. The main lifestyle photograph is illustrative.",
+        "my": "စတူဒီယိုပုံစံ ထုတ်ကုန်ပုံများကို ပေးထားသော Oliveco ကတ်တလောက်ဓာတ်ပုံများအပေါ် အခြေခံ၍ ပြင်ဆင်ထားပါသည်။ ပစ္စည်းအချို့တွင် ထုပ်ပိုးပုံစံအမျိုးမျိုး ရှိပါသည်။ မမှာယူမီ လက်ရှိထုပ်ပိုးပုံစံနှင့် အရွယ်အစားကို အဖွဲ့ထံ အတည်ပြုပါ။ ပင်မလူပုံဓာတ်ပုံမှာ သရုပ်ဖော်ပုံဖြစ်ပါသည်။"
+      }
+    },
+    {
+      "question": {
+        "en": "Where is Oliveco based?",
+        "my": "Oliveco က ဘယ်မှာရှိသလဲ။"
+      },
+      "answer": {
+        "en": "No. N-8/(29+36), 69th Street, between 37th and 38th Streets, Maha Myaing (1) Ward, Maha Aung Myay Township, Mandalay, Myanmar. Call 02-4036795, 02-2832238 or 09-4150440 to confirm opening hours before visiting.",
+        "my": "အမှတ် N-8/(29+36)၊ ၆၉ လမ်း၊ ၃၇ လမ်းနှင့် ၃၈ လမ်းကြား၊ မဟာမြိုင် (၁) ရပ်ကွက်၊ မဟာအောင်မြေမြို့နယ်၊ မန္တလေးမြို့၊ မြန်မာ။ လာရောက်မည့်အချိန်နှင့် ဆိုင်ဖွင့်ချိန်ကို 02-4036795၊ 02-2832238 သို့မဟုတ် 09-4150440 သို့ ဖုန်းဆက်အတည်ပြုပါ။"
+      }
+    }
+  ]
 }

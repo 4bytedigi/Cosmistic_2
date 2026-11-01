@@ -37,3 +37,25 @@ Web asset: [`dist/assets/botanical-hero.webp`](dist/assets/botanical-hero.webp).
 Generated with the built-in image generation tool. Final prompt:
 
 > Use case: photorealistic-natural. Asset type: background photograph for an Oliveco skincare website hero. Create a premium natural beauty still-life environment, landscape 3:2. A pale soft sage green plaster backdrop, warm afternoon sunlight and beautifully dappled large olive-leaf shadows, one low wide matte pale sandstone pedestal occupying lower center-right with a horizontal top surface. Fresh long aloe vera leaves and a few olive branches frame the far right edge, leaving center and left very open. Rich natural olive greens, touches of fresh yellow green, ivory stone. Highly realistic sophisticated commercial beauty photography, subtle analog grain, soft atmospheric light, crisp plant detail, calm modern and natural composition. No bottles, no jars, no cosmetic packaging, no products, no text, no logos, no watermark. This is only an environmental backdrop; genuine product cutouts will be placed over the central pedestal later.
+
+## Pastel homepage banner, 1 November 2026
+
+`dist/assets/oliveco-pastel-banner.jpg` is an optimized copy of the user-supplied “Pastel banner with poised woman (1).png”. The complete supplied composition replaces the previous cutout hero.
+
+## Our Story company photographs, 1 November 2026
+
+Seven client-supplied JPEGs from the 20.28.54–20.29.07 photo set are optimized in `dist/assets/story/`. All seven frames are displayed without cropping: company building, two colleague portraits, delivery team, vans, gathering and traditional ceremony. Descriptive captions do not assign unconfirmed dates, names or roles.
+
+## Home-care collection cutout
+
+`dist/assets/consumer-2-cutout.png` removes the pale rectangular background and stray bottom text from the existing Vertex bottle photo using the image-editing tool. It was superseded by the shared `studio/consumer-2.webp` packshot; the original catalogue source remains retained.
+
+## Transparent studio packshots and updated logo
+
+The user approved studio-style mockups for all 28 catalogue products, preserving their original packaging and labels. `dist/assets/studio/*.webp` contains the alpha-transparent, reference-based image edits used by catalogue cards, collection tiles, details, selection and chat. The original WebP source photos remain available for comparison. These are enhanced presentation images, not new evidence about ingredients, sizes or product claims. The FAQ identifies the studio treatment.
+
+`dist/assets/oliveco-logo.png` is the exact user-supplied “Oliveco logo with green-yellow emblems.png”; CSS frames out empty canvas while preserving the full artwork. It replaces the previous image-plus-text wordmark across all three pages and the homepage company introduction.
+
+## Favicon and upright packshot corrections
+
+The browser icon was newly generated from the reference concept and cleaned; `favicon-high-resolution.png` retains the high-resolution PNG, with dedicated 32px, 192px and 512px PNG exports. All three pages reference the refreshed PNG favicon. Perfect, Mega-10 and Thai-Tha packshots were corrected to upright presentations; the Olive Oil Plus 60 ml image has its centre seam removed.

@@ -39,7 +39,7 @@
   }
   function decorateReply(reply){
     const ids=Array.isArray(reply.products)?reply.products:[];
-    const cards=ids.slice(0,3).map(id=>{const p=window.OLIVECO_PRODUCTS.find(p=>p.id===id);if(!p)return'';return`<button class="chat-product" data-detail="${p.id}"><span><img src="assets/${p.image}.webp" alt="" loading="lazy"></span><span><strong>${esc(I.name(p))}</strong><small>${t('chatView')} ${icon('arrow-up-right')}</small></span></button>`}).join('');
+    const cards=ids.slice(0,3).map(id=>{const p=window.OLIVECO_PRODUCTS.find(p=>p.id===id);if(!p)return'';return`<button class="chat-product" data-detail="${p.id}"><span><img src="assets/${p.imageSrc || p.image+'.webp'}" alt="" loading="lazy"></span><span><strong>${esc(I.name(p))}</strong><small>${t('chatView')} ${icon('arrow-up-right')}</small></span></button>`}).join('');
     const viber=window.OLIVECO_CONTACT?.viber;
     const actions=(reply.actions||[]).map(action=>action==='contact'?`<a class="chat-action" href="${esc(viber?.href||'https://www.facebook.com/olivecomdy/')}"${viber?'':' target="_blank" rel="noopener"'}>${t(viber?'viberContact':'facebookContact')} ${icon('arrow-up-right')}</a>`:action==='enquiry'?`<button class="chat-action" data-chat-enquiry="${esc((reply.context||ids).join(','))}">${t('prepareEnquiry')} ${icon('message')}</button>`:action==='selection'?`<button class="chat-action" data-chat-selection>${t('bagTitle')} ${icon('bag')}</button>`:action.startsWith('category:')?`<button class="chat-action" data-category="${esc(action.split(':')[1])}">${esc(t('browse',{name:I.categories()[action.split(':')[1]]}))} ${icon('arrow-right')}</button>`:'').join('');
     return cards+actions;

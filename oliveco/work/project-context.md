@@ -1,5 +1,13 @@
 # Oliveco project context
 
+## Banner, FAQ and Our Story update, 1 November 2026
+
+- Use the latest supplied complete pastel banner, optimized as `dist/assets/oliveco-pastel-banner.jpg`.
+- The user confirmed the full address: No. N-8/(29+36), 69th Street, between 37th and 38th Streets, Maha Myaing (1) Ward, Maha Aung Myay Township, Mandalay, Myanmar. This supersedes every earlier partial Ward (2) record. All three existing call numbers remain confirmed.
+- Four bilingual FAQ topics come from https://oliver.aungmyin.com/. Use the current Viber enquiry flow and latest contacts in their answers, replacing the reference’s email instructions and outdated location.
+- `/our-story` is a dedicated bilingual page based on the supplied company profile. Navigation and the homepage story link lead to it. Shared build generation includes all three pages.
+- Changes are local in this checkout; no production publication is part of this update.
+
 ## Product clicks preserve chat — 1 November 2026
 
 - User correction: selecting a product from the assistant must not close the chat.
@@ -77,3 +85,15 @@ Project-context and the website skill collection routed this as a refinement in 
 
 - Replacement logo asset; confirmed email and hours; exact address text; verify the corrected 09-4150440 Viber account on a device.
 - Automatic delivery later needs a supported Viber bot/business integration with server-only credentials and the relevant recipient/subscription setup. No automatic delivery is configured now.
+
+## Photographic Our Story update, 1 November 2026
+
+The user supplied seven company photographs for a narrative Our Story page and requested removal of the large logo/1986 panel. All seven photographs now form a bilingual sequence: people, beginnings and company home, colleagues, delivery work, and shared traditions. Keep the header/footer logo; the removed standalone logo panel must not return. Original image proportions preserve faces and the full company scenes.
+
+## Studio product imagery and supplied logo
+
+The user approved studio mockups for all 28 product images, with transparent backgrounds and original packaging/labels retained. Dedicated transparent WebPs in `dist/assets/studio/` are referenced via the shared `imageSrc` product property, including chat and selection. Original sources remain intact. Both products in paired collection tiles respond to hover and keyboard focus; reduced-motion users retain their resting poses. The full supplied logo now replaces the earlier constructed wordmark. No GitHub push or deployment has been requested.
+
+## Upright collection tiles, FAQ motion and favicon
+
+The latest user direction replaces pairs with one centred upright product per collection tile. Motion is vertical drift plus restrained scale, never rotation; it pauses offscreen/when the document is hidden and respects reduced motion. FAQ disclosures animate both directions and the pale subtitle is removed. The favicon is a newly generated high-resolution transparent PNG based on the user reference, with cleaned edge artefacts. Four packshot corrections straighten Perfect/Mega-10/Thai-Tha and remove the Olive Oil Plus glass seam.
