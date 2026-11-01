@@ -104,3 +104,13 @@ test('HTTP spam limits include free answers and cannot be reset by a new cookie 
   assert.equal(blocked.status,429);assert.ok(Number(blocked.headers.get('retry-after'))>0);
   assert.equal((await blocked.json()).error,'chat_rate_limited');assert.equal(calls.length,2);
 });
+
+
+test('Viber SVG is served as an image with nosniff enabled',async t=>{
+  const {base}=await fixture(t);
+  const result=await fetch(base+'/assets/viber-white.svg');
+  assert.equal(result.status,200);
+  assert.equal(result.headers.get('content-type'),'image/svg+xml');
+  assert.equal(result.headers.get('x-content-type-options'),'nosniff');
+  assert.match(await result.text(),/<svg[^>]+xmlns="http:\/\/www.w3.org\/2000\/svg"/);
+});

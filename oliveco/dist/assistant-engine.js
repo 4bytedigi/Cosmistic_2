@@ -46,6 +46,22 @@
     const response=(text,extra={})=>({text,products:ids,actions:[],context:ids.length?ids:validContext,mode:'guide',...extra});
     if(/ignore.{0,35}(?:previous|instruction|rule|system)|(?:reveal|show|print|repeat).{0,35}(?:system prompt|hidden instruction|api key|secret)|jailbreak|developer mode|\b(?:sk-proj-|password|api key|python|javascript|sql|programming|coding|homework|politics|bitcoin|recipe|poem|essay)\b/.test(q))return response(choose('Oliveco ထုတ်ကုန်များ၊ ကုမ္ပဏီနှင့် ဝယ်ယူမှုအကြောင်းကို ကူညီပေးနိုင်ပါတယ်။ ဘာပစ္စည်းကို စိတ်ဝင်စားပါသလဲ။','I can help with Oliveco products, company information and buying enquiries. Which product are you interested in?'),{products:[],actions:[],definitive:true});
     if(/cure|\btreat\b|\btreatment\b|diagnos|dosage|\bdose\b|pregnan|baby|children|allerg|safe for|swallow|drink|ကုသ|ကိုယ်ဝန်|ကလေး|ဘေးကင်း|သောက်|ဓာတ်မတည့်/.test(q))return response(choose('ပစ္စည်းအချက်အလက်ကို ကူညီရှာပေးနိုင်ပါတယ်။ ရောဂါကုသမှု၊ သောက်သုံးပမာဏ၊ ကလေး၊ ကိုယ်ဝန်ဆောင်နှင့် ဓာတ်မတည့်မှုအတွက် သင့်တော်မှုကို မူရင်းဘူးအညွှန်းနှင့် ကျန်းမာရေးပညာရှင်ထံ အတည်ပြုပါ။ ပြင်ပသုံးပစ္စည်းကို မသောက်သုံးပါနှင့်။','I can help with product information, but a qualified healthcare professional should confirm treatment, dosage, and suitability for children, pregnancy or allergies. Follow the original label. Do not ingest external-use products.'),{actions:['contact'],definitive:true});
+    // Ingredient education is in scope even when no catalogue product matches.
+    // Keep clinical suitability checks above this branch and never infer stock.
+    const ingredientAnswers = [
+      {
+        pattern: /\b(?:thanaka|thanakha|thanatka|thanatkha|thanat kha)\b|သနပ်ခါး/,
+        en: 'Thanaka is a traditional Myanmar cosmetic made from ground tree bark, commonly mixed with water into a paste and applied to the skin. Oliveco’s company profile mentions thanaka in its cosmetic ranges. That does not establish a specific product’s ingredients or SPF; check its label for those details.',
+        my: 'သနပ်ခါးသည် သစ်ပင်အခေါက်ကို ကြိတ်၍ အများအားဖြင့် ရေနှင့်ဖျော်ကာ အရေပြားပေါ်လိမ်းသော မြန်မာ့ရိုးရာအလှကုန် ဖြစ်ပါတယ်။ Oliveco ကုမ္ပဏီမိတ်ဆက်တွင် သနပ်ခါးကို အလှကုန်အမျိုးအစားများ၌ အသုံးပြုကြောင်း ဖော်ပြထားပါတယ်။ ပစ္စည်းတစ်ခုချင်းစီ၏ ပါဝင်ပစ္စည်းနှင့် SPF ကိုတော့ ဘူးအညွှန်းမှ အတည်ပြုပါ။'
+      },
+      {
+        pattern: /\b(?:aloe(?: ?vera)?|alovera)\b|ရှားစောင်း/,
+        en: 'Aloe vera is a succulent plant with a water-rich gel inside its leaves. In skincare, the gel is commonly used for a moisturising, soothing and cooling feel. Effects depend on the finished formula, and some people experience irritation. Oliveco’s company profile mentions aloe vera, but that does not confirm it is in every product.',
+        my: 'ရှားစောင်းလက်ပပ် (Aloe vera) သည် အရွက်အတွင်း ရေဓာတ်ကြွယ်ဝသော ဂျယ်ပါရှိသည့် အပင် ဖြစ်ပါတယ်။ အသားအရေထိန်းသိမ်းရေးတွင် စိုပြည်နူးညံ့၍ အေးမြသောခံစားမှုအတွက် အသုံးပြုလေ့ရှိပါတယ်။ အကျိုးသက်ရောက်မှုက ဖော်မြူလာအလိုက်ကွာခြားပြီး အချို့သူများတွင် ယားယံမှုဖြစ်နိုင်ပါတယ်။ Oliveco ကုမ္ပဏီမိတ်ဆက်တွင် ရှားစောင်းလက်ပပ်ကို ဖော်ပြထားသော်လည်း ပစ္စည်းတိုင်း၌ ပါဝင်သည်ဟု မဆိုလိုပါ။'
+      }
+    ];
+    const ingredientAnswer = ingredientAnswers.find(item => item.pattern.test(q));
+    if (ingredientAnswer && !ranked.length && !/buy|sell|purchase|order|stock|available|price|cost|ဝယ်|မှာယူ|ဈေး|စျေး|ရနိုင်/.test(q)) return response(choose(ingredientAnswer.my, ingredientAnswer.en), {products: [], actions: [], definitive: true});
     const business=knowledge.business||{};
     const seller=business.viber?choose(`Viber ${business.viber}`,`Viber at ${business.viber}`):'Facebook';
     const salesActions=business.viber?['enquiry','contact']:['contact'];

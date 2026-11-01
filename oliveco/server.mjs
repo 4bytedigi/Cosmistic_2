@@ -8,7 +8,7 @@ import {createChatSecurity} from './chat-security.mjs';
 const project=path.dirname(fileURLToPath(import.meta.url));
 const root=path.join(project,'dist');
 const MAX_BODY_BYTES=24000;
-const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.woff2':'font/woff2','.txt':'text/plain; charset=utf-8'};
+const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.woff2':'font/woff2','.txt':'text/plain; charset=utf-8'};
 const context=vm.createContext({window:{},Intl});
 for(const file of ['products.js','prices.js','i18n.js','assistant-engine.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),context,{filename:file});
 const catalogue=context.window.OLIVECO_PRODUCTS;

@@ -236,3 +236,23 @@ test('invalid provider output and arbitrary links fall back to verified catalogu
     assert.equal(answer.mode,'guide');assert.match(answer.text,/neem/);assert.doesNotMatch(answer.text,/untrusted/);
   }
 });
+
+
+test('ingredient education answers the reported questions without sales redirects or AI', async()=>{
+  let calls=0; const service=make({generate:async()=>{calls++;throw new Error('No AI needed');}});
+  for (const [message, expected] of [['what is thanaka',/ground tree bark/i],['benefits of aloe vera',/moisturising, soothing and cooling/i],['what is aloevera',/succulent plant/i]]) {
+    const result=await service.reply({message,language:'en'});
+    assert.match(result.text,expected); assert.equal(result.actions.length,0); assert.equal(result.products.length,0);
+    assert.doesNotMatch(result.text,/What product are you looking for|contact.*Viber/i);
+  }
+  assert.match((await service.reply({message:'သနပ်ခါးဆိုတာဘာလဲ',language:'my'})).text,/သစ်ပင်အခေါက်/);
+  assert.match((await service.reply({message:'ရှားစောင်းလက်ပပ်ရဲ့အကျိုးကျေးဇူး',language:'my'})).text,/စိုပြည်/);
+  assert.equal(calls,0);
+});
+
+test('ingredient education does not override medical suitability or invent products',async()=>{
+  const service=make();
+  assert.match((await service.reply({message:'Is aloe vera safe for pregnancy?',language:'en'})).text,/healthcare professional/);
+  const result=await service.reply({message:'Do you have thanaka in stock?',language:'en'});
+  assert.doesNotMatch(result.text,/in stock|available now/i); assert.ok(result.actions.includes('contact'));
+});
