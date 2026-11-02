@@ -59,3 +59,7 @@ The complete user-supplied pastel banner replaces the cutout image and synthetic
 ## Product surfaces, 2 November 2026
 
 Collection tiles and product cards use static mint, blush, lilac, powder blue, apricot and butter-yellow gradients. Backgrounds do not animate and there are no bokeh particles. The existing gentle product scale and lift on hover provide feedback; idle surfaces stay still, with movement removed for reduced-motion preferences.
+
+## Mobile spacing and softer surfaces, 2 November 2026
+
+The mobile hero stacks its copy and image in normal document flow, with a 16px gap after the call to action rather than a fixed-height empty area. The portrait remains responsive to phone width, and the text can grow in either language. A 30% white wash softens collection and product-card gradients without changing the product images or hover behaviour.
