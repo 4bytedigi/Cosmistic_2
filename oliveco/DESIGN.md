@@ -58,4 +58,4 @@ The complete user-supplied pastel banner replaces the cutout image and synthetic
 
 ## Product surfaces, 2 November 2026
 
-Collection tiles and product cards use coordinated mint, blush, lilac, powder blue, apricot and butter-yellow gradients. On hover or keyboard focus, a full-surface gradient fades in and its colours sweep across the background. There are no bokeh particles. Idle and touch surfaces remain static. Reduced-motion preferences retain a static colour response without gradient or product movement.
+Collection tiles and product cards use static mint, blush, lilac, powder blue, apricot and butter-yellow gradients. Backgrounds do not animate and there are no bokeh particles. The existing gentle product scale and lift on hover provide feedback; idle surfaces stay still, with movement removed for reduced-motion preferences.
