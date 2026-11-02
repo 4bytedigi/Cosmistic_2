@@ -4,10 +4,10 @@
   const contact=window.OLIVECO_CONTACT,model=window.OlivecoEnquiryMessage;
   if(!contact?.viber)return;
   const dialog=document.createElement('dialog');dialog.id='enquiry-dialog';dialog.className='enquiry-dialog';dialog.setAttribute('aria-labelledby','enquiry-title');
-  dialog.innerHTML=`<div class="enquiry-heading"><h2 id="enquiry-title" tabindex="-1"></h2><button type="button" class="icon-button" id="enquiry-close">${shop.icon('close')}</button></div><p class="enquiry-destination" id="enquiry-destination"></p><form id="enquiry-form" novalidate><div class="enquiry-products" id="enquiry-products" hidden><h3 id="enquiry-products-label"></h3><ul id="enquiry-product-list"></ul></div><div class="enquiry-fields"><div class="enquiry-field"><label for="enquiry-name"></label><input id="enquiry-name" name="name" autocomplete="name" maxlength="80" required aria-describedby="enquiry-name-error"><p class="enquiry-error" id="enquiry-name-error"></p></div><div class="enquiry-field"><label for="enquiry-phone"></label><input id="enquiry-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" required aria-describedby="enquiry-phone-error"><p class="enquiry-error" id="enquiry-phone-error"></p></div><div class="enquiry-field enquiry-question"><label for="enquiry-question"></label><textarea id="enquiry-question" name="question" maxlength="1000" rows="3" aria-describedby="enquiry-question-error"></textarea><p class="enquiry-error" id="enquiry-question-error"></p></div></div><p class="enquiry-privacy" id="enquiry-privacy"></p><button type="submit" class="button button-primary" id="enquiry-copy"></button><div class="enquiry-handoff" id="enquiry-handoff" hidden><a class="button button-outline" id="enquiry-viber"></a><p id="enquiry-viber-help"></p></div><p class="enquiry-status" id="enquiry-status" role="status" aria-live="polite"></p><details class="enquiry-preview" id="enquiry-preview"><summary id="enquiry-review"></summary><textarea id="enquiry-message" rows="7" readonly></textarea></details></form>`;
+  dialog.innerHTML=`<div class="enquiry-heading"><h2 id="enquiry-title" tabindex="-1"></h2><button type="button" class="icon-button" id="enquiry-close">${shop.icon('close')}</button></div><p class="enquiry-destination" id="enquiry-destination"></p><form id="enquiry-form" novalidate><div class="enquiry-products" id="enquiry-products" hidden><h3 id="enquiry-products-label"></h3><ul id="enquiry-product-list"></ul></div><div class="enquiry-fields"><div class="enquiry-field"><label for="enquiry-name"></label><input id="enquiry-name" name="name" autocomplete="name" maxlength="80" required aria-describedby="enquiry-name-error"><p class="enquiry-error" id="enquiry-name-error"></p></div><div class="enquiry-field"><label for="enquiry-phone"></label><input id="enquiry-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" required aria-describedby="enquiry-phone-error"><p class="enquiry-error" id="enquiry-phone-error"></p></div><div class="enquiry-field enquiry-question"><label for="enquiry-question"></label><textarea id="enquiry-question" name="question" maxlength="1000" rows="3" aria-describedby="enquiry-question-error"></textarea><p class="enquiry-error" id="enquiry-question-error"></p></div></div><p class="enquiry-privacy" id="enquiry-privacy"></p><button type="submit" class="button button-primary" id="enquiry-submit"></button><div class="enquiry-handoff" id="enquiry-handoff" hidden><div class="enquiry-recovery-actions"><a class="button button-outline" id="enquiry-viber"></a><button type="button" class="button button-outline" id="enquiry-copy"></button></div><p id="enquiry-viber-help"></p></div><p class="enquiry-status" id="enquiry-status" role="status" aria-live="polite"></p><details class="enquiry-preview" id="enquiry-preview"><summary id="enquiry-review"></summary><textarea id="enquiry-message" rows="7" readonly></textarea></details></form>`;
   document.body.appendChild(dialog);
   const $=s=>dialog.querySelector(s),form=$('#enquiry-form'),name=$('#enquiry-name'),phone=$('#enquiry-phone'),question=$('#enquiry-question'),preview=$('#enquiry-message');
-  let items=[],returnFocus=null,busy=false,generation=0,copyState=null;
+  let items=[],returnFocus=null,generation=0,copyState=null;
   function productLines(){return items.map(item=>{const p=window.OLIVECO_PRODUCTS.find(p=>p.id===item.id);return `${I.name(p)} (${I.size(p)}) × ${I.num(item.quantity)}`;});}
   function message(){return model.compose({name:name.value,phone:phone.value,question:question.value,items:productLines()},{hello:t('enquiryHello'),name:t('enquiryName'),phone:t('enquiryPhone'),products:t('enquiryProducts'),question:t('enquiryQuestion'),end:t('enquiryEnd')});}
   function refreshPreview(){preview.value=message();}
@@ -18,9 +18,9 @@
     $('label[for="enquiry-question"]').textContent=t(items.length?'enquiryQuestionOptional':'enquiryQuestion');question.required=!items.length;
     $('#enquiry-products').hidden=!items.length;$('#enquiry-products-label').textContent=t('enquiryProducts');
     const list=$('#enquiry-product-list');list.replaceChildren();productLines().forEach(text=>{const li=document.createElement('li');li.textContent=text;list.appendChild(li);});
-    $('#enquiry-privacy').textContent=t('enquiryPrivacy');$('#enquiry-copy').innerHTML=shop.icon('copy')+' '+t(busy?'enquiryCopying':'enquiryCopy');
+    $('#enquiry-privacy').textContent=t('enquiryPrivacy');$('#enquiry-submit').innerHTML=shop.icon('viber')+' '+t('enquiryContinue');$('#enquiry-copy').innerHTML=shop.icon('copy')+' '+t('enquiryCopy');
     $('#enquiry-review').textContent=t('enquiryPreview');preview.setAttribute('aria-label',t('enquiryMessageLabel'));
-    $('#enquiry-viber').href=contact.viber.href;$('#enquiry-viber').innerHTML=shop.icon('viber')+' '+t('viberContact');$('#enquiry-viber-help').textContent=t('enquiryViberHelp',{number:contact.viber.number});
+    $('#enquiry-viber').href=contact.viber.href;$('#enquiry-viber').innerHTML=shop.icon('viber')+' '+t('enquiryViberRetry');$('#enquiry-viber-help').textContent=t('enquiryViberHelp',{number:contact.viber.number});
     if(copyState)$('#enquiry-status').textContent=t(copyState==='copied'?'enquiryReady':'enquiryManualCopy',{number:contact.viber.number});
     for(const field of [name,phone,question])if(field.hasAttribute('aria-invalid'))setError(field,t(field===name?'enquiryNameError':field===phone?'enquiryPhoneError':'enquiryQuestionError'));
     refreshPreview();
@@ -44,25 +44,34 @@
     question.value=String(initialQuestion).slice(0,1000);
     document.querySelectorAll('dialog[open]').forEach(other=>other.close());
     document.dispatchEvent(new CustomEvent('oliveco:enquiry-opening'));
-    translate();dialog.showModal();if(matchMedia('(max-width:700px)').matches)$('#enquiry-title').focus();else name.focus();
+    translate();dialog.showModal();if(matchMedia('(max-width:700px)').matches)$('#enquiry-title').focus({preventScroll:true});else name.focus({preventScroll:true});dialog.scrollTop=0;
   }
-  form.addEventListener('submit',async event=>{
-    event.preventDefault();if(busy||!validate())return;
-    busy=true;const current=++generation;$('#enquiry-copy').disabled=true;for(const field of [name,phone,question])field.readOnly=true;translate();const text=message();preview.value=text;
-    try{await navigator.clipboard.writeText(text);if(current!==generation)return;copyState='copied';}
-    catch{if(current!==generation)return;copyState='manual';$('#enquiry-preview').open=true;preview.focus();preview.select();}
-    finally{if(current===generation){busy=false;for(const field of [name,phone,question])field.readOnly=false;$('#enquiry-copy').disabled=false;$('#enquiry-handoff').hidden=false;translate();if(copyState==='copied')$('#enquiry-copy').focus();}}
+  function prepareMessage(open=()=>{}){
+    const current=++generation,text=message();preview.value=text;
+    $('#enquiry-handoff').hidden=false;copyState=null;$('#enquiry-status').textContent='';
+    // The app link runs in this user gesture, without waiting for clipboard permission.
+    model.copyAndOpen(text,{copy:value=>navigator.clipboard.writeText(value),open}).then(success=>{
+      if(current!==generation||!dialog.open)return;
+      copyState=success?'copied':'manual';
+      if(!success){$('#enquiry-preview').open=true;preview.focus();preview.select();}
+      translate();
+    });
+  }
+  form.addEventListener('submit',event=>{
+    event.preventDefault();if(!validate())return;
+    prepareMessage(()=>{window.location.href=contact.viber.href;});
   });
+  $('#enquiry-copy').addEventListener('click',()=>{if(validate())prepareMessage();});
   form.addEventListener('input',event=>{
     if(![name,phone,question].includes(event.target))return;
-    event.target.removeAttribute('aria-invalid');$('#'+event.target.id+'-error').textContent='';copyState=null;$('#enquiry-status').textContent='';$('#enquiry-handoff').hidden=true;refreshPreview();
+    generation++;event.target.removeAttribute('aria-invalid');$('#'+event.target.id+'-error').textContent='';copyState=null;$('#enquiry-status').textContent='';$('#enquiry-handoff').hidden=true;refreshPreview();
   });
   $('#enquiry-close').addEventListener('click',()=>dialog.close());
   dialog.addEventListener('close',()=>{
-    generation++;busy=false;form.reset();clearErrors();for(const field of [name,phone,question])field.readOnly=false;items=[];preview.value='';copyState=null;$('#enquiry-copy').disabled=false;$('#enquiry-status').textContent='';$('#enquiry-handoff').hidden=true;
+    generation++;form.reset();clearErrors();items=[];preview.value='';copyState=null;$('#enquiry-status').textContent='';$('#enquiry-handoff').hidden=true;
     const target=returnFocus?.isConnected&&returnFocus.getClientRects().length?returnFocus:document.querySelector('#chat-launcher');target?.focus();
   });
   document.addEventListener('click',event=>{if(event.target.closest('[data-enquiry]'))open();});
   document.addEventListener('oliveco:enquire',event=>open(event.detail||{}));
-  document.addEventListener('oliveco:language',()=>{if(dialog.open){copyState=null;$('#enquiry-status').textContent='';$('#enquiry-handoff').hidden=true;translate();}});
+  document.addEventListener('oliveco:language',()=>{if(dialog.open){generation++;copyState=null;$('#enquiry-status').textContent='';$('#enquiry-handoff').hidden=true;translate();}});
 })();

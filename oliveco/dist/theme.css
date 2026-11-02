@@ -150,8 +150,8 @@ html[lang="my"] .enquiry-heading h2 { letter-spacing: 0; }
 .enquiry-error { color: var(--error); font-size: 13px; line-height: 1.6; }
 .enquiry-error:empty { display: none; }
 .enquiry-privacy { font-size: 13px; line-height: 1.8; margin-block: 20px; max-width: 60ch; }
-#enquiry-copy { width: 100%; font-size: 14px; }
-#enquiry-copy:disabled { opacity: .7; }
+#enquiry-submit { width: 100%; font-size: 14px; }
+.enquiry-recovery-actions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
 .enquiry-handoff { margin-top: 16px; }
 .enquiry-handoff .button { width: 100%; font-size: 14px; }
 .enquiry-handoff p { margin-top: 12px; font-size: 13px; line-height: 1.8; }
@@ -166,7 +166,7 @@ html[lang="my"] .enquiry-heading h2 { letter-spacing: 0; }
   .contact-link-value { font-size: 14px; }
   .enquiry-dialog { padding: 20px; }
   .enquiry-heading h2 { font-size: 22px; }
-  .enquiry-fields { grid-template-columns: minmax(0,1fr); }
+  .enquiry-fields, .enquiry-recovery-actions { grid-template-columns: minmax(0,1fr); }
 }
 
 .detail-dialog, .bag-dialog, .search-panel, #mobile-nav { background: linear-gradient(145deg, #ffffff, #f5faee); }

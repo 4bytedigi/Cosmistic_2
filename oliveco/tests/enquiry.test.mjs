@@ -5,7 +5,7 @@ import vm from 'node:vm';
 
 const fixture=vm.createContext({window:{}});
 vm.runInContext(fs.readFileSync(new URL('../dist/enquiry-message.js',import.meta.url),'utf8'),fixture);
-const {phone,validPhone,compose}=fixture.window.OlivecoEnquiryMessage;
+const {phone,validPhone,compose,copyAndOpen}=fixture.window.OlivecoEnquiryMessage;
 const labels={hello:'Hello Oliveco',name:'Name',phone:'Callback phone',products:'Products',question:'Question',end:'Please confirm the details.'};
 
 test('customer phone input supports Myanmar digits and international formatting',()=>{
@@ -31,4 +31,25 @@ test('message preparation bounds user text and removes control characters withou
   assert.doesNotMatch(result,/\u0000/);
   assert.equal(result.match(/က/g).length,1000);
   assert.doesNotMatch(result,/Products:/);
+});
+
+
+test('Viber opens in the user gesture while clipboard permission is still pending',async()=>{
+  const events=[];let resolveCopy;
+  const result=copyAndOpen('Customer enquiry',{copy:text=>{events.push(['copy',text]);return new Promise(resolve=>{resolveCopy=resolve;});},open:()=>events.push(['open'])});
+  assert.deepEqual(events,[['copy','Customer enquiry'],['open']]);
+  resolveCopy();
+  assert.equal(await result,true);
+});
+
+test('clipboard denial or an unavailable clipboard never blocks opening Viber',async()=>{
+  for(const copy of [()=>Promise.reject(new Error('Denied')),()=>{throw new Error('Unavailable');}]){
+    let opened=0;
+    assert.equal(await copyAndOpen('Enquiry',{copy,open:()=>opened++}),false);
+    assert.equal(opened,1);
+  }
+});
+
+test('an app-launch exception keeps the copy result available for the visible retry link',async()=>{
+  assert.equal(await copyAndOpen('Enquiry',{copy:()=>Promise.resolve(),open:()=>{throw new Error('App blocked');}}),true);
 });

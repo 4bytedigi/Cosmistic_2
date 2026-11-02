@@ -36,7 +36,7 @@ The original logo remains unchanged at the user's request. The contact section s
 
 The new enquiry dialog follows the existing green/yellow palette, Manrope/Noto Sans Myanmar type, pill actions and soft dialog corners. The task uses a native modal to protect focus while collecting a name, callback phone and question. Selected product names, pack sizes and quantities carry into the message. Labels remain visible; field errors sit beside their controls; the form reflows into one column on narrow phones. There are no new fonts, animation libraries or decorative captions.
 
-“Copy enquiry” prepares the complete message and exposes the Viber chat link with explicit paste/send instructions. Personal details are kept in the current page and cleared on close. The interface never claims delivery; no Viber API is configured. The full message remains available for manual copy if clipboard access fails.
+“Continue in Viber” opens the seller’s chat in the same user gesture and starts copying the complete enquiry without waiting for clipboard permission. Retry-open and copy-only controls remain available on return, with explicit paste/send instructions. Personal details are kept in the current page and cleared on close. The interface never claims delivery; no Viber API is configured. The full message remains available for manual copy if clipboard access fails.
 
 ## Applied design checks
 

@@ -7,5 +7,13 @@
   function compose({name,phone:contactPhone,question,items=[]},labels){
     return [labels.hello,`${labels.name}: ${clean(name,80).replace(/\s+/g,' ')}`,`${labels.phone}: ${phone(contactPhone)}`,items.length?labels.products+':\n'+items.map(item=>'- '+clean(item,250)).join('\n'):'',clean(question,1000)?labels.question+':\n'+clean(question,1000):'',labels.end].filter(Boolean).join('\n\n');
   }
-  root.OlivecoEnquiryMessage={phone,validPhone,compose};
+  function copyAndOpen(text,{copy,open}){
+    let copied;
+    try{copied=Promise.resolve(copy(text)).then(()=>true,()=>false);}
+    catch{copied=Promise.resolve(false);}
+    // An external-app link must run inside the original click, even if copy is denied.
+    try{open();}catch{/* The visible Viber link remains available for another attempt. */}
+    return copied;
+  }
+  root.OlivecoEnquiryMessage={phone,validPhone,compose,copyAndOpen};
 })(typeof window==='undefined'?globalThis:window);
