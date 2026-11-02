@@ -55,3 +55,7 @@ Focus rings, icon labels, native dialog focus handling, responsive images, local
 ## Banner and company content, 1 November 2026
 
 The complete user-supplied pastel banner replaces the cutout image and synthetic bokeh. Mobile places the full composition below the headline with a soft blend at its top edge. The brand, existing fonts and low-motion behavior remain. Four native details/summary FAQ disclosures use the reference site’s topics with confirmed contact and Viber instructions. The dedicated `/our-story` page uses an open editorial layout, the original logo, bilingual profile content and shared generated contacts.
+
+## Product surfaces, 2 November 2026
+
+Collection tiles and product cards use coordinated mint, blush, lilac, powder blue, apricot and butter-yellow gradients. Soft, translucent light circles with feathered blur rise behind the transparent product images at staggered speeds, fading at either end without scaling. Motion runs only while a mouse hovers or a keyboard focuses the card. Idle and touch surfaces remain static. Reduced-motion preferences retain a static light response with no drift or product movement.
