@@ -90,7 +90,7 @@ body {
 .icon-button:hover, .button-outline:hover, .filter-tab:hover { background: #e2f1d0; }
 .strip-dot { background: #8bc34a; }
 
-/* Pastel colour stories, with light kept behind the transparent packshots. */
+/* Pastel colour stories with a moving gradient on interaction. */
 .category-card, .product-card { --care-a: #d8edbc; --care-b: #f4dbe8; --care-c: #fff0c9; }
 .category-card:nth-child(5n+2), .product-card:nth-child(8n+2) { --care-a: #e0d9f5; --care-b: #fbdccd; --care-c: #e6efcf; }
 .category-card:nth-child(5n+3), .product-card:nth-child(8n+3) { --care-a: #d3eaf6; --care-b: #e7dcf5; --care-c: #dff0da; }
@@ -106,47 +106,27 @@ body {
     radial-gradient(ellipse at 95% 15%, var(--care-b), transparent 68%),
     radial-gradient(ellipse at 75% 100%, var(--care-c), transparent 72%), #fbfcf6;
 }
-.category-image::before, .product-visual::before,
-.category-image::after, .product-visual::after {
-  content: ''; position: absolute; inset: -8%; pointer-events: none; z-index: -1;
+.category-image::before, .product-visual::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: -1;
+  background: linear-gradient(120deg, var(--care-a) 0%, var(--care-b) 28%, var(--care-c) 58%, var(--care-a) 85%, var(--care-b) 100%);
+  background-size: 250% 250%; background-position: 0% 50%;
   opacity: 0; transition: opacity 260ms ease-out;
 }
-.category-image::before, .product-visual::before {
-  filter: blur(9px);
-  background:
-    radial-gradient(circle 32px at 17% 44%, #ffffff80 0%, #ffffff24 48%, transparent 100%),
-    radial-gradient(circle 22px at 81% 74%, #fff6df77 0%, #ffffff22 45%, transparent 100%),
-    radial-gradient(circle 20px at 67% 24%, #ffffff70 0%, #ffffff22 48%, transparent 100%);
-}
-.category-image::after, .product-visual::after {
-  filter: blur(6px);
-  background:
-    radial-gradient(circle 19px at 12% 82%, #ffffff88 0%, #ffffff22 45%, transparent 100%),
-    radial-gradient(circle 25px at 88% 48%, #ffffff77 0%, #ffffff20 48%, transparent 100%),
-    radial-gradient(circle 14px at 44% 25%, #fff9e877 0%, #ffffff22 45%, transparent 100%),
-    radial-gradient(circle 14px at 64% 90%, #ffffff77 0%, #ffffff20 48%, transparent 100%);
-}
-/* Focus offers the same feedback as hover; touch surfaces remain still. */
-.category-card:focus-visible .category-image::before, .product-visual:focus-within::before { opacity: .6; }
-.category-card:focus-visible .category-image::after, .product-visual:focus-within::after { opacity: .75; }
+/* A static colour response remains available for keyboard and reduced motion. */
+.category-card:focus-visible .category-image::before, .product-visual:focus-within::before { opacity: 1; }
 @media (hover: hover) and (pointer: fine) {
-  .category-card:hover .category-image::before, .product-visual:hover::before { opacity: .6; }
-  .category-card:hover .category-image::after, .product-visual:hover::after { opacity: .75; }
+  .category-card:hover .category-image::before, .product-visual:hover::before { opacity: 1; }
   @media (prefers-reduced-motion: no-preference) {
     .category-card:is(:hover,:focus-visible) .category-image::before,
-    .product-visual:is(:hover,:focus-within)::before { animation: care-bokeh-rise 7600ms linear -3000ms infinite; }
-    .category-card:is(:hover,:focus-visible) .category-image::after,
-    .product-visual:is(:hover,:focus-within)::after { animation: care-bokeh-rise 5600ms linear infinite; }
+    .product-visual:is(:hover,:focus-within)::before { animation: care-gradient-shift 4200ms ease-in-out infinite alternate; }
   }
 }
-@keyframes care-bokeh-rise {
-  0% { transform: translate3d(-5px,36px,0); opacity: 0; }
-  22% { opacity: .7; }
-  72% { opacity: .55; }
-  100% { transform: translate3d(9px,-68px,0); opacity: 0; }
+@keyframes care-gradient-shift {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .category-image::before, .category-image::after, .product-visual::before, .product-visual::after { transition: none; animation: none; }
+  .category-image::before, .product-visual::before { transition: none; animation: none; }
   .category-card:hover .category-image > img, .product-card:hover .product-visual, .product-image-button:hover img { transform: none; }
 }
 .product-tag, .product-label-icon { background: var(--mustard-gradient); }
