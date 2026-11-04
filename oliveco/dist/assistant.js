@@ -12,7 +12,14 @@
   const cleanIds=ids=>Array.isArray(ids)?[...new Set(ids.filter(id=>knownIds.has(id)))].slice(0,3):[];
   const cleanActions=actions=>Array.isArray(actions)?actions.filter(action=>typeof action==='string'&&['contact','enquiry','selection','category:skin','category:hair','category:personal','category:home','category:medical'].includes(action)):[];
   const chatVersion='2026-11-01';
-  try{if(sessionStorage.getItem('oliveco-chat-version')!==chatVersion)sessionStorage.removeItem('oliveco-chat');const saved=JSON.parse(sessionStorage.getItem('oliveco-chat')||'[]');if(Array.isArray(saved))conversation=saved.filter(x=>x&&['user','assistant'].includes(x.role)&&typeof x.text==='string').slice(-20).map(m=>({role:m.role,text:m.text.slice(0,4000),products:cleanIds(m.products),actions:cleanActions(m.actions),context:cleanIds(m.context||m.products)}));context=[...conversation].reverse().find(m=>m.role==='assistant'&&m.context.length)?.context||[]}catch{}
+  try{
+    // Keep chat while browsing the site, but a browser refresh starts over.
+    const refreshed=performance.getEntriesByType('navigation')[0]?.type==='reload';
+    if(refreshed||sessionStorage.getItem('oliveco-chat-version')!==chatVersion)sessionStorage.removeItem('oliveco-chat');
+    const saved=JSON.parse(sessionStorage.getItem('oliveco-chat')||'[]');
+    if(Array.isArray(saved))conversation=saved.filter(x=>x&&['user','assistant'].includes(x.role)&&typeof x.text==='string').slice(-20).map(m=>({role:m.role,text:m.text.slice(0,4000),products:cleanIds(m.products),actions:cleanActions(m.actions),context:cleanIds(m.context||m.products)}));
+    context=[...conversation].reverse().find(m=>m.role==='assistant'&&m.context.length)?.context||[];
+  }catch{}
   function persist(){try{sessionStorage.setItem('oliveco-chat-version',chatVersion);sessionStorage.setItem('oliveco-chat',JSON.stringify(conversation.slice(-20)))}catch{}}
   function updateMode(){
     $('.chat-header p').textContent=t(aiConfigured?'chatSubtitleAi':'chatSubtitle');

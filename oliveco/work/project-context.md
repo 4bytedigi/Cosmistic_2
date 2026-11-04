@@ -1,5 +1,10 @@
 # Oliveco project context
 
+## Refresh starts a new conversation — 4 November 2026
+
+- User requirement: refreshing the browser must reset the chat. Detect a reload before restoring tab history, clear saved messages and start with empty product context. Ordinary navigation between site pages and closing/reopening the panel keep the existing conversation.
+- This only resets conversation state; signed chat cookies and server-side abuse/spending controls remain independent. Build/syntax checks passed. Isolated Edge checks passed at 1440px English, 390px English/Myanmar and 320px Myanmar: reload clears messages/draft/saved chat, the next request has empty history/context, normal page navigation retains conversation, the signed session cookie is unchanged, and no page errors occurred. No paid AI calls were used. Evidence is ignored under `output/chat-refresh-*.png` and `output/check-chat-refresh.mjs`. Publish through both existing remotes and verify the live refresh behavior.
+
 ## Conversational discovery and message language — 4 November 2026
 
 - User correction: the first product question must receive useful assistance, not a generic scope message and Viber link. The reported olive-ingredient question and follow-up about oil for hands must retain preferences while changing the intended use. Reply in English to English messages and Burmese to Burmese messages, independently of the website language; mixed Burmese with English product names stays Burmese.
