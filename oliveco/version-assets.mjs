@@ -4,7 +4,7 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 
 const dist=fileURLToPath(new URL('./dist/',import.meta.url));
-const {business}=JSON.parse(fs.readFileSync(new URL('./assistant-knowledge.json',import.meta.url),'utf8'));
+const {business,products:productKnowledge}=JSON.parse(fs.readFileSync(new URL('./assistant-knowledge.json',import.meta.url),'utf8'));
 const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function phone(value){
   if(typeof value!=='string'||!/^\+?[0-9][0-9 ()-]{5,24}$/.test(value))throw new Error('Use a plain, confirmed contact phone number.');
@@ -20,6 +20,9 @@ if(business.email){
 }
 const publicContact={viber,facebook:business.facebook,phones:contacts.filter(c=>c.kind==='phone').map(c=>({number:c.value,href:c.href})),address:business.address||null};
 const publicKnowledge={business:Object.fromEntries(['name','founded','profile','facebook','hours','address','phone','phones','viber','email','delivery','payment','returns','wholesale'].map(key=>[key,business[key]??null]))};
+// Only public catalogue fields needed by the offline guide. Full bilingual
+// descriptions are already shipped in products.js/i18n.js; avoid duplicating them.
+publicKnowledge.products=Object.fromEntries(Object.entries(productKnowledge).map(([id,item])=>[id,Object.fromEntries(['ingredients','searchTerms','packNote'].filter(key=>item[key]!=null).map(key=>[key,item[key]]))]));
 fs.writeFileSync(path.join(dist,'contact-data.js'),'// Generated from assistant-knowledge.json by npm run build.\nwindow.OLIVECO_CONTACT='+JSON.stringify(publicContact)+';\nwindow.OLIVECO_KNOWLEDGE='+JSON.stringify(publicKnowledge)+';\n');
 function anchor(c,compact=false){
   return `<a class="contact-link" data-contact="${c.kind}" data-contact-value="${escape(c.value)}" href="${escape(c.href)}" aria-label="${c.label}: ${escape(c.value)}"><span data-icon="${c.kind}"></span><span class="contact-link-value">${compact&&c.kind==='viber'?'Viber · ':''}${escape(c.value)}</span></a>`;

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-01",
+  "updatedAt": "2026-11-04",
   "business": {
     "name": "Olive Marketing Group Co., Ltd.",
     "founded": 1986,
@@ -49,148 +49,599 @@
     "faqs": {
       "source": "Four FAQ topics from https://oliver.aungmyin.com/, adapted to the confirmed Viber flow and latest client contacts.",
       "checkedAt": "2026-11-01"
+    },
+    "catalogues": {
+      "checkedAt": "2026-11-04",
+      "note": "Visually reviewed all 29 supplied pages; Medical pages 8 and 9 repeat the same small methylated-spirit product. Catalogue claims are not independent clinical evidence. Current client-confirmed contacts take precedence over old packaging.",
+      "files": [
+        {
+          "id": "medical",
+          "filename": "Medical (2).pdf",
+          "pages": 10,
+          "sha256": "8c5bfbde6e775d1f4608c93db6fd9fe69d472937b564ebaa779e0e2aa1287bcf"
+        },
+        {
+          "id": "consumer",
+          "filename": "Consumer (2).pdf",
+          "pages": 6,
+          "sha256": "6435d6834314740db1129fc03a4a7bdf03b0a437236eb494a73be1f61a7f0504"
+        },
+        {
+          "id": "cosmetics",
+          "filename": "Cosmetics .pdf",
+          "pages": 13,
+          "sha256": "257d43834ce54eaf992fec8ec771a8f938c468cbbb8cef9a2d74f4292571d11a"
+        }
+      ]
     }
   },
   "products": {
     "herbal-q10": {
       "source": "cosmetics catalogue, page 8",
-      "en": "Nature’s Gift Herbal Q10+ Revitalizing & Treatment Facial Foam, 100 g. The label lists Bio Q-10, neem extracts and natural vitamin E. The catalogue describes cleansing and pH balance care for all skin types, for day or night use.\n\nCatalogue routine: cleanse the face with facial foam and warm water, pat dry with a clean soft cloth, then spread a pea-sized amount over the face, avoiding the eyes and eyebrows. Let it dry as a facial mask, leave for about 20 minutes and rinse. The sheet specifies three uses a week.",
-      "my": "Nature’s Gift Herbal Q10+ Revitalizing & Treatment Facial Foam ၁၀၀ ဂရမ်။ ဘူးအညွှန်းတွင် Bio Q-10၊ တမာအနှစ်နှင့် သဘာဝဗီတာမင် E ပါဝင်ကြောင်း ဖော်ပြထားသည်။ အသားအရေ သန့်စင်၍ pH Balance ထိန်းသိမ်းရန်၊ အသားအရေအမျိုးအစားမရွေး နေ့၊ ည အသုံးပြုနိုင်ကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — Facial Foam နှင့် ရေနွေးနွေးဖြင့် မျက်နှာသစ်ပြီး သန့်ရှင်းနူးညံ့သောအဝတ်ဖြင့် သုတ်ပါ။ လက်ချောင်းပေါ် ပဲသီးတစ်လုံးခန့်ယူ၍ မျက်လုံးနှင့် မျက်ခုံးနေရာကို ချန်ကာ မျက်နှာပေါ် ညီညာစွာလိမ်းပါ။ မျက်နှာဖုံးကဲ့သို့ ခြောက်သွားအောင်ထားပြီး မိနစ် ၂၀ ခန့်အကြာ ရေဆေးချပါ။ တစ်ပတ်လျှင် သုံးကြိမ် အသုံးပြုရန် ဖော်ပြထားသည်။"
+      "en": "Nature’s Gift Herbal Q10+ Revitalizing & Treatment Facial Foam, 100 g. The label lists Bio Q-10, neem extracts and natural vitamin E. The catalogue describes cleansing and pH balance care for all skin types, for day or night use.\n\nDirections need confirmation: the tube is labelled facial foam, but the accompanying text describes a drying, peel-off mask routine. Confirm the current pack instructions with Oliveco before following that routine.",
+      "my": "Nature’s Gift Herbal Q10+ Revitalizing & Treatment Facial Foam ၁၀၀ ဂရမ်။ ဘူးအညွှန်းတွင် Bio Q-10၊ တမာအနှစ်နှင့် သဘာဝဗီတာမင် E ပါဝင်ကြောင်း ဖော်ပြထားသည်။ အသားအရေ သန့်စင်၍ pH Balance ထိန်းသိမ်းရန်၊ အသားအရေအမျိုးအစားမရွေး နေ့၊ ည အသုံးပြုနိုင်ကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။\n\nအသုံးပြုပုံကို အတည်ပြုရန်လိုပါတယ် — ဘူးပေါ်တွင် Facial Foam ဟု ရေးထားသော်လည်း တွဲဖော်ပြထားသောစာသားမှာ ခြောက်အောင်ထား၍ ခွာချရသော မျက်နှာဖုံးသုံးနည်း ဖြစ်နေပါတယ်။ ထိုနည်းအတိုင်း မသုံးမီ လက်ရှိဘူးအညွှန်းကို Oliveco ထံ အတည်ပြုပါ။",
+      "catalogueRef": {
+        "id": "cosmetics",
+        "pages": [
+          8
+        ]
+      },
+      "searchTerms": [
+        "facial cleanser",
+        "facewash",
+        "မျက်နှာသစ်ဆေး"
+      ],
+      "ingredients": [
+        "Bio Q-10",
+        "neem extracts",
+        "natural vitamin E"
+      ],
+      "directionsUnconfirmed": true
     },
     "olive-tonic-60": {
       "source": "cosmetics catalogue, page 9",
       "en": "Olive Oil Plus Green Tea Extract Hair Tonic Oil for dry hair. The catalogue describes herbs and green tea extract for stronger, healthier-looking hair and improved manageability. The bottle is labelled “Non-sticky”.\n\nApply regularly as part of daily hair care. The glass bottle is listed as 60 ml; the tall-bottle volume is not specified on its product sheet.",
-      "my": "ခြောက်သွေ့သောဆံပင်အတွက် Olive Oil Plus Green Tea Extract Hair Tonic Oil ဖြစ်သည်။ ဆေးဖက်ဝင်အပင်များနှင့် လက်ဖက်စိမ်းအနှစ် ပါဝင်ပြီး ဆံပင်သန်မာ၍ ဆံသားကို ပိုမိုကောင်းမွန်စေကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။ ဘူးအညွှန်းတွင် “Non-sticky” ဟု ဖော်ပြထားသည်။\n\nကျန်းမာလှပသော ဆံသားရရှိရန် နေ့စဉ် ပုံမှန်လိမ်းရန် ဖော်ပြထားသည်။ ဖန်ဘူးအရွယ်မှာ ၆၀ မီလီလီတာ ဖြစ်ပြီး ဘူးရှည်၏ ပမာဏကို မူရင်းစာမျက်နှာတွင် မဖော်ပြထားပါ။"
+      "my": "ခြောက်သွေ့သောဆံပင်အတွက် Olive Oil Plus Green Tea Extract Hair Tonic Oil ဖြစ်သည်။ ဆေးဖက်ဝင်အပင်များနှင့် လက်ဖက်စိမ်းအနှစ် ပါဝင်ပြီး ဆံပင်သန်မာ၍ ဆံသားကို ပိုမိုကောင်းမွန်စေကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။ ဘူးအညွှန်းတွင် “Non-sticky” ဟု ဖော်ပြထားသည်။\n\nကျန်းမာလှပသော ဆံသားရရှိရန် နေ့စဉ် ပုံမှန်လိမ်းရန် ဖော်ပြထားသည်။ ဖန်ဘူးအရွယ်မှာ ၆၀ မီလီလီတာ ဖြစ်ပြီး ဘူးရှည်၏ ပမာဏကို မူရင်းစာမျက်နှာတွင် မဖော်ပြထားပါ။",
+      "catalogueRef": {
+        "id": "cosmetics",
+        "pages": [
+          9
+        ]
+      },
+      "searchTerms": [
+        "dry hair",
+        "non sticky",
+        "ဆံပင်ခြောက်",
+        "ဆံသားခြောက်"
+      ],
+      "ingredients": [
+        "green tea extract",
+        "botanical extracts"
+      ]
     },
     "herbal-lotion": {
       "source": "cosmetics catalogue, page 12",
       "en": "Dr. Peter Jour’s UV Whitening Face & Body Lotion with herbal and lemon extracts. Listed ingredients include lanolin oil, mineral oil, titanium dioxide, glycerin and botanical extracts.\n\nThe catalogue describes daily use on the face and body for soft, moisturised, brighter-looking skin and labels it for all skin types. Pack-size note: the sheet states 120 g, while the photographed tube reads 100 g. Confirm the current pack with Oliveco.",
-      "my": "Dr. Peter Jour’s UV Whitening Face & Body Lotion ဖြစ်ပြီး ဆေးဖက်ဝင်အပင်များနှင့် သံပရာအနှစ် ပါဝင်သည်။ ဖော်ပြထားသော ပါဝင်ပစ္စည်းများမှာ Lanolin Oil၊ Mineral Oil၊ Titanium Dioxide၊ Glycerin နှင့် ဆေးဖက်ဝင်အပင်အနှစ်များ ဖြစ်သည်။\n\nမျက်နှာနှင့် ကိုယ်ခန္ဓာပေါ် နေ့စဉ်ပုံမှန်လိမ်းခြင်းဖြင့် အသားအရေ စိုပြည်ကြည်လင်နူးညံ့စေရန်ဖြစ်ပြီး အသားအရေအမျိုးအစားမရွေး အသုံးပြုနိုင်ကြောင်း ဖော်ပြထားသည်။ ထုပ်ပိုးမှုမှတ်ချက် — စာမျက်နှာတွင် ၁၂၀ ဂရမ်ဟု ဖော်ပြသော်လည်း ဓာတ်ပုံထဲရှိဘူးတွင် ၁၀၀ ဂရမ်ဟု ရေးထားသည်။ လက်ရှိထုပ်ပိုးမှုကို Oliveco နှင့် အတည်ပြုပါ။"
+      "my": "Dr. Peter Jour’s UV Whitening Face & Body Lotion ဖြစ်ပြီး ဆေးဖက်ဝင်အပင်များနှင့် သံပရာအနှစ် ပါဝင်သည်။ ဖော်ပြထားသော ပါဝင်ပစ္စည်းများမှာ Lanolin Oil၊ Mineral Oil၊ Titanium Dioxide၊ Glycerin နှင့် ဆေးဖက်ဝင်အပင်အနှစ်များ ဖြစ်သည်။\n\nမျက်နှာနှင့် ကိုယ်ခန္ဓာပေါ် နေ့စဉ်ပုံမှန်လိမ်းခြင်းဖြင့် အသားအရေ စိုပြည်ကြည်လင်နူးညံ့စေရန်ဖြစ်ပြီး အသားအရေအမျိုးအစားမရွေး အသုံးပြုနိုင်ကြောင်း ဖော်ပြထားသည်။ ထုပ်ပိုးမှုမှတ်ချက် — စာမျက်နှာတွင် ၁၂၀ ဂရမ်ဟု ဖော်ပြသော်လည်း ဓာတ်ပုံထဲရှိဘူးတွင် ၁၀၀ ဂရမ်ဟု ရေးထားသည်။ လက်ရှိထုပ်ပိုးမှုကို Oliveco နှင့် အတည်ပြုပါ။",
+      "catalogueRef": {
+        "id": "cosmetics",
+        "pages": [
+          12
+        ]
+      },
+      "searchTerms": [
+        "face lotion",
+        "body moisturiser",
+        "body moisturizer",
+        "lemon extract",
+        "lanolin",
+        "titanium dioxide",
+        "မျက်နှာလိမ်း",
+        "ကိုယ်လိမ်းခရင်မ်"
+      ],
+      "ingredients": [
+        "lanolin oil",
+        "mineral oil",
+        "titanium dioxide",
+        "glycerin",
+        "botanical and lemon extracts"
+      ],
+      "packNote": {
+        "en": "The catalogue states 120 g, but the photographed tube says 100 g. Oliveco needs to confirm the current pack size.",
+        "my": "ကတ်တလောက်တွင် ၁၂၀ ဂရမ်၊ ဓာတ်ပုံထဲရှိဘူးတွင် ၁၀၀ ဂရမ်ဟု ဖော်ပြထားပါတယ်။ လက်ရှိထုပ်ပိုးမှုကို Oliveco ထံ အတည်ပြုပါ။"
+      }
     },
     "silk-shine": {
       "source": "cosmetics catalogue, page 6",
       "en": "Perfect Silk & Shine Natural Hair Coat Oil for daily hair care. The catalogue describes a blend of botanical ingredients and green tea for healthier-looking, glossy hair.\n\nListed ingredients: green tea extracts, olive oil, jojoba oil, vitamin E and fragrance. Use daily as described in the product sheet.",
-      "my": "Perfect Silk & Shine Natural Hair Coat Oil သည် နေ့စဉ် ဆံပင်ထိန်းသိမ်းရန် ဖြစ်သည်။ ဆေးဖက်ဝင်အပင်များနှင့် လက်ဖက်စိမ်း ပါဝင်ပြီး ဆံသားကျန်းမာတောက်ပြောင်စေရန် ကူညီကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။\n\nဖော်ပြထားသော ပါဝင်ပစ္စည်းများ — လက်ဖက်စိမ်းအနှစ်၊ သံလွင်ဆီ၊ ဂျိုဂျိုဘာဆီ၊ ဗီတာမင် E နှင့် ရနံ့။ ကတ်တလောက်အရ နေ့စဉ်အသုံးပြုရန် ဖြစ်သည်။"
+      "my": "Perfect Silk & Shine Natural Hair Coat Oil သည် နေ့စဉ် ဆံပင်ထိန်းသိမ်းရန် ဖြစ်သည်။ ဆေးဖက်ဝင်အပင်များနှင့် လက်ဖက်စိမ်း ပါဝင်ပြီး ဆံသားကျန်းမာတောက်ပြောင်စေရန် ကူညီကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။\n\nဖော်ပြထားသော ပါဝင်ပစ္စည်းများ — လက်ဖက်စိမ်းအနှစ်၊ သံလွင်ဆီ၊ ဂျိုဂျိုဘာဆီ၊ ဗီတာမင် E နှင့် ရနံ့။ ကတ်တလောက်အရ နေ့စဉ်အသုံးပြုရန် ဖြစ်သည်။",
+      "catalogueRef": {
+        "id": "cosmetics",
+        "pages": [
+          6
+        ]
+      },
+      "searchTerms": [
+        "shiny hair",
+        "glossy hair",
+        "hair shine",
+        "ဆံသားတောက်ပြောင်"
+      ],
+      "ingredients": [
+        "green tea extracts",
+        "olive oil",
+        "jojoba oil",
+        "vitamin E",
+        "fragrance"
+      ]
     },
     "pure-vaseline": {
       "source": "cosmetics catalogue, page 13",
       "en": "King Pharmacy Vaseline Pure petroleum jelly. The catalogue describes use for dry, rough or chapped skin, chapped lips and cracked heels, particularly during colder weather, to help soften and protect the skin.",
-      "my": "King Pharmacy Vaseline Pure ဗက်စလင်းအလှဆီ ဖြစ်သည်။ ဆောင်းရာသီ အသားပတ်ခြင်း၊ အသားကွဲအက်ခြင်း၊ နှုတ်ခမ်းကွဲခြင်း၊ ခြေထောက်ဖနောင့်ကွဲခြင်းနှင့် အသားအရေကြမ်းတမ်းခြောက်သွေ့ခြင်းများကို သက်သာကာကွယ်၍ အသားအရေ ချောမွေ့နူးညံ့စေရန် အသုံးပြုနိုင်ကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။"
+      "my": "King Pharmacy Vaseline Pure ဗက်စလင်းအလှဆီ ဖြစ်သည်။ ဆောင်းရာသီ အသားပတ်ခြင်း၊ အသားကွဲအက်ခြင်း၊ နှုတ်ခမ်းကွဲခြင်း၊ ခြေထောက်ဖနောင့်ကွဲခြင်းနှင့် အသားအရေကြမ်းတမ်းခြောက်သွေ့ခြင်းများကို သက်သာကာကွယ်၍ အသားအရေ ချောမွေ့နူးညံ့စေရန် အသုံးပြုနိုင်ကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။",
+      "catalogueRef": {
+        "id": "cosmetics",
+        "pages": [
+          13
+        ]
+      },
+      "searchTerms": [
+        "dry skin",
+        "chapped lips",
+        "cracked heels",
+        "petroleum jelly",
+        "နှုတ်ခမ်းကွဲ",
+        "ဖနောင့်ကွဲ",
+        "အသားပတ်"
+      ],
+      "ingredients": [
+        "petroleum jelly"
+      ]
     },
     "mega-10": {
       "source": "cosmetics catalogue, page 7",
       "en": "Mega-10 Hair Cream, 100 g. Made with botanical extracts, the catalogue describes it as helping protect against dryness, keeping hair naturally soft and maintaining the style throughout the day.\n\nDesigned for daily use with a fresh fragrance and a non-greasy feel.",
-      "my": "Mega-10 Hair Cream ၁၀၀ ဂရမ်။ သဘာဝ ဆေးဖက်ဝင်အပင်အနှစ်များကို အခြေခံထုတ်လုပ်ထားပြီး ဆံသားခြောက်သွေ့ခြင်းကို ကာကွယ်ကာ သဘာဝအတိုင်း ပျော့ပျောင်းစေပြီး တစ်နေ့လုံး ပုံစံကြာရှည်ခံကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။\n\nအဆီမပါဝင်သော ဖော်မြူလာ၊ မွှေးပျံ့လန်းဆန်းသော ရနံ့ဖြင့် နေ့စဉ်အသုံးပြုရန် ဖြစ်သည်။"
+      "my": "Mega-10 Hair Cream ၁၀၀ ဂရမ်။ သဘာဝ ဆေးဖက်ဝင်အပင်အနှစ်များကို အခြေခံထုတ်လုပ်ထားပြီး ဆံသားခြောက်သွေ့ခြင်းကို ကာကွယ်ကာ သဘာဝအတိုင်း ပျော့ပျောင်းစေပြီး တစ်နေ့လုံး ပုံစံကြာရှည်ခံကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။\n\nအဆီမပါဝင်သော ဖော်မြူလာ၊ မွှေးပျံ့လန်းဆန်းသော ရနံ့ဖြင့် နေ့စဉ်အသုံးပြုရန် ဖြစ်သည်။",
+      "catalogueRef": {
+        "id": "cosmetics",
+        "pages": [
+          7
+        ]
+      },
+      "searchTerms": [
+        "hair styling",
+        "style my hair",
+        "soft hair",
+        "non greasy",
+        "ဆံပင်ပုံသွင်း",
+        "ဆံသားပျော့"
+      ],
+      "ingredients": [
+        "botanical extracts"
+      ]
     },
     "denny-original": {
       "source": "cosmetics catalogue, page 1",
       "en": "Denny deodorant roll-on, described in the catalogue as providing day-long freshness and helping control body odour.\n\nListed ingredients: aluminum chlorohydrate, trisodium EDTA, glyceryl laurate, propylene glycol and perfume.\n\nDo not apply to irritated or damaged skin.",
-      "my": "Denny ချွေးနံ့ပျောက် roll-on ဖြစ်ပြီး ကတ်တလောက်တွင် တစ်နေ့တာလုံး လန်းဆန်းစေကာ ချွေးနံ့များကို ပျောက်ကင်းစေကြောင်း ဖော်ပြထားပါသည်။\n\nဖော်ပြထားသော ပါဝင်ပစ္စည်းများ — Aluminum chlorohydrate၊ Trisodium EDTA၊ Glyceryl Laurate၊ Propylene Glycol နှင့် ရေမွှေး။\n\nယားယံနေသော သို့မဟုတ် ပျက်စီးနေသော အရေပြားပေါ် မလိမ်းပါနှင့်။"
+      "my": "Denny ချွေးနံ့ပျောက် roll-on ဖြစ်ပြီး ကတ်တလောက်တွင် တစ်နေ့တာလုံး လန်းဆန်းစေကာ ချွေးနံ့များကို ပျောက်ကင်းစေကြောင်း ဖော်ပြထားပါသည်။\n\nဖော်ပြထားသော ပါဝင်ပစ္စည်းများ — Aluminum chlorohydrate၊ Trisodium EDTA၊ Glyceryl Laurate၊ Propylene Glycol နှင့် ရေမွှေး။\n\nယားယံနေသော သို့မဟုတ် ပျက်စီးနေသော အရေပြားပေါ် မလိမ်းပါနှင့်။",
+      "catalogueRef": {
+        "id": "cosmetics",
+        "pages": [
+          1
+        ]
+      },
+      "searchTerms": [
+        "body odour",
+        "body odor",
+        "underarm",
+        "rollon",
+        "ချိုင်း",
+        "ချွေးနံ့ပျောက်"
+      ],
+      "ingredients": [
+        "aluminum chlorohydrate",
+        "trisodium EDTA",
+        "glyceryl laurate",
+        "propylene glycol",
+        "perfume"
+      ]
     },
     "vertex-pine": {
       "source": "consumer catalogue, page 4",
       "en": "Vertex Pine (Pine-Sol), 500 ml, labelled to clean, disinfect and deodorise. Intended for household floors, bathrooms, toilets and ceramic surfaces, with a pine fragrance.\n\nThe catalogue describes dilution with water for routine cleaning. For stained bathroom or toilet surfaces, apply directly, leave for about three minutes and scrub with a brush or a water-dampened cloth while wearing gloves.",
-      "my": "Vertex Pine (Pine-Sol) ၅၀၀ မီလီလီတာ။ သန့်စင်ခြင်း၊ ပိုးသတ်ခြင်းနှင့် အနံ့ဆိုးပျောက်စေခြင်းအတွက် ဘူးအညွှန်းတွင် ဖော်ပြထားသည်။ အိမ်ကြမ်းပြင်၊ ရေချိုးခန်း၊ အိမ်သာနှင့် ကြွေမျက်နှာပြင်များအတွက် ထင်းရှူးရနံ့ပါ သန့်စင်ဆေး ဖြစ်သည်။\n\nပုံမှန်သန့်ရှင်းရေးတွင် ရေနှင့်ရောစပ်အသုံးပြုနိုင်ကြောင်း ဖော်ပြထားသည်။ ရေချိုးခန်း၊ အိမ်သာနှင့် ကြွေကမုတ်ပေါ် အညစ်အကြေးများကို တိုက်ရိုက်လောင်း၍ သုံးမိနစ်ခန့်ထားပြီး Brush သို့မဟုတ် ရေစိုအဝတ်ဖြင့် လက်အိတ်ဝတ်ကာ ပွတ်တိုက်ဆေးကြောပါ။"
+      "my": "Vertex Pine (Pine-Sol) ၅၀၀ မီလီလီတာ။ သန့်စင်ခြင်း၊ ပိုးသတ်ခြင်းနှင့် အနံ့ဆိုးပျောက်စေခြင်းအတွက် ဘူးအညွှန်းတွင် ဖော်ပြထားသည်။ အိမ်ကြမ်းပြင်၊ ရေချိုးခန်း၊ အိမ်သာနှင့် ကြွေမျက်နှာပြင်များအတွက် ထင်းရှူးရနံ့ပါ သန့်စင်ဆေး ဖြစ်သည်။\n\nပုံမှန်သန့်ရှင်းရေးတွင် ရေနှင့်ရောစပ်အသုံးပြုနိုင်ကြောင်း ဖော်ပြထားသည်။ ရေချိုးခန်း၊ အိမ်သာနှင့် ကြွေကမုတ်ပေါ် အညစ်အကြေးများကို တိုက်ရိုက်လောင်း၍ သုံးမိနစ်ခန့်ထားပြီး Brush သို့မဟုတ် ရေစိုအဝတ်ဖြင့် လက်အိတ်ဝတ်ကာ ပွတ်တိုက်ဆေးကြောပါ။",
+      "catalogueRef": {
+        "id": "consumer",
+        "pages": [
+          4
+        ]
+      },
+      "searchTerms": [
+        "pine sol",
+        "floor cleaner",
+        "floor cleaning",
+        "pine fragrance",
+        "ကြမ်းတိုက်",
+        "ထင်းရှူး"
+      ]
     },
     "olive-tonic-tall": {
       "source": "cosmetics catalogue, page 11",
       "en": "Olive Oil Plus Green Tea Extract Hair Tonic Oil for dry hair. The catalogue describes herbs and green tea extract for stronger, healthier-looking hair and improved manageability. The bottle is labelled “Non-sticky”.\n\nApply regularly as part of daily hair care. The glass bottle is listed as 60 ml; the tall-bottle volume is not specified on its product sheet.",
-      "my": "ခြောက်သွေ့သောဆံပင်အတွက် Olive Oil Plus Green Tea Extract Hair Tonic Oil ဖြစ်သည်။ ဆေးဖက်ဝင်အပင်များနှင့် လက်ဖက်စိမ်းအနှစ် ပါဝင်ပြီး ဆံပင်သန်မာ၍ ဆံသားကို ပိုမိုကောင်းမွန်စေကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။ ဘူးအညွှန်းတွင် “Non-sticky” ဟု ဖော်ပြထားသည်။\n\nကျန်းမာလှပသော ဆံသားရရှိရန် နေ့စဉ် ပုံမှန်လိမ်းရန် ဖော်ပြထားသည်။ ဖန်ဘူးအရွယ်မှာ ၆၀ မီလီလီတာ ဖြစ်ပြီး ဘူးရှည်၏ ပမာဏကို မူရင်းစာမျက်နှာတွင် မဖော်ပြထားပါ။"
+      "my": "ခြောက်သွေ့သောဆံပင်အတွက် Olive Oil Plus Green Tea Extract Hair Tonic Oil ဖြစ်သည်။ ဆေးဖက်ဝင်အပင်များနှင့် လက်ဖက်စိမ်းအနှစ် ပါဝင်ပြီး ဆံပင်သန်မာ၍ ဆံသားကို ပိုမိုကောင်းမွန်စေကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။ ဘူးအညွှန်းတွင် “Non-sticky” ဟု ဖော်ပြထားသည်။\n\nကျန်းမာလှပသော ဆံသားရရှိရန် နေ့စဉ် ပုံမှန်လိမ်းရန် ဖော်ပြထားသည်။ ဖန်ဘူးအရွယ်မှာ ၆၀ မီလီလီတာ ဖြစ်ပြီး ဘူးရှည်၏ ပမာဏကို မူရင်းစာမျက်နှာတွင် မဖော်ပြထားပါ။",
+      "catalogueRef": {
+        "id": "cosmetics",
+        "pages": [
+          11
+        ]
+      },
+      "searchTerms": [
+        "dry hair",
+        "non sticky",
+        "ဆံပင်ခြောက်",
+        "ဆံသားခြောက်"
+      ],
+      "ingredients": [
+        "green tea extract",
+        "botanical extracts"
+      ],
+      "packNote": {
+        "en": "Tall bottle; its volume is not stated on the product sheet. The separate glass bottle is 60 ml.",
+        "my": "ဘူးရှည်ဖြစ်ပြီး မူရင်းစာမျက်နှာတွင် ပမာဏမဖော်ပြထားပါ။ သီးခြားဖန်ဘူးမှာ ၆၀ မီလီလီတာ ဖြစ်ပါတယ်။"
+      }
     },
     "floral-hair-oil": {
       "source": "cosmetics catalogue, page 10",
       "en": "Jasmine-scented coconut hair oil, 60 ml. The catalogue describes a blend of purified coconut oil and jasmine fragrance for glossy dark hair and a cooling, fresh scalp feel.",
-      "my": "စံပယ်ပန်းအုန်းဆီမွှေး ၆၀ မီလီလီတာ။ သန့်ရှင်းလတ်ဆတ်သော အုန်းဆီနှင့် စံပယ်ပန်းရနံ့ ရောစပ်ထားပြီး ဆံကေသာ မည်းနက်တောက်ပြောင်စေကာ ဦးရေကို အေးမြလန်းဆန်းစေကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။"
+      "my": "စံပယ်ပန်းအုန်းဆီမွှေး ၆၀ မီလီလီတာ။ သန့်ရှင်းလတ်ဆတ်သော အုန်းဆီနှင့် စံပယ်ပန်းရနံ့ ရောစပ်ထားပြီး ဆံကေသာ မည်းနက်တောက်ပြောင်စေကာ ဦးရေကို အေးမြလန်းဆန်းစေကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။",
+      "catalogueRef": {
+        "id": "cosmetics",
+        "pages": [
+          10
+        ]
+      },
+      "searchTerms": [
+        "jasmine scented",
+        "coconut hair oil",
+        "စံပယ်ပန်း",
+        "အုန်းဆီမွှေး"
+      ],
+      "ingredients": [
+        "coconut oil",
+        "jasmine fragrance"
+      ]
     },
     "denny-blue": {
       "source": "cosmetics catalogue, page 2",
       "en": "Denny deodorant roll-on, described in the catalogue as providing day-long freshness and helping control body odour.\n\nListed ingredients: aluminum chlorohydrate, trisodium EDTA, glyceryl laurate, propylene glycol and perfume.\n\nDo not apply to irritated or damaged skin.",
-      "my": "Denny ချွေးနံ့ပျောက် roll-on ဖြစ်ပြီး ကတ်တလောက်တွင် တစ်နေ့တာလုံး လန်းဆန်းစေကာ ချွေးနံ့များကို ပျောက်ကင်းစေကြောင်း ဖော်ပြထားပါသည်။\n\nဖော်ပြထားသော ပါဝင်ပစ္စည်းများ — Aluminum chlorohydrate၊ Trisodium EDTA၊ Glyceryl Laurate၊ Propylene Glycol နှင့် ရေမွှေး။\n\nယားယံနေသော သို့မဟုတ် ပျက်စီးနေသော အရေပြားပေါ် မလိမ်းပါနှင့်။"
+      "my": "Denny ချွေးနံ့ပျောက် roll-on ဖြစ်ပြီး ကတ်တလောက်တွင် တစ်နေ့တာလုံး လန်းဆန်းစေကာ ချွေးနံ့များကို ပျောက်ကင်းစေကြောင်း ဖော်ပြထားပါသည်။\n\nဖော်ပြထားသော ပါဝင်ပစ္စည်းများ — Aluminum chlorohydrate၊ Trisodium EDTA၊ Glyceryl Laurate၊ Propylene Glycol နှင့် ရေမွှေး။\n\nယားယံနေသော သို့မဟုတ် ပျက်စီးနေသော အရေပြားပေါ် မလိမ်းပါနှင့်။",
+      "catalogueRef": {
+        "id": "cosmetics",
+        "pages": [
+          2
+        ]
+      },
+      "searchTerms": [
+        "body odour",
+        "body odor",
+        "underarm",
+        "rollon",
+        "ချိုင်း",
+        "ချွေးနံ့ပျောက်"
+      ],
+      "ingredients": [
+        "aluminum chlorohydrate",
+        "trisodium EDTA",
+        "glyceryl laurate",
+        "propylene glycol",
+        "perfume"
+      ]
     },
     "glycerin-pure": {
       "source": "cosmetics catalogue, page 3",
       "en": "King Pharmacy Glycerin Pure 99.5% for softening and moisturising the skin.\n\nCatalogue directions: mix one part glycerin with ten parts water before applying. The sheet also describes further dilution with water as needed. Store in a cool, dry place.",
-      "my": "King Pharmacy Glycerin Pure 99.5% ဖြစ်ပြီး အသားအရေကို စိုပြည်နူးညံ့ချောမွေ့စေရန် အသုံးပြုသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ရေ ၁၀ ဆနှင့် ဂလစ်ဆရင် ၁ ဆ ရောစပ်အသုံးပြုပါ။ လိုအပ်သလို ရေဖြင့် ထပ်မံရောစပ်နိုင်ကြောင်းလည်း ဖော်ပြထားသည်။ အေး၍ ခြောက်သွေ့သော နေရာတွင်ထားပါ။"
+      "my": "King Pharmacy Glycerin Pure 99.5% ဖြစ်ပြီး အသားအရေကို စိုပြည်နူးညံ့ချောမွေ့စေရန် အသုံးပြုသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ရေ ၁၀ ဆနှင့် ဂလစ်ဆရင် ၁ ဆ ရောစပ်အသုံးပြုပါ။ လိုအပ်သလို ရေဖြင့် ထပ်မံရောစပ်နိုင်ကြောင်းလည်း ဖော်ပြထားသည်။ အေး၍ ခြောက်သွေ့သော နေရာတွင်ထားပါ။",
+      "catalogueRef": {
+        "id": "cosmetics",
+        "pages": [
+          3
+        ]
+      },
+      "searchTerms": [
+        "glycerin pure",
+        "ဂလစ်ဆရင်အလှဆီ"
+      ],
+      "ingredients": [
+        "glycerin (99.5%)"
+      ]
     },
     "glycerin-sealed": {
       "source": "cosmetics catalogue, page 4",
       "en": "King Pharmacy Glycerin Pure 99.5% for softening and moisturising the skin.\n\nCatalogue directions: mix one part glycerin with ten parts water before applying. The sheet also describes further dilution with water as needed. Store in a cool, dry place.",
-      "my": "King Pharmacy Glycerin Pure 99.5% ဖြစ်ပြီး အသားအရေကို စိုပြည်နူးညံ့ချောမွေ့စေရန် အသုံးပြုသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ရေ ၁၀ ဆနှင့် ဂလစ်ဆရင် ၁ ဆ ရောစပ်အသုံးပြုပါ။ လိုအပ်သလို ရေဖြင့် ထပ်မံရောစပ်နိုင်ကြောင်းလည်း ဖော်ပြထားသည်။ အေး၍ ခြောက်သွေ့သော နေရာတွင်ထားပါ။"
+      "my": "King Pharmacy Glycerin Pure 99.5% ဖြစ်ပြီး အသားအရေကို စိုပြည်နူးညံ့ချောမွေ့စေရန် အသုံးပြုသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ရေ ၁၀ ဆနှင့် ဂလစ်ဆရင် ၁ ဆ ရောစပ်အသုံးပြုပါ။ လိုအပ်သလို ရေဖြင့် ထပ်မံရောစပ်နိုင်ကြောင်းလည်း ဖော်ပြထားသည်။ အေး၍ ခြောက်သွေ့သော နေရာတွင်ထားပါ။",
+      "catalogueRef": {
+        "id": "cosmetics",
+        "pages": [
+          4
+        ]
+      },
+      "searchTerms": [
+        "glycerin pure",
+        "ဂလစ်ဆရင်အလှဆီ"
+      ],
+      "ingredients": [
+        "glycerin (99.5%)"
+      ]
     },
     "glycerin-450": {
       "source": "cosmetics catalogue, page 5",
       "en": "King Pharmacy Glycerin Pure 99.5% for softening and moisturising the skin.\n\nCatalogue directions: mix one part glycerin with ten parts water before applying. The sheet also describes further dilution with water as needed. Store in a cool, dry place.",
-      "my": "King Pharmacy Glycerin Pure 99.5% ဖြစ်ပြီး အသားအရေကို စိုပြည်နူးညံ့ချောမွေ့စေရန် အသုံးပြုသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ရေ ၁၀ ဆနှင့် ဂလစ်ဆရင် ၁ ဆ ရောစပ်အသုံးပြုပါ။ လိုအပ်သလို ရေဖြင့် ထပ်မံရောစပ်နိုင်ကြောင်းလည်း ဖော်ပြထားသည်။ အေး၍ ခြောက်သွေ့သော နေရာတွင်ထားပါ။"
+      "my": "King Pharmacy Glycerin Pure 99.5% ဖြစ်ပြီး အသားအရေကို စိုပြည်နူးညံ့ချောမွေ့စေရန် အသုံးပြုသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ရေ ၁၀ ဆနှင့် ဂလစ်ဆရင် ၁ ဆ ရောစပ်အသုံးပြုပါ။ လိုအပ်သလို ရေဖြင့် ထပ်မံရောစပ်နိုင်ကြောင်းလည်း ဖော်ပြထားသည်။ အေး၍ ခြောက်သွေ့သော နေရာတွင်ထားပါ။",
+      "catalogueRef": {
+        "id": "cosmetics",
+        "pages": [
+          5
+        ]
+      },
+      "searchTerms": [
+        "glycerin pure",
+        "ဂလစ်ဆရင်အလှဆီ"
+      ],
+      "ingredients": [
+        "glycerin (99.5%)"
+      ]
     },
     "thai-tha": {
       "source": "consumer catalogue, page 1",
       "en": "Thai-Tha Fingertip Moistener, 35 g, for counting and turning banknotes, paper and documents more easily.\n\nTouch the surface lightly with a fingertip (index finger or thumb) before use. Avoid eye contact; if it gets into the eyes, rinse immediately with plenty of water. Keep out of reach of young children.",
-      "my": "Thai-Tha လက်ချောင်းစိုစွတ်ဆေး ၃၅ ဂရမ်။ ငွေစက္ကူနှင့် စာရွက်စာတမ်းများကို လွယ်ကူစွာ ရေတွက်၊ လှန်လှောရန် အသုံးပြုသည်။\n\nအသုံးမပြုမီ လက်ညှိုး သို့မဟုတ် လက်မကို ဆေးမျက်နှာပြင်ပေါ် အနည်းငယ်တို့၍ အသုံးပြုပါ။ မျက်စိထဲ မဝင်စေရန် သတိပြုပါ။ ဝင်ပါက ရေများများဖြင့် ချက်ချင်းဆေးကြောပါ။ ကလေးငယ်များ လက်လှမ်းမမီသော နေရာတွင်ထားပါ။"
+      "my": "Thai-Tha လက်ချောင်းစိုစွတ်ဆေး ၃၅ ဂရမ်။ ငွေစက္ကူနှင့် စာရွက်စာတမ်းများကို လွယ်ကူစွာ ရေတွက်၊ လှန်လှောရန် အသုံးပြုသည်။\n\nအသုံးမပြုမီ လက်ညှိုး သို့မဟုတ် လက်မကို ဆေးမျက်နှာပြင်ပေါ် အနည်းငယ်တို့၍ အသုံးပြုပါ။ မျက်စိထဲ မဝင်စေရန် သတိပြုပါ။ ဝင်ပါက ရေများများဖြင့် ချက်ချင်းဆေးကြောပါ။ ကလေးငယ်များ လက်လှမ်းမမီသော နေရာတွင်ထားပါ။",
+      "catalogueRef": {
+        "id": "consumer",
+        "pages": [
+          1
+        ]
+      },
+      "searchTerms": [
+        "count money",
+        "counting money",
+        "counting cash",
+        "banknotes",
+        "turn pages",
+        "ငွေရေ",
+        "ငွေစက္ကူ"
+      ]
     },
     "vertex-1000": {
       "source": "consumer catalogue, page 2",
       "en": "Vertex Super Toilet Cleaner for toilet bowls, ceramic basins, sinks, tiles and mineral deposits. The catalogue also describes use for cleaning newly laid tiles and stone surfaces after construction.\n\nCatalogue directions: apply over the stained area, spread evenly with a plastic brush, leave for about three minutes, then add water and scrub with the brush.\n\nWear gloves when handling. Keep away from children and store in a cool, dry place. Avoid the eyes, nose and skin; the sheet warns that accidental contact or swallowing can cause irritation.",
-      "my": "Vertex အိမ်သာနှင့် ကြွေပြားချေးချွတ်ဆေးရည်။ အိမ်သာသုံးကြွေအိုး၊ ကြွေခွက်၊ ဘေစင်၊ လက်ဆေးကန်၊ ကြွေပြား၊ ကျောက်ပြားနှင့် ရေဂျိုးအညစ်အကြေးများ သန့်စင်ရန် ဖြစ်သည်။ ဆောက်လုပ်ရေးလုပ်ငန်းတွင် ကြွေပြား၊ ကျောက်ပြား ကပ်ပြီးချိန်၌လည်း သန့်ရှင်းရေးအတွက် အသုံးပြုနိုင်ကြောင်း ဖော်ပြထားသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ချေးချွတ်လိုသော နေရာအနှံ့ ဆေးရည်လောင်းပြီး ပလတ်စတစ် Brush ဖြင့် ညီညာစွာဖြန့်ပါ။ သုံးမိနစ်ခန့်ထားပြီး ရေလောင်း၍ Brush ဖြင့် ပွတ်တိုက်ဆေးကြောပါ။\n\nလက်အိတ်ဝတ်၍ ကိုင်တွယ်ပါ။ ကလေးများလက်လှမ်းမမီသော၊ အေး၍ခြောက်သွေ့သော နေရာတွင်ထားပါ။ မျက်စိ၊ နှာခေါင်းနှင့် အရေပြားကို မထိတွေ့စေရန် သတိပြုပါ။ မတော်တဆ ထိတွေ့ခြင်း သို့မဟုတ် မျိုချခြင်းက ယားယံထိခိုက်စေနိုင်ကြောင်း ဖော်ပြထားသည်။"
+      "my": "Vertex အိမ်သာနှင့် ကြွေပြားချေးချွတ်ဆေးရည်။ အိမ်သာသုံးကြွေအိုး၊ ကြွေခွက်၊ ဘေစင်၊ လက်ဆေးကန်၊ ကြွေပြား၊ ကျောက်ပြားနှင့် ရေဂျိုးအညစ်အကြေးများ သန့်စင်ရန် ဖြစ်သည်။ ဆောက်လုပ်ရေးလုပ်ငန်းတွင် ကြွေပြား၊ ကျောက်ပြား ကပ်ပြီးချိန်၌လည်း သန့်ရှင်းရေးအတွက် အသုံးပြုနိုင်ကြောင်း ဖော်ပြထားသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ချေးချွတ်လိုသော နေရာအနှံ့ ဆေးရည်လောင်းပြီး ပလတ်စတစ် Brush ဖြင့် ညီညာစွာဖြန့်ပါ။ သုံးမိနစ်ခန့်ထားပြီး ရေလောင်း၍ Brush ဖြင့် ပွတ်တိုက်ဆေးကြောပါ။\n\nလက်အိတ်ဝတ်၍ ကိုင်တွယ်ပါ။ ကလေးများလက်လှမ်းမမီသော၊ အေး၍ခြောက်သွေ့သော နေရာတွင်ထားပါ။ မျက်စိ၊ နှာခေါင်းနှင့် အရေပြားကို မထိတွေ့စေရန် သတိပြုပါ။ မတော်တဆ ထိတွေ့ခြင်း သို့မဟုတ် မျိုချခြင်းက ယားယံထိခိုက်စေနိုင်ကြောင်း ဖော်ပြထားသည်။",
+      "catalogueRef": {
+        "id": "consumer",
+        "pages": [
+          2
+        ]
+      },
+      "searchTerms": [
+        "toilet cleaner",
+        "toilet cleaning",
+        "toilet stains",
+        "ceramic tiles",
+        "အိမ်သာဆေး",
+        "ကြွေပြား"
+      ]
     },
     "vertex-500": {
       "source": "consumer catalogue, page 3",
       "en": "Vertex Super Toilet Cleaner for toilet bowls, ceramic basins, sinks, tiles and mineral deposits. The catalogue also describes use for cleaning newly laid tiles and stone surfaces after construction.\n\nCatalogue directions: apply over the stained area, spread evenly with a plastic brush, leave for about three minutes, then add water and scrub with the brush.\n\nWear gloves when handling. Keep away from children and store in a cool, dry place. Avoid the eyes, nose and skin; the sheet warns that accidental contact or swallowing can cause irritation.",
-      "my": "Vertex အိမ်သာနှင့် ကြွေပြားချေးချွတ်ဆေးရည်။ အိမ်သာသုံးကြွေအိုး၊ ကြွေခွက်၊ ဘေစင်၊ လက်ဆေးကန်၊ ကြွေပြား၊ ကျောက်ပြားနှင့် ရေဂျိုးအညစ်အကြေးများ သန့်စင်ရန် ဖြစ်သည်။ ဆောက်လုပ်ရေးလုပ်ငန်းတွင် ကြွေပြား၊ ကျောက်ပြား ကပ်ပြီးချိန်၌လည်း သန့်ရှင်းရေးအတွက် အသုံးပြုနိုင်ကြောင်း ဖော်ပြထားသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ချေးချွတ်လိုသော နေရာအနှံ့ ဆေးရည်လောင်းပြီး ပလတ်စတစ် Brush ဖြင့် ညီညာစွာဖြန့်ပါ။ သုံးမိနစ်ခန့်ထားပြီး ရေလောင်း၍ Brush ဖြင့် ပွတ်တိုက်ဆေးကြောပါ။\n\nလက်အိတ်ဝတ်၍ ကိုင်တွယ်ပါ။ ကလေးများလက်လှမ်းမမီသော၊ အေး၍ခြောက်သွေ့သော နေရာတွင်ထားပါ။ မျက်စိ၊ နှာခေါင်းနှင့် အရေပြားကို မထိတွေ့စေရန် သတိပြုပါ။ မတော်တဆ ထိတွေ့ခြင်း သို့မဟုတ် မျိုချခြင်းက ယားယံထိခိုက်စေနိုင်ကြောင်း ဖော်ပြထားသည်။"
+      "my": "Vertex အိမ်သာနှင့် ကြွေပြားချေးချွတ်ဆေးရည်။ အိမ်သာသုံးကြွေအိုး၊ ကြွေခွက်၊ ဘေစင်၊ လက်ဆေးကန်၊ ကြွေပြား၊ ကျောက်ပြားနှင့် ရေဂျိုးအညစ်အကြေးများ သန့်စင်ရန် ဖြစ်သည်။ ဆောက်လုပ်ရေးလုပ်ငန်းတွင် ကြွေပြား၊ ကျောက်ပြား ကပ်ပြီးချိန်၌လည်း သန့်ရှင်းရေးအတွက် အသုံးပြုနိုင်ကြောင်း ဖော်ပြထားသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ချေးချွတ်လိုသော နေရာအနှံ့ ဆေးရည်လောင်းပြီး ပလတ်စတစ် Brush ဖြင့် ညီညာစွာဖြန့်ပါ။ သုံးမိနစ်ခန့်ထားပြီး ရေလောင်း၍ Brush ဖြင့် ပွတ်တိုက်ဆေးကြောပါ။\n\nလက်အိတ်ဝတ်၍ ကိုင်တွယ်ပါ။ ကလေးများလက်လှမ်းမမီသော၊ အေး၍ခြောက်သွေ့သော နေရာတွင်ထားပါ။ မျက်စိ၊ နှာခေါင်းနှင့် အရေပြားကို မထိတွေ့စေရန် သတိပြုပါ။ မတော်တဆ ထိတွေ့ခြင်း သို့မဟုတ် မျိုချခြင်းက ယားယံထိခိုက်စေနိုင်ကြောင်း ဖော်ပြထားသည်။",
+      "catalogueRef": {
+        "id": "consumer",
+        "pages": [
+          3
+        ]
+      },
+      "searchTerms": [
+        "toilet cleaner",
+        "toilet cleaning",
+        "toilet stains",
+        "ceramic tiles",
+        "အိမ်သာဆေး",
+        "ကြွေပြား"
+      ]
     },
     "asepsotol-100": {
       "source": "consumer catalogue, page 5",
       "en": "Asepsotol household antiseptic/disinfectant for buildings, indoor areas, toilets and bathrooms. The catalogue describes use for odour control and household hygiene. Available in 100 ml and 500 ml bottles.\n\nCatalogue directions: dilute one part solution with twenty parts water for sprinkling or washing. Use the undiluted solution only as specified on the current label. Store out of direct sunlight and out of children’s reach. If it enters the eyes, rinse immediately with water and seek medical advice.",
-      "my": "Asepsotol ပိုးသန့်စင်ဆေးရည်သည် အဆောက်အအုံ၊ အိမ်တွင်းအိမ်ပြင်၊ အိမ်သာနှင့် ရေချိုးခန်း သန့်ရှင်းရေး၊ အနံ့ဆိုးလျော့ချရေးအတွက် ဖြစ်သည်။ ၁၀၀ နှင့် ၅၀၀ မီလီလီတာ ဘူးများ ရှိသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ဆေးရည် ၁ ဆနှင့် ရေ ၂၀ ဆ ရောစပ်၍ ပက်ဖျန်းခြင်း၊ ဆေးကြောခြင်း ပြုလုပ်နိုင်သည်။ မရောစပ်သောဆေးရည်ကို လက်ရှိဘူးအညွှန်းပါ အသုံးပြုပုံအတိုင်းသာ သုံးပါ။ နေရောင်တိုက်ရိုက်မထိသော၊ ကလေးများလက်လှမ်းမမီသော နေရာတွင်ထားပါ။ မျက်စိထဲဝင်ပါက ရေဖြင့်ချက်ချင်းဆေးကြော၍ ဆရာဝန်နှင့်ပြပါ။"
+      "my": "Asepsotol ပိုးသန့်စင်ဆေးရည်သည် အဆောက်အအုံ၊ အိမ်တွင်းအိမ်ပြင်၊ အိမ်သာနှင့် ရေချိုးခန်း သန့်ရှင်းရေး၊ အနံ့ဆိုးလျော့ချရေးအတွက် ဖြစ်သည်။ ၁၀၀ နှင့် ၅၀၀ မီလီလီတာ ဘူးများ ရှိသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ဆေးရည် ၁ ဆနှင့် ရေ ၂၀ ဆ ရောစပ်၍ ပက်ဖျန်းခြင်း၊ ဆေးကြောခြင်း ပြုလုပ်နိုင်သည်။ မရောစပ်သောဆေးရည်ကို လက်ရှိဘူးအညွှန်းပါ အသုံးပြုပုံအတိုင်းသာ သုံးပါ။ နေရောင်တိုက်ရိုက်မထိသော၊ ကလေးများလက်လှမ်းမမီသော နေရာတွင်ထားပါ။ မျက်စိထဲဝင်ပါက ရေဖြင့်ချက်ချင်းဆေးကြော၍ ဆရာဝန်နှင့်ပြပါ။",
+      "catalogueRef": {
+        "id": "consumer",
+        "pages": [
+          5
+        ]
+      },
+      "searchTerms": [
+        "household disinfectant",
+        "aseptol",
+        "disinfect the house",
+        "အဆက်ပ်တိုဆော်လ်"
+      ]
     },
     "asepsotol-500": {
       "source": "consumer catalogue, page 6",
       "en": "Asepsotol household antiseptic/disinfectant for buildings, indoor areas, toilets and bathrooms. The catalogue describes use for odour control and household hygiene. Available in 100 ml and 500 ml bottles.\n\nCatalogue directions: dilute one part solution with twenty parts water for sprinkling or washing. Use the undiluted solution only as specified on the current label. Store out of direct sunlight and out of children’s reach. If it enters the eyes, rinse immediately with water and seek medical advice.",
-      "my": "Asepsotol ပိုးသန့်စင်ဆေးရည်သည် အဆောက်အအုံ၊ အိမ်တွင်းအိမ်ပြင်၊ အိမ်သာနှင့် ရေချိုးခန်း သန့်ရှင်းရေး၊ အနံ့ဆိုးလျော့ချရေးအတွက် ဖြစ်သည်။ ၁၀၀ နှင့် ၅၀၀ မီလီလီတာ ဘူးများ ရှိသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ဆေးရည် ၁ ဆနှင့် ရေ ၂၀ ဆ ရောစပ်၍ ပက်ဖျန်းခြင်း၊ ဆေးကြောခြင်း ပြုလုပ်နိုင်သည်။ မရောစပ်သောဆေးရည်ကို လက်ရှိဘူးအညွှန်းပါ အသုံးပြုပုံအတိုင်းသာ သုံးပါ။ နေရောင်တိုက်ရိုက်မထိသော၊ ကလေးများလက်လှမ်းမမီသော နေရာတွင်ထားပါ။ မျက်စိထဲဝင်ပါက ရေဖြင့်ချက်ချင်းဆေးကြော၍ ဆရာဝန်နှင့်ပြပါ။"
+      "my": "Asepsotol ပိုးသန့်စင်ဆေးရည်သည် အဆောက်အအုံ၊ အိမ်တွင်းအိမ်ပြင်၊ အိမ်သာနှင့် ရေချိုးခန်း သန့်ရှင်းရေး၊ အနံ့ဆိုးလျော့ချရေးအတွက် ဖြစ်သည်။ ၁၀၀ နှင့် ၅၀၀ မီလီလီတာ ဘူးများ ရှိသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ဆေးရည် ၁ ဆနှင့် ရေ ၂၀ ဆ ရောစပ်၍ ပက်ဖျန်းခြင်း၊ ဆေးကြောခြင်း ပြုလုပ်နိုင်သည်။ မရောစပ်သောဆေးရည်ကို လက်ရှိဘူးအညွှန်းပါ အသုံးပြုပုံအတိုင်းသာ သုံးပါ။ နေရောင်တိုက်ရိုက်မထိသော၊ ကလေးများလက်လှမ်းမမီသော နေရာတွင်ထားပါ။ မျက်စိထဲဝင်ပါက ရေဖြင့်ချက်ချင်းဆေးကြော၍ ဆရာဝန်နှင့်ပြပါ။",
+      "catalogueRef": {
+        "id": "consumer",
+        "pages": [
+          6
+        ]
+      },
+      "searchTerms": [
+        "household disinfectant",
+        "aseptol",
+        "disinfect the house",
+        "အဆက်ပ်တိုဆော်လ်"
+      ]
     },
     "rc-cream": {
       "source": "medical catalogue, page 1",
       "en": "B&C Skin Lightening Cream in the blue catalogue box. The product sheet describes it for the appearance of facial pigmentation, freckles and dark spots.\n\nCatalogue directions: wash the face with warm water before bed and dab only onto the affected dark spots. The sheet advises avoiding facial soap during use, wearing a hat in strong sunlight and stopping use once the spots have cleared. Follow the current label and ask a pharmacist about suitability; no ingredient list is supplied on this sheet.",
-      "my": "အပြာရောင်ဘူးပါ B&C Skin Lightening Cream ဖြစ်သည်။ မျက်နှာရှိ တင်းတိပ်၊ မှဲ့ခြောက်နှင့် အမည်းကွက်များအတွက် ရည်ရွယ်ထားကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ညအိပ်ရာမဝင်မီ မျက်နှာကို ရေနွေးနွေးနှင့်သစ်ပြီး အမည်းကွက်ရှိသော နေရာကိုသာ တို့လိမ်းပါ။ လိမ်းနေစဉ် မျက်နှာသစ်ဆပ်ပြာမသုံးရန်၊ နေပူပြင်းသောနေရာသွားလျှင် ဦးထုပ်ဆောင်းရန်၊ အမည်းကွက်ပျောက်လျှင် ဆက်မလိမ်းရန် ဖော်ပြထားသည်။ လက်ရှိဘူးအညွှန်းကို လိုက်နာ၍ မိမိအတွက် သင့်လျော်မှုကို ဆေးဝါးပညာရှင်နှင့် မေးမြန်းပါ။ ဤစာမျက်နှာတွင် ပါဝင်ပစ္စည်းစာရင်း မပါရှိပါ။"
+      "my": "အပြာရောင်ဘူးပါ B&C Skin Lightening Cream ဖြစ်သည်။ မျက်နှာရှိ တင်းတိပ်၊ မှဲ့ခြောက်နှင့် အမည်းကွက်များအတွက် ရည်ရွယ်ထားကြောင်း ကတ်တလောက်တွင် ဖော်ပြထားသည်။\n\nကတ်တလောက် အသုံးပြုပုံ — ညအိပ်ရာမဝင်မီ မျက်နှာကို ရေနွေးနွေးနှင့်သစ်ပြီး အမည်းကွက်ရှိသော နေရာကိုသာ တို့လိမ်းပါ။ လိမ်းနေစဉ် မျက်နှာသစ်ဆပ်ပြာမသုံးရန်၊ နေပူပြင်းသောနေရာသွားလျှင် ဦးထုပ်ဆောင်းရန်၊ အမည်းကွက်ပျောက်လျှင် ဆက်မလိမ်းရန် ဖော်ပြထားသည်။ လက်ရှိဘူးအညွှန်းကို လိုက်နာ၍ မိမိအတွက် သင့်လျော်မှုကို ဆေးဝါးပညာရှင်နှင့် မေးမြန်းပါ။ ဤစာမျက်နှာတွင် ပါဝင်ပစ္စည်းစာရင်း မပါရှိပါ။",
+      "catalogueRef": {
+        "id": "medical",
+        "pages": [
+          1
+        ]
+      },
+      "searchTerms": [
+        "b c cream",
+        "dark spots",
+        "freckles",
+        "တင်းတိပ်",
+        "မှဲ့ခြောက်"
+      ]
     },
     "caldryl-sealed": {
       "source": "medical catalogue, page 2",
       "en": "External-use lotion. The catalogue lists prickly heat/heat rash, sunburn and dry skin among its intended uses. It describes application three times daily for children and adults; follow the current product label and ask a pharmacist about age suitability.\n\nListed ingredients: calamine and herbal extracts. For external use only.",
-      "my": "ပြင်ပလိမ်းဆေးရည် ဖြစ်သည်။ နွေရာသီအပူကြောင့် မိတ်ဖုထွက်၍ ယားယံခြင်း၊ အသားအရေနေပူလောင်ခြင်းနှင့် ခြောက်သွေ့ခြင်းတို့အတွက် ကတ်တလောက်တွင် ဖော်ပြထားသည်။ ကလေးနှင့်လူကြီး တစ်နေ့သုံးကြိမ်လိမ်းရန် ဖော်ပြသော်လည်း လက်ရှိဘူးအညွှန်းကို လိုက်နာပြီး အသက်အရွယ်အလိုက် သင့်လျော်မှုကို ဆေးဝါးပညာရှင်နှင့် မေးမြန်းပါ။\n\nဖော်ပြထားသော ပါဝင်ပစ္စည်းများ — Calamine နှင့် ဆေးဖက်ဝင်အပင်အနှစ်များ။ ပြင်ပသုံးရန်သာ ဖြစ်သည်။"
+      "my": "ပြင်ပလိမ်းဆေးရည် ဖြစ်သည်။ နွေရာသီအပူကြောင့် မိတ်ဖုထွက်၍ ယားယံခြင်း၊ အသားအရေနေပူလောင်ခြင်းနှင့် ခြောက်သွေ့ခြင်းတို့အတွက် ကတ်တလောက်တွင် ဖော်ပြထားသည်။ ကလေးနှင့်လူကြီး တစ်နေ့သုံးကြိမ်လိမ်းရန် ဖော်ပြသော်လည်း လက်ရှိဘူးအညွှန်းကို လိုက်နာပြီး အသက်အရွယ်အလိုက် သင့်လျော်မှုကို ဆေးဝါးပညာရှင်နှင့် မေးမြန်းပါ။\n\nဖော်ပြထားသော ပါဝင်ပစ္စည်းများ — Calamine နှင့် ဆေးဖက်ဝင်အပင်အနှစ်များ။ ပြင်ပသုံးရန်သာ ဖြစ်သည်။",
+      "catalogueRef": {
+        "id": "medical",
+        "pages": [
+          2
+        ]
+      },
+      "searchTerms": [
+        "caldryl lotion",
+        "calamine lotion",
+        "heat rash",
+        "မိတ်ဖု"
+      ],
+      "ingredients": [
+        "calamine",
+        "herbal extracts"
+      ]
     },
     "caldryl-yellow": {
       "source": "medical catalogue, page 3",
       "en": "External-use lotion. The catalogue lists prickly heat/heat rash, sunburn and dry skin among its intended uses. It describes application three times daily for children and adults; follow the current product label and ask a pharmacist about age suitability.\n\nListed ingredients: calamine and herbal extracts. For external use only.",
-      "my": "ပြင်ပလိမ်းဆေးရည် ဖြစ်သည်။ နွေရာသီအပူကြောင့် မိတ်ဖုထွက်၍ ယားယံခြင်း၊ အသားအရေနေပူလောင်ခြင်းနှင့် ခြောက်သွေ့ခြင်းတို့အတွက် ကတ်တလောက်တွင် ဖော်ပြထားသည်။ ကလေးနှင့်လူကြီး တစ်နေ့သုံးကြိမ်လိမ်းရန် ဖော်ပြသော်လည်း လက်ရှိဘူးအညွှန်းကို လိုက်နာပြီး အသက်အရွယ်အလိုက် သင့်လျော်မှုကို ဆေးဝါးပညာရှင်နှင့် မေးမြန်းပါ။\n\nဖော်ပြထားသော ပါဝင်ပစ္စည်းများ — Calamine နှင့် ဆေးဖက်ဝင်အပင်အနှစ်များ။ ပြင်ပသုံးရန်သာ ဖြစ်သည်။"
+      "my": "ပြင်ပလိမ်းဆေးရည် ဖြစ်သည်။ နွေရာသီအပူကြောင့် မိတ်ဖုထွက်၍ ယားယံခြင်း၊ အသားအရေနေပူလောင်ခြင်းနှင့် ခြောက်သွေ့ခြင်းတို့အတွက် ကတ်တလောက်တွင် ဖော်ပြထားသည်။ ကလေးနှင့်လူကြီး တစ်နေ့သုံးကြိမ်လိမ်းရန် ဖော်ပြသော်လည်း လက်ရှိဘူးအညွှန်းကို လိုက်နာပြီး အသက်အရွယ်အလိုက် သင့်လျော်မှုကို ဆေးဝါးပညာရှင်နှင့် မေးမြန်းပါ။\n\nဖော်ပြထားသော ပါဝင်ပစ္စည်းများ — Calamine နှင့် ဆေးဖက်ဝင်အပင်အနှစ်များ။ ပြင်ပသုံးရန်သာ ဖြစ်သည်။",
+      "catalogueRef": {
+        "id": "medical",
+        "pages": [
+          3
+        ]
+      },
+      "searchTerms": [
+        "caldryl lotion",
+        "calamine lotion",
+        "heat rash",
+        "မိတ်ဖု"
+      ],
+      "ingredients": [
+        "calamine",
+        "herbal extracts"
+      ]
     },
     "eusol": {
       "source": "medical catalogue, page 4",
       "en": "King Pharmacy Eusol Lotion, 120 ml, labelled for external use. The label lists chlorinated lime, boric acid, hypochlorous acid and stabilizer.\n\nThe catalogue describes external wound cleansing and use in toilets and household drains for odour control and hygiene. Follow the current label and consult a healthcare professional before using it on a wound.",
-      "my": "King Pharmacy Eusol Lotion ၁၂၀ မီလီလီတာ၊ ပြင်ပသုံးရန် ဖြစ်သည်။ ဘူးအညွှန်းတွင် Chlorinated Lime၊ Boric Acid၊ Hypochlorous Acid နှင့် Stabilizer တို့ ပါဝင်ကြောင်း ဖော်ပြထားသည်။\n\nပြင်ပအနာများ ဆေးကြောရန်နှင့် အိမ်သာ၊ နေအိမ်ပတ်ဝန်းကျင်ရှိ ရေဆိုးမြောင်းများ၌ အနံ့ဆိုးလျော့ချ၍ သန့်ရှင်းရေးအတွက် ဖော်ပြထားသည်။ လက်ရှိဘူးအညွှန်းကို လိုက်နာ၍ အနာပေါ်အသုံးမပြုမီ ကျန်းမာရေးပညာရှင်နှင့် မေးမြန်းပါ။"
+      "my": "King Pharmacy Eusol Lotion ၁၂၀ မီလီလီတာ၊ ပြင်ပသုံးရန် ဖြစ်သည်။ ဘူးအညွှန်းတွင် Chlorinated Lime၊ Boric Acid၊ Hypochlorous Acid နှင့် Stabilizer တို့ ပါဝင်ကြောင်း ဖော်ပြထားသည်။\n\nပြင်ပအနာများ ဆေးကြောရန်နှင့် အိမ်သာ၊ နေအိမ်ပတ်ဝန်းကျင်ရှိ ရေဆိုးမြောင်းများ၌ အနံ့ဆိုးလျော့ချ၍ သန့်ရှင်းရေးအတွက် ဖော်ပြထားသည်။ လက်ရှိဘူးအညွှန်းကို လိုက်နာ၍ အနာပေါ်အသုံးမပြုမီ ကျန်းမာရေးပညာရှင်နှင့် မေးမြန်းပါ။",
+      "catalogueRef": {
+        "id": "medical",
+        "pages": [
+          4
+        ]
+      },
+      "searchTerms": [
+        "eusol lotion",
+        "ယူဆောလ်"
+      ]
     },
     "hydrogen-peroxide": {
       "source": "medical catalogue, page 5",
       "en": "King Pharmacy Hydrogen Peroxide 6%, described in the catalogue as an external cleansing solution.\n\nThe product sheet describes applying it to the area to be cleaned, leaving it for about one minute and rinsing with clean water. Follow the current label and ask a healthcare professional before wound use.",
-      "my": "King Pharmacy Hydrogen Peroxide 6% ဖြစ်ပြီး ကတ်တလောက်တွင် ပြင်ပဆေးကြောသန့်စင်ရည်ဟု ဖော်ပြထားသည်။\n\nမူရင်းအသုံးပြုပုံမှာ သန့်စင်လိုသောနေရာပေါ် ဆေးရည်လောင်း၍ တစ်မိနစ်ခန့်ထားပြီး သန့်ရှင်းသောရေနှင့် ပြန်လည်ဆေးကြောရန် ဖြစ်သည်။ လက်ရှိဘူးအညွှန်းကို လိုက်နာ၍ အနာပေါ်အသုံးမပြုမီ ကျန်းမာရေးပညာရှင်နှင့် မေးမြန်းပါ။"
+      "my": "King Pharmacy Hydrogen Peroxide 6% ဖြစ်ပြီး ကတ်တလောက်တွင် ပြင်ပဆေးကြောသန့်စင်ရည်ဟု ဖော်ပြထားသည်။\n\nမူရင်းအသုံးပြုပုံမှာ သန့်စင်လိုသောနေရာပေါ် ဆေးရည်လောင်း၍ တစ်မိနစ်ခန့်ထားပြီး သန့်ရှင်းသောရေနှင့် ပြန်လည်ဆေးကြောရန် ဖြစ်သည်။ လက်ရှိဘူးအညွှန်းကို လိုက်နာ၍ အနာပေါ်အသုံးမပြုမီ ကျန်းမာရေးပညာရှင်နှင့် မေးမြန်းပါ။",
+      "catalogueRef": {
+        "id": "medical",
+        "pages": [
+          5
+        ]
+      },
+      "searchTerms": [
+        "hydrogen peroxide",
+        "ဟိုက်ဒရိုဂျင်"
+      ],
+      "ingredients": [
+        "hydrogen peroxide (6%)"
+      ]
     },
     "king-lotion": {
       "source": "medical catalogue, page 6",
       "en": "External-use lotion. The catalogue lists prickly heat/heat rash, sunburn and dry skin among its intended uses. It describes application three times daily for children and adults; follow the current product label and ask a pharmacist about age suitability.\n\nKing Pharmacy’s pink lotion is marked as a prickly-heat lotion. The sheet does not supply a complete ingredient list.",
-      "my": "ပြင်ပလိမ်းဆေးရည် ဖြစ်သည်။ နွေရာသီအပူကြောင့် မိတ်ဖုထွက်၍ ယားယံခြင်း၊ အသားအရေနေပူလောင်ခြင်းနှင့် ခြောက်သွေ့ခြင်းတို့အတွက် ကတ်တလောက်တွင် ဖော်ပြထားသည်။ ကလေးနှင့်လူကြီး တစ်နေ့သုံးကြိမ်လိမ်းရန် ဖော်ပြသော်လည်း လက်ရှိဘူးအညွှန်းကို လိုက်နာပြီး အသက်အရွယ်အလိုက် သင့်လျော်မှုကို ဆေးဝါးပညာရှင်နှင့် မေးမြန်းပါ။\n\nKing Pharmacy ပန်းရောင် မိတ်ပျောက်ဆေးရည် ဖြစ်သည်။ မူရင်းစာမျက်နှာတွင် ပါဝင်ပစ္စည်းစာရင်းအပြည့်အစုံ မပါရှိပါ။"
+      "my": "ပြင်ပလိမ်းဆေးရည် ဖြစ်သည်။ နွေရာသီအပူကြောင့် မိတ်ဖုထွက်၍ ယားယံခြင်း၊ အသားအရေနေပူလောင်ခြင်းနှင့် ခြောက်သွေ့ခြင်းတို့အတွက် ကတ်တလောက်တွင် ဖော်ပြထားသည်။ ကလေးနှင့်လူကြီး တစ်နေ့သုံးကြိမ်လိမ်းရန် ဖော်ပြသော်လည်း လက်ရှိဘူးအညွှန်းကို လိုက်နာပြီး အသက်အရွယ်အလိုက် သင့်လျော်မှုကို ဆေးဝါးပညာရှင်နှင့် မေးမြန်းပါ။\n\nKing Pharmacy ပန်းရောင် မိတ်ပျောက်ဆေးရည် ဖြစ်သည်။ မူရင်းစာမျက်နှာတွင် ပါဝင်ပစ္စည်းစာရင်းအပြည့်အစုံ မပါရှိပါ။",
+      "catalogueRef": {
+        "id": "medical",
+        "pages": [
+          6
+        ]
+      },
+      "searchTerms": [
+        "king prickly heat lotion",
+        "prickly heat",
+        "မိတ်ပျောက်ဆေး"
+      ]
     },
     "king-mixture": {
       "source": "medical catalogue, page 7",
       "en": "King Pharmacy cough mixture in the amber bottle. The catalogue lists cough associated with seasonal changes, an itchy throat, phlegm and hoarseness among its intended uses.\n\nThe sheet gives age-dependent oral doses; confirm the current labelled dose and suitability with a pharmacist before use. Its highlighted storage note says to use within one month of opening. No ingredient list is supplied on this sheet.",
-      "my": "အညိုရောင်ဖန်ဘူးပါ King Pharmacy ချောင်းဆိုးပျောက်ဆေးရည် ဖြစ်သည်။ ရာသီအကူးအပြောင်းကြောင့် ချောင်းဆိုးခြင်း၊ လည်ချောင်းယားယံခြင်း၊ သလိပ်ကပ်ခြင်းနှင့် အသံဝင်ခြင်းတို့အတွက် ကတ်တလောက်တွင် ဖော်ပြထားသည်။\n\nမူရင်းစာမျက်နှာတွင် အသက်အရွယ်အလိုက် သောက်သုံးပမာဏများ ဖော်ပြထားသည်။ မသုံးမီ လက်ရှိဘူးအညွှန်းပါ ပမာဏနှင့် သင့်လျော်မှုကို ဆေးဝါးပညာရှင်နှင့် အတည်ပြုပါ။ အထူးမှတ်ချက်အရ ဘူးဖွင့်ပြီး တစ်လအတွင်း အသုံးပြုရန် ဖြစ်သည်။ ပါဝင်ပစ္စည်းစာရင်း မပါရှိပါ။"
+      "my": "အညိုရောင်ဖန်ဘူးပါ King Pharmacy ချောင်းဆိုးပျောက်ဆေးရည် ဖြစ်သည်။ ရာသီအကူးအပြောင်းကြောင့် ချောင်းဆိုးခြင်း၊ လည်ချောင်းယားယံခြင်း၊ သလိပ်ကပ်ခြင်းနှင့် အသံဝင်ခြင်းတို့အတွက် ကတ်တလောက်တွင် ဖော်ပြထားသည်။\n\nမူရင်းစာမျက်နှာတွင် အသက်အရွယ်အလိုက် သောက်သုံးပမာဏများ ဖော်ပြထားသည်။ မသုံးမီ လက်ရှိဘူးအညွှန်းပါ ပမာဏနှင့် သင့်လျော်မှုကို ဆေးဝါးပညာရှင်နှင့် အတည်ပြုပါ။ အထူးမှတ်ချက်အရ ဘူးဖွင့်ပြီး တစ်လအတွင်း အသုံးပြုရန် ဖြစ်သည်။ ပါဝင်ပစ္စည်းစာရင်း မပါရှိပါ။",
+      "catalogueRef": {
+        "id": "medical",
+        "pages": [
+          7
+        ]
+      },
+      "searchTerms": [
+        "cough mixture",
+        "cough syrup",
+        "ချောင်းဆိုးပျောက်"
+      ]
     },
     "methylated-small": {
       "source": "medical catalogue, page 8",
       "en": "King Pharmacy Methylated Spirit for external cleaning. The catalogue describes use for cleaning needles, syringes and dressings; the bottle label states “External use” and “Keep out of reach of children”.\n\nDo not swallow. The 500 ml label carries a flammability warning. Keep away from flames and follow the current label.",
-      "my": "King Pharmacy Methylated Spirit သည် ပြင်ပသန့်စင်ရန် အရက်ပြန် ဖြစ်သည်။ မူရင်းကတ်တလောက်တွင် ထိုးအပ်၊ ဆေးထိုးပြွန်နှင့် ပတ်တီးများ ဆေးကြောရန် ဖော်ပြထားပြီး ဘူးအညွှန်းတွင် ပြင်ပသုံးရန်၊ ကလေးများလက်လှမ်းမမီရာတွင်ထားရန် ရေးထားသည်။\n\nမသောက်ရပါ။ ၅၀၀ မီလီလီတာဘူးတွင် မီးလောင်လွယ်ကြောင်း သတိပေးထားသည်။ မီးနှင့်ဝေးရာတွင်ထားပြီး လက်ရှိဘူးအညွှန်းကို လိုက်နာပါ။"
+      "my": "King Pharmacy Methylated Spirit သည် ပြင်ပသန့်စင်ရန် အရက်ပြန် ဖြစ်သည်။ မူရင်းကတ်တလောက်တွင် ထိုးအပ်၊ ဆေးထိုးပြွန်နှင့် ပတ်တီးများ ဆေးကြောရန် ဖော်ပြထားပြီး ဘူးအညွှန်းတွင် ပြင်ပသုံးရန်၊ ကလေးများလက်လှမ်းမမီရာတွင်ထားရန် ရေးထားသည်။\n\nမသောက်ရပါ။ ၅၀၀ မီလီလီတာဘူးတွင် မီးလောင်လွယ်ကြောင်း သတိပေးထားသည်။ မီးနှင့်ဝေးရာတွင်ထားပြီး လက်ရှိဘူးအညွှန်းကို လိုက်နာပါ။",
+      "catalogueRef": {
+        "id": "medical",
+        "pages": [
+          8,
+          9
+        ]
+      },
+      "searchTerms": [
+        "methylated spirits",
+        "external cleaning spirit",
+        "မီသိုင်းအရက်ပြန်",
+        "အရက်ပြန်"
+      ]
     },
     "methylated-500": {
       "source": "medical catalogue, page 10",
       "en": "King Pharmacy Methylated Spirit for external cleaning. The catalogue describes use for cleaning needles, syringes and dressings; the bottle label states “External use” and “Keep out of reach of children”.\n\nDo not swallow. The 500 ml label carries a flammability warning. Keep away from flames and follow the current label.",
-      "my": "King Pharmacy Methylated Spirit သည် ပြင်ပသန့်စင်ရန် အရက်ပြန် ဖြစ်သည်။ မူရင်းကတ်တလောက်တွင် ထိုးအပ်၊ ဆေးထိုးပြွန်နှင့် ပတ်တီးများ ဆေးကြောရန် ဖော်ပြထားပြီး ဘူးအညွှန်းတွင် ပြင်ပသုံးရန်၊ ကလေးများလက်လှမ်းမမီရာတွင်ထားရန် ရေးထားသည်။\n\nမသောက်ရပါ။ ၅၀၀ မီလီလီတာဘူးတွင် မီးလောင်လွယ်ကြောင်း သတိပေးထားသည်။ မီးနှင့်ဝေးရာတွင်ထားပြီး လက်ရှိဘူးအညွှန်းကို လိုက်နာပါ။"
+      "my": "King Pharmacy Methylated Spirit သည် ပြင်ပသန့်စင်ရန် အရက်ပြန် ဖြစ်သည်။ မူရင်းကတ်တလောက်တွင် ထိုးအပ်၊ ဆေးထိုးပြွန်နှင့် ပတ်တီးများ ဆေးကြောရန် ဖော်ပြထားပြီး ဘူးအညွှန်းတွင် ပြင်ပသုံးရန်၊ ကလေးများလက်လှမ်းမမီရာတွင်ထားရန် ရေးထားသည်။\n\nမသောက်ရပါ။ ၅၀၀ မီလီလီတာဘူးတွင် မီးလောင်လွယ်ကြောင်း သတိပေးထားသည်။ မီးနှင့်ဝေးရာတွင်ထားပြီး လက်ရှိဘူးအညွှန်းကို လိုက်နာပါ။",
+      "catalogueRef": {
+        "id": "medical",
+        "pages": [
+          10
+        ]
+      },
+      "searchTerms": [
+        "methylated spirits",
+        "external cleaning spirit",
+        "မီသိုင်းအရက်ပြန်",
+        "အရက်ပြန်"
+      ]
     }
   },
   "faqs": [

@@ -84,7 +84,7 @@ test('client call numbers and corrected Viber mobile agree without AI calls',asy
 
 test('purchase and human-detail requests offer the enquiry handoff with product context',async()=>{
   const service=make({generate:async()=>{throw new Error('Must not run');}});
-  for(const message of ['I want to buy this','I want more detailed information','Can a person call me?','ဒီပစ္စည်းကို ဝယ်ချင်ပါတယ်']){
+  for(const message of ['I want to buy this','Can I talk to a sales person?','Can a person call me?','ဒီပစ္စည်းကို ဝယ်ချင်ပါတယ်']){
     const result=await service.reply({message,language:'en',context:['herbal-q10']});
     assert.ok(result.actions.includes('enquiry'),message);
     assert.match(result.text,/09-4150440/);

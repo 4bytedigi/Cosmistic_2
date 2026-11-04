@@ -3,6 +3,30 @@ import {isIP} from 'node:net';
 
 const bounded=(value,fallback,max)=>Math.max(1,Math.min(max,Math.floor(Number(value)||fallback)));
 
+// Short-lived keyed hashes only: never retain customer messages or raw IPs.
+// History is deliberately excluded so padding history cannot bypass duplicates.
+export function createAIAbuseGuard({now=Date.now,capacity=10000}={}){
+  const secret=randomBytes(32),recent=new Map();
+  const digest=value=>createHmac('sha256',secret).update(value).digest('hex');
+  function inspect({clientId,message,language,context=[]}){
+    const normalized=String(message).normalize('NFKC').toLocaleLowerCase().replace(/[^\p{L}\p{N}\p{M}\s]/gu,' ').replace(/\s+/g,' ').trim();
+    const characters=Array.from(normalized.replace(/\s/g,''));
+    const words=normalized.split(' ');
+    const counts=new Map();
+    for(const character of characters)counts.set(character,(counts.get(character)||0)+1);
+    const repetitive=characters.length>=16&&Math.max(...counts.values())/characters.length>=0.9;
+    if(!/[\p{L}\p{N}]/u.test(normalized)||repetitive||(words.length>=8&&new Set(words).size<=2))return {allowed:false,retryAfter:30};
+    const time=now();
+    for(const [id,until] of recent)if(until<=time)recent.delete(id);
+    const id=digest(JSON.stringify([clientId,normalized,language,context]));
+    const until=recent.get(id);
+    if(until)return {allowed:false,retryAfter:Math.max(1,Math.ceil((until-time)/1000))};
+    if(recent.size>=capacity)return {allowed:false,retryAfter:30};
+    return {allowed:true,record:()=>recent.set(id,time+30000)};
+  }
+  return {inspect};
+}
+
 // Bounded, expiring counters. No messages, raw IPs or customer details are retained.
 export function createWindowLimiter({now=Date.now,capacity=10000}={}) {
   const buckets=new Map();

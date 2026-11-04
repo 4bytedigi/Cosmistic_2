@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import http from 'node:http';
-import {createWindowLimiter,createChatSecurity,clientAddress} from '../chat-security.mjs';
+import {createWindowLimiter,createChatSecurity,clientAddress,createAIAbuseGuard} from '../chat-security.mjs';
 import {createAppServer} from '../server.mjs';
 
 test('counter windows expire independently and a new minute does not reset the hourly cap',()=>{
@@ -15,6 +15,19 @@ test('counter windows expire independently and a new minute does not reset the h
   time=60001;assert.equal(limiter.take('a',windows).allowed,true);
   time=120002;assert.equal(limiter.take('a',windows).allowed,false);
   time=3600001;assert.equal(limiter.take('a',windows).allowed,true);
+});
+
+test('duplicate screening tolerates punctuation changes but allows different products and normal Myanmar',()=>{
+  let time=0;
+  const guard=createAIAbuseGuard({now:()=>time,capacity:3});
+  const question={clientId:'one',message:'Tell me more!',language:'en',context:['mega-10']};
+  guard.inspect(question).record();
+  assert.equal(guard.inspect({...question,message:'TELL   ME MORE???',history:[{role:'user',content:'padding'}]}).allowed,false);
+  assert.equal(guard.inspect({...question,context:['silk-shine']}).allowed,true);
+  assert.equal(guard.inspect({...question,clientId:'two'}).allowed,true);
+  assert.equal(guard.inspect({...question,message:'ဆံပင်ခြောက်နေလို့ ဘယ်ဟာသုံးသင့်လဲ',language:'my'}).allowed,true);
+  for(const message of ['!!! 🤖 !!!','a'.repeat(80),'buy '.repeat(30),'oliveco buy '.repeat(10)])assert.equal(guard.inspect({...question,message}).allowed,false);
+  time=30001;assert.equal(guard.inspect(question).allowed,true);
 });
 
 test('proxy headers are ignored unless an explicitly trusted private proxy supplies them',()=>{

@@ -35,13 +35,30 @@
   const norm=s=>String(s).toLowerCase().normalize('NFKC').replace(/[’'·+.,?!၊။-]/g,' ').replace(/\s+/g,' ').trim();
   const stop=new Set(['what','which','is','are','a','the','do','you','have','for','i','me','tell','about','can','how','it','this','used','use','of','and','please','want','need','show','products','product','oliveco','with','in','to']);
   function score(p,q){let n=0;for(const a of aliases[p.id]||[]){const alias=norm(a);if(/[a-z0-9]/.test(alias)?(' '+q+' ').includes(' '+alias+' '):q.includes(alias))n+=4+alias.length/10;}for(const token of norm(p.name).split(' '))if(token.length>2&&!stop.has(token)&&q.split(' ').includes(token))n+=2;if(q.includes('500')&&p.size==='500 ml')n+=2;if((q.includes('1000')||q.includes('1 l'))&&p.size==='1,000 ml')n+=3;if(q.includes('450')&&p.size==='450 ml')n+=3;return n}
+  function search(message,knowledge={}){
+    const q=norm(message);
+    return products.map(p=>{
+      let n=score(p,q);
+      for(const term of knowledge.products?.[p.id]?.searchTerms||[]){
+        const text=norm(term);
+        if(text&&(/[a-z0-9]/.test(text)?(' '+q+' ').includes(' '+text+' '):q.includes(text)))n+=4+text.length/10;
+      }
+      return {p,n};
+    }).filter(x=>x.n>=4).sort((a,b)=>b.n-a.n);
+  }
   function category(q){if(/hair|scalp|shampoo|ဆံပင်/.test(q))return'hair';if(/home|house|cleaning|အိမ်သုံး|သန့်ရှင်းရေး/.test(q))return'home';if(/medical|medicine|ဆေးဝါး/.test(q))return'medical';if(/personal|တစ်ကိုယ်ရေ/.test(q))return'personal';if(/skin|face|moisturi|အသားအရေ|အလှကုန်/.test(q))return'skin';return null}
   function reply(message,{language='my',context=[],knowledge={},pricing={}}={}){
     const my=language!=='en',q=norm(message),choose=(mm,en)=>my?mm:en;
     const validContext=Array.isArray(context)?context.filter(id=>products.some(p=>p.id===id)).slice(0,4):[];
-    const ranked=products.map(p=>({p,n:score(p,q)})).filter(x=>x.n>=4).sort((a,b)=>b.n-a.n);
-    const followup=/\bit\b|\bthis\b|\bthese\b|ingredients|size|more detail|ဘယ်လို|ပါဝင်|ဒီပစ္စည်း|အသုံးပြု|အရွယ်|ဘာအတွက်/.test(q);
-    const matches=ranked.length?ranked.slice(0,3).map(x=>x.p):followup&&validContext.length?validContext.map(id=>products.find(p=>p.id===id)):[];
+    const ranked=search(message,knowledge);
+    const comparing=/compar|difference|\bvs\b|versus|နှိုင်းယှဉ်|ကွာခြား/.test(q);
+    const detailsRequested=/tell me more|more detail|detailed information|how.*(?:use|apply)|directions|အသုံးပြု|အသေးစိတ်|ထပ်ပြော/.test(q);
+    const ingredientQuestion=/ingredient|contain|made (?:of|with)|ပါဝင်/.test(q);
+    const followup=/\bit\b|\bthis\b|\bthese\b|\bthem\b|\bboth\b|ingredients|size|ဘယ်လို|ပါဝင်|ဒီပစ္စည်း|အရွယ်|ဘာအတွက်/.test(q)||detailsRequested||comparing;
+    const contextualIngredient=ingredientQuestion&&validContext.length&&/\bit\b|\bthis\b|ဒီပစ္စည်း/.test(q)&&!products.some(p=>q.includes(norm(p.name))||q.includes(norm(p.id)));
+    const ordinal=/\bfirst (?:one|product|bottle)\b|ပထမ/.test(q)?0:/\bsecond (?:one|product|bottle)\b|ဒုတိယ/.test(q)?1:/\bthird (?:one|product|bottle)\b|တတိယ/.test(q)?2:-1;
+    const selectedContext=ordinal>=0&&validContext[ordinal]?[validContext[ordinal]]:validContext;
+    const matches=(contextualIngredient||ordinal>=0&&selectedContext.length)?selectedContext.map(id=>products.find(p=>p.id===id)):ranked.length?ranked.slice(0,3).map(x=>x.p):followup&&validContext.length?selectedContext.map(id=>products.find(p=>p.id===id)):[];
     const ids=matches.map(p=>p.id);
     const response=(text,extra={})=>({text,products:ids,actions:[],context:ids.length?ids:validContext,mode:'guide',...extra});
     if(/ignore.{0,35}(?:previous|instruction|rule|system)|(?:reveal|show|print|repeat).{0,35}(?:system prompt|hidden instruction|api key|secret)|jailbreak|developer mode|\b(?:sk-proj-|password|api key|python|javascript|sql|programming|coding|homework|politics|bitcoin|recipe|poem|essay)\b/.test(q))return response(choose('Oliveco ထုတ်ကုန်များ၊ ကုမ္ပဏီနှင့် ဝယ်ယူမှုအကြောင်းကို ကူညီပေးနိုင်ပါတယ်။ ဘာပစ္စည်းကို စိတ်ဝင်စားပါသလဲ။','I can help with Oliveco products, company information and buying enquiries. Which product are you interested in?'),{products:[],actions:[],definitive:true});
@@ -94,27 +111,41 @@
       if(/when|what year|ဘယ်နှစ်|ဘယ်ခုနှစ်/.test(q)&&business.founded)text=choose(`Oliveco ကို ${new Intl.NumberFormat('my',{useGrouping:false}).format(business.founded)} ခုနှစ်တွင် စတင်တည်ထောင်ခဲ့ပါတယ်။`,`Oliveco was established in ${business.founded}.`);
       return response(text,{products:[],actions:/\bwho found|\bfounder\b/.test(q)?salesActions:['category:skin','category:hair'],definitive:matches.length===0});
     }
-    if(!ranked.length&&followup&&validContext.length>1)return response(choose('ဘယ်ပစ္စည်းကို ဆိုလိုပါသလဲ။ အောက်ကပစ္စည်းတစ်ခုကို ရွေးပါ သို့မဟုတ် နာမည်ပြောပေးပါ။','Which product do you mean? Choose one below or tell me its name.'),{definitive:true});
+    if(!ranked.length&&followup&&matches.length>1&&!comparing&&!/\bthese\b|\bboth\b|\ball\b|နှစ်ခုလုံး/.test(q))return response(choose('ဘယ်ပစ္စည်းကို ဆိုလိုပါသလဲ။ အောက်ကပစ္စည်းတစ်ခုကို ရွေးပါ သို့မဟုတ် နာမည်ပြောပေးပါ။','Which product do you mean? Choose one below or tell me its name.'),{definitive:true});
     if(/price|cost|how much|ဈေး|စျေး|ဘယ်လောက်/.test(q)&&matches.length===1){
       const amount=pricing.amounts?.[matches[0].id];
       if(typeof amount==='number'&&Number.isFinite(amount)&&amount>=0)return response(`${my?(I.names[matches[0].id]||matches[0].name):matches[0].name}: ${pricing.currency||'MMK'} ${new Intl.NumberFormat('en').format(amount)}`,{actions:['selection'],definitive:true});
     }
     if(/my order|order status|track.{0,20}order|complaint|damaged|missing item|wrong item|cancel|အော်ဒါ|ပစ္စည်းပျက်|မရောက်/.test(q))return response(choose(`အော်ဒါအခြေအနေကို ဤစကားဝိုင်းမှ စစ်ဆေး၍ မရပါ။ အော်ဒါနှင့် ပစ္စည်းပြဿနာအတွက် မေးမြန်းစာ ပြင်ဆင်ပြီး Oliveco အဖွဲ့ကို ${seller} မှ ဆက်သွယ်ပေးပါ။`,`I can’t look up orders in this chat. For an existing order, cancellation or product problem, prepare an enquiry and contact the Oliveco team on ${seller}.`),{actions:salesActions,definitive:true});
-    if(/price|cost|how much|buy|purchase|order|stock|available|more detail|detailed information|talk.*(?:human|person|sales)|speak.*(?:human|person|sales)|call me|callback|ဈေး|စျေး|ဘယ်လောက်|ဝယ်|မှာယူ|ရနိုင်|အသေးစိတ်.*(?:မေး|သိ)|လူနဲ့|ပြန်ဆက်သွယ်/.test(q))return response(choose(`ဈေးနှုန်း၊ ရရှိနိုင်မှုနှင့် အသေးစိတ်အတွက် Oliveco အရောင်းအဖွဲ့ကို ${seller} မှ ဆက်သွယ်ပါ။ မေးမြန်းစာတွင် သင့်အမည်၊ ပြန်ဆက်သွယ်ရန် ဖုန်းနှင့် စိတ်ဝင်စားသော ပစ္စည်းများကို ဖြည့်ပြီး Viber မှာ ကူးထည့်ပို့နိုင်ပါတယ်။`,`For prices, availability or detailed enquiries, contact the Oliveco sales team on ${seller}. Prepare an enquiry with your name, callback phone and products, then paste and send it in Viber.`),{actions:[...salesActions,'selection'],definitive:true});
+    if(/price|cost|how much|buy|purchase|order|stock|available|talk.*(?:human|person|sales)|speak.*(?:human|person|sales)|call me|callback|ဈေး|စျေး|ဘယ်လောက်|ဝယ်|မှာယူ|ရနိုင်|လူနဲ့|ပြန်ဆက်သွယ်/.test(q))return response(choose(`လက်ရှိဈေးနှုန်းနှင့် ရရှိနိုင်မှုကို Oliveco အရောင်းအဖွဲ့က အတည်ပြုပေးနိုင်ပါတယ်။ မေးမြန်းစာ ပြင်ဆင်ပြီး ${seller} မှ ကူးထည့်ပို့ပါ။`,`The Oliveco sales team can confirm current prices and availability. Prepare an enquiry, then paste and send it on ${seller}.`),{actions:[...salesActions,'selection'],definitive:true});
     if(/contact|facebook|seller|ဆက်သွယ်|အရောင်း/.test(q))return response(choose(`Oliveco အရောင်းအဖွဲ့ကို ${seller} မှ ဆက်သွယ်နိုင်ပါတယ်။ အမည်၊ ပြန်ဆက်သွယ်ရန် ဖုန်းနှင့် မေးမြန်းလိုသည်ကို ပြင်ဆင်ပြီး ပို့ပါ။`,`Contact the Oliveco team on ${seller}. Prepare your name, callback phone and question, then send the enquiry there.`),{products:[],actions:salesActions,definitive:true});
     if(matches.length){
-      if(/\bsize\b|\bpack\b|\bformat\b|အရွယ်|ထုပ်ပိုး|မီလီလီတာ/.test(q)&&!/compar|difference|recommend|ကွာခြား/.test(q))return response(matches.map(p=>`${my?(I.names[p.id]||p.name):p.name}: ${my?I.size(p):p.size}`).join('\n'),{definitive:true});
-      let text=matches.map(p=>`${my?(I.names[p.id]||p.name):p.name}\n${(I.facts[p.id]||[p.description,p.description])[my?0:1]}${my?'\nထုပ်ပိုးမှု: ':'\nFormat: '}${my?I.size(p):p.size}`).join('\n\n');
-      if(/ingredient|ပါဝင်/.test(q))text+='\n\n'+choose('ဤအချက်အလက်သည် ပါဝင်ပစ္စည်းစာရင်း အပြည့်အစုံ မဟုတ်ပါ။ အပြည့်အစုံကို Oliveco ထံ အတည်ပြုပါ။','This is not a complete ingredient list. Confirm the full list with Oliveco.');
+      if(/\bsizes?\b|how big|\bpack\b|\bformat\b|အရွယ်|ထုပ်ပိုး|မီလီလီတာ/.test(q)&&!comparing&&!/recommend/.test(q))return response(matches.map(p=>{
+        const note=knowledge.products?.[p.id]?.packNote;
+        return `${my?(I.names[p.id]||p.name):p.name}: ${note?(my?(note.my||note.en):(note.en||note.my)):(my?I.size(p):p.size)}`;
+      }).join('\n'),{definitive:true});
+      let text=matches.map(p=>{
+        const details=knowledge.products?.[p.id];
+        const approved=details&&(my?(details.my||details.en):(details.en||details.my));
+        const content=approved||(I.facts[p.id]||[p.description,p.description])[my?0:1];
+        const fact=detailsRequested&&matches.length===1?content:content.split('\n\n')[0];
+        if(ingredientQuestion&&details?.ingredients?.length)return `${my?(I.names[p.id]||p.name):p.name}: ${details.ingredients.join(', ')}.`;
+        const listed=!detailsRequested&&details?.ingredients?.length?'\n'+choose('ဖော်ပြထားသော ပါဝင်ပစ္စည်းများ: ','Listed ingredients: ')+details.ingredients.join(', ')+'.':'';
+        return `${my?(I.names[p.id]||p.name):p.name}\n${fact}${listed}`;
+      }).join('\n\n');
+      if(ingredientQuestion)text+='\n\n'+choose('ဤအချက်အလက်သည် ပါဝင်ပစ္စည်းစာရင်း အပြည့်အစုံ မဟုတ်ပါ။ စာရင်းတွင် မပါခြင်းကြောင့် ထိုပစ္စည်း မပါဝင်ဟု မဆိုနိုင်ပါ။ အပြည့်အစုံကို Oliveco ထံ အတည်ပြုပါ။','This is not a complete ingredient list. An ingredient missing from it is not confirmed absent; check the full label with Oliveco.');
       if(matches.some(p=>p.category==='medical'))text+='\n\n'+choose('ဆေးဝါးအသုံးပြုမှုအတွက် မူရင်းအညွှန်းနှင့် ကျန်းမာရေးပညာရှင်၏ အကြံပြုချက်ကို လိုက်နာပါ။','For medical use, follow the original label and professional advice.');
-      return response(text,{...(/ingredient|ပါဝင်/.test(q)?{actions:salesActions,definitive:true}:{})});
+      const ingredientList=/what ingredients|list.*ingredients|ingredient list|ပါဝင်ပစ္စည်း.*(?:ဘာ|စာရင်း)/.test(q)&&!comparing;
+      return response(text,{...(ingredientList?{definitive:true}:{})});
     }
     if(/(?:what|which).*(?:sell|products|carry)|all products|product (?:range|catalogue|catalog)|ထုတ်ကုန်.*(?:ရှိ|ရောင်း)|ဘာတွေ.*(?:ရောင်း|ရှိ)/.test(q))return response(choose(`ကျွန်ုပ်တို့၏ ကတ်တလောက်တွင် ထုတ်ကုန် ${new Intl.NumberFormat('my').format(products.length)} မျိုး ပါရှိပါတယ်။ အသားအရေ၊ ဆံပင်၊ တစ်ကိုယ်ရေ၊ အိမ်သုံးနှင့် ဆေးဝါးအမျိုးအစားများကို ကြည့်နိုင်ပါတယ်။ ဘယ်အမျိုးအစားကို စိတ်ဝင်စားပါသလဲ။`,`Our catalogue lists ${products.length} products across skincare, hair care, personal care, home care and medical collections. Which collection are you looking for?`),{products:[],actions:['category:skin','category:hair','category:home'],definitive:true});
     const cat=category(q);
     if(cat){const list=products.filter(p=>p.category===cat).slice(0,3);return response(choose('ဒီအမျိုးအစားထဲက ပစ္စည်းလေးတွေကို ကြည့်နိုင်ပါတယ်။ အသုံးပြုပုံကို သိချင်ရင် ပစ္စည်းနာမည်နဲ့ မေးပါ သို့မဟုတ် အသေးစိတ်ခလုတ်ကို နှိပ်ပါ။','Here are a few products in this collection. Ask about one by name, or open its details to learn what it’s for.'),{products:list.map(p=>p.id),context:list.map(p=>p.id),actions:[`category:${cat}`]});}
-    if(/^(hi|hello|hey|thanks|thank you|မင်္ဂလာပါ|ကျေးဇူး)/.test(q))return response(choose('မင်္ဂလာပါ။ ဘာပစ္စည်းရှာနေပါသလဲ။ မျက်နှာသစ်ဆေး၊ ဆံပင်လိမ်းဆီ၊ တစ်ကိုယ်ရေသုံး ဒါမှမဟုတ် အိမ်သုံးပစ္စည်းအကြောင်း မေးနိုင်ပါတယ်။','Hello! What are you looking for? Ask about facial foam, hair oils, personal care or household products.'),{products:[]});
+    if(/^(thanks|thank you|thank you so much|ကျေးဇူး(?:ပါ|တင်ပါတယ်|အများကြီးတင်ပါတယ်)?)$/.test(q))return response(choose('ရပါတယ်။ ထပ်သိချင်တာရှိရင် မေးနိုင်ပါတယ်။','You’re welcome! I’m here if you need anything else.'),{products:[],definitive:true});
+    if(/^(hi|hello|hey|မင်္ဂလာပါ)$/.test(q))return response(choose('မင်္ဂလာပါ။ Oliveco မှ ကြိုဆိုပါတယ်။ ဘာပစ္စည်းရှာပေးရမလဲ။','Hi! Welcome to Oliveco. What can I help you find?'),{products:[],definitive:true});
+    if(detailsRequested&&!matches.length)return response(choose('ဘယ်ပစ္စည်းအကြောင်း ပိုသိချင်ပါသလဲ။ ပစ္စည်းနာမည် ပြောပေးပါ။','Which product would you like to know more about? Tell me its name.'),{products:[],definitive:true});
     const relatedFollowup=validContext.length&&(followup||/tell me more|what (?:about|else)|compar|difference|ကွာခြား|ထပ်ပြော/.test(q));
     return response(choose('Oliveco ထုတ်ကုန်များ၊ ကုမ္ပဏီနှင့် ဝယ်ယူမှုအတွက် ကူညီပေးနိုင်ပါတယ်။ ဘာပစ္စည်းကို ရှာနေပါသလဲ။','I can help with Oliveco products, company information and buying enquiries. What product are you looking for?'),{products:[],actions:['contact'],definitive:!relatedFollowup&&!/oliveco|အလှကုန်|ထုတ်ကုန်|recommend|အကြံပြု/.test(q)});
   }
-  root.OlivecoGuide={reply};
+  root.OlivecoGuide={reply,search};
 })(typeof window==='undefined'?globalThis:window);
