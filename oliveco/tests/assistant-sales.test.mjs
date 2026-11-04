@@ -35,7 +35,7 @@ test('more-detail requests stay with the product instead of forcing a sales hand
     const result=await make({env:{AI_API_KEY:'test-only-placeholder'},generate:async input=>{request=input;return {output:answer};}}).reply({message,language:'en',context:['silk-shine']});
     assert.equal(result.mode,'ai',message);
     assert.deepEqual(result.actions,[]);
-    assert.match(detailsFrom(request)[0].approvedDetails,/jojoba/);
+    assert.match(detailsFrom(request)[0].approvedDetails,/[\u1000-\u102a]/.test(message)?/ဂျိုဂျိုဘာ/:/jojoba/);
   }
   const unknown=await make().reply({message:'Tell me more',language:'en'});
   assert.match(unknown.text,/Which product/);

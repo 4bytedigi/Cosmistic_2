@@ -84,10 +84,10 @@
       if(turn!==generation)return;
       lastReplyWarning='ai_unavailable';
       noticeKey=error.message==='rate_limited'?'chatCooldown':timedOut?'chatTimeout':navigator.onLine===false?'chatOffline':'chatNetworkError';
-      let fallback={text:t('chatError'),actions:['contact'],context};
+      let fallback={text:t('chatError'),actions:[],context};
       try{fallback=window.OlivecoGuide?.reply(text,{language:I.lang,context,knowledge:window.OLIVECO_KNOWLEDGE,pricing:window.OLIVECO_PRICING})||fallback;}catch{}
       context=cleanIds(fallback.context||context);
-      conversation.push({role:'assistant',text:fallback.text||t('chatError'),products:cleanIds(fallback.products),actions:cleanActions(fallback.actions?.length?fallback.actions:['contact']),context,failed:true});
+      conversation.push({role:'assistant',text:fallback.text||t('chatError'),products:cleanIds(fallback.products),actions:cleanActions(fallback.actions||[]),context,failed:true});
       retryQuestion=text;
     }finally{
       clearTimeout(timeout);
