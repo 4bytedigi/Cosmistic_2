@@ -89,7 +89,8 @@ Confirmed business information: ${JSON.stringify(business)}
 Approved FAQs: ${JSON.stringify(faqs)}
 Catalogue index: ${JSON.stringify(index)}
 Relevant product details: ${JSON.stringify(relevant.map(id=>productFacts(id,requestedLanguage)))}
-Last relevant product IDs: ${JSON.stringify(previous)}`;
+Last relevant product IDs: ${JSON.stringify(previous)}
+Write the answer as a short message to this customer. For "Tell me more" about a chosen product, use 2–3 plain, conversational sentences explaining what it is for and the most relevant confirmed details. Use a short recognisable name or "this one" ("ဒီဟာလေး") instead of repeating the full formal product title. Relate it to the customer's stated need when applicable. Avoid brochure phrasing such as "is designed for", "it is a blend of" or "intended to help". Do not refer to a catalogue or product sheet for routine confirmed facts; mention the source only when explaining a specific uncertainty. Use everyday wording in the requested language, preserve the confirmed facts, and ask a follow-up only if it helps the customer choose.`;
       const abortSignal=signal?AbortSignal.any([signal,AbortSignal.timeout(24000)]):AbortSignal.timeout(24000);
       const result=await generate({model,instructions,messages:[...recent,{role:'user',content:message}],output,maxOutputTokens:maxTokens,maxRetries:0,abortSignal,...(provider==='openai'?{providerOptions:{openai:{store:false,reasoningEffort:'minimal',reasoningSummary:null,textVerbosity:'low'}}}:gemini?{providerOptions:{openaiCompatible:{reasoningEffort:'minimal'}}}:{})});
       const answer=result.output;

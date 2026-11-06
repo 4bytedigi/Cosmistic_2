@@ -106,6 +106,7 @@
     const lastQuestion=[...conversation].reverse().find(m=>m.role==='user'&&/[a-z\u1000-\u102a]/i.test(m.text))?.text||'';
     const language=/[\u1000-\u102a]/.test(lastQuestion)?'my':/[a-z]/i.test(lastQuestion)?'en':I.lang;
     context=[id];
+    // A product follow-up should keep any message the customer is still typing.
     const draft=input.value;
     send(I.t('chatAskName',{name:I.name(product,language)},language));
     input.value=draft;
