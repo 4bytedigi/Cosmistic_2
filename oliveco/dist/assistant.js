@@ -6,6 +6,40 @@
   host.innerHTML=`<button class="chat-launcher" id="chat-launcher" aria-expanded="false" aria-controls="chat-panel">${icon('message')}<span></span><span class="chat-launcher-dot"></span></button><section class="chat-panel" id="chat-panel" aria-labelledby="chat-title" hidden><header class="chat-header"><img src="assets/favicon-v2-192.png" alt="" width="33" height="33"><div><h2 id="chat-title"></h2><p></p></div><button class="icon-button" type="button" id="chat-reset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16M8 16H3v5"/></svg></button><button class="icon-button" type="button" id="chat-close">${icon('close')}</button></header><div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-relevant="additions"></div><div class="chat-suggestions" id="chat-suggestions"></div><div class="chat-recovery"><p id="chat-notice" role="status"></p><button type="button" class="chat-action" id="chat-retry" hidden></button></div><form class="chat-form" id="chat-form"><label class="sr-only" for="chat-input"></label><input id="chat-input" name="question" type="text" maxlength="500" autocomplete="off" aria-describedby="chat-notice" required><button class="chat-send" type="submit">${icon('arrow-right')}</button></form><p class="chat-mode" id="chat-mode"></p></section>`;
   document.body.appendChild(host);
   const $=s=>host.querySelector(s),panel=$('#chat-panel'),messages=$('#chat-messages'),input=$('#chat-input');
+  const mobileLayout=matchMedia('(max-width:700px)');
+  let pageScroll=null,viewportFrame=0;
+  function fitMobileViewport(){
+    if(panel.hidden||!mobileLayout.matches){
+      host.classList.remove('chat-compact');
+      panel.removeAttribute('role');panel.removeAttribute('aria-modal');
+      if(pageScroll!==null){
+        document.body.classList.remove('mobile-chat-open');
+        document.body.style.removeProperty('--chat-page-top');
+        window.scrollTo({top:pageScroll,behavior:'instant'});pageScroll=null;
+      }
+      return;
+    }
+    if(pageScroll===null){
+      pageScroll=window.scrollY;
+      document.body.style.setProperty('--chat-page-top',`${-pageScroll}px`);
+      document.body.classList.add('mobile-chat-open');
+    }
+    // On iOS the keyboard resizes/pans the visual viewport, not 100dvh.
+    const viewport=window.visualViewport,height=viewport?.height||window.innerHeight;
+    host.style.setProperty('--chat-viewport-top',`${Math.max(0,viewport?.offsetTop||0)}px`);
+    host.style.setProperty('--chat-viewport-height',`${height}px`);
+    host.classList.toggle('chat-compact',height<500);
+    panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');
+    if(document.activeElement===input)messages.scrollTop=messages.scrollHeight;
+  }
+  function scheduleViewport(){
+    cancelAnimationFrame(viewportFrame);viewportFrame=requestAnimationFrame(fitMobileViewport);
+  }
+  window.visualViewport?.addEventListener('resize',scheduleViewport);
+  window.visualViewport?.addEventListener('scroll',scheduleViewport);
+  window.addEventListener('resize',scheduleViewport);
+  mobileLayout.addEventListener('change',scheduleViewport);
+  input.addEventListener('focus',scheduleViewport);
   let conversation=[],context=[],busy=false,requestController=null,aiConfigured=false,lastReplyWarning=null;
   let generation=0,connectionReady=false,connectionPromise=null,noticeKey=null,retryQuestion=null,cooldownUntil=0,cooldownTimer=null;
   const knownIds=new Set(window.OLIVECO_PRODUCTS.map(p=>p.id));
@@ -38,6 +72,7 @@
     $('.chat-send').disabled=busy||waiting;
     $('#chat-form').setAttribute('aria-busy',String(busy));
     $('#chat-suggestions').querySelectorAll('button').forEach(button=>button.disabled=busy||waiting);
+    messages.querySelectorAll('.chat-product').forEach(button=>button.disabled=busy||waiting);
     $('#chat-retry').hidden=!retryQuestion;$('#chat-retry').disabled=busy||waiting;
     $('#chat-retry').textContent=t('chatRetry');
     $('#chat-notice').textContent=waiting?t('chatCooldown',{minutes:Math.ceil((cooldownUntil-Date.now())/60000)}):noticeKey?t(noticeKey):'';
@@ -46,7 +81,7 @@
   }
   function decorateReply(reply){
     const ids=Array.isArray(reply.products)?reply.products:[];
-    const cards=ids.slice(0,3).map(id=>{const p=window.OLIVECO_PRODUCTS.find(p=>p.id===id);if(!p)return'';return`<button class="chat-product" data-detail="${p.id}"><span><img src="assets/${p.imageSrc || p.image+'.webp'}" alt="" loading="lazy"></span><span><strong>${esc(I.name(p))}</strong><small>${t('chatView')} ${icon('arrow-up-right')}</small></span></button>`}).join('');
+    const cards=ids.slice(0,3).map(id=>{const p=window.OLIVECO_PRODUCTS.find(p=>p.id===id);if(!p)return'';return`<button class="chat-product" data-chat-product="${p.id}"${busy||cooldownUntil>Date.now()?' disabled':''}><span><img src="assets/${p.imageSrc || p.image+'.webp'}" alt="" loading="lazy"></span><span><strong>${esc(I.name(p))}</strong><small>${t('chatView')} ${icon('message')}</small></span></button>`}).join('');
     const viber=window.OLIVECO_CONTACT?.viber;
     const actions=(reply.actions||[]).map(action=>action==='contact'?`<a class="chat-action" href="${esc(viber?.href||'https://www.facebook.com/olivecomdy/')}"${viber?'':' target="_blank" rel="noopener"'}>${t(viber?'viberContact':'facebookContact')} ${icon('arrow-up-right')}</a>`:action==='enquiry'?`<button class="chat-action" data-chat-enquiry="${esc((reply.context||ids).join(','))}">${t('prepareEnquiry')} ${icon('message')}</button>`:action==='selection'?`<button class="chat-action" data-chat-selection>${t('bagTitle')} ${icon('bag')}</button>`:action.startsWith('category:')?`<button class="chat-action" data-category="${esc(action.split(':')[1])}">${esc(t('browse',{name:I.categories()[action.split(':')[1]]}))} ${icon('arrow-right')}</button>`:'').join('');
     return cards+actions;
@@ -63,8 +98,18 @@
     $('#chat-launcher>span:first-of-type').textContent=t('chatLauncher');$('#chat-title').textContent=t('chatTitle');$('.chat-header p').textContent=t('chatSubtitle');$('#chat-close').setAttribute('aria-label',t('chatClose'));$('#chat-reset').setAttribute('aria-label',t('chatClear'));$('#chat-reset').title=t('chatClear');$('#chat-launcher').setAttribute('aria-label',t('chatTitle'));$('.chat-form label').textContent=t('chatPlaceholder');input.placeholder=t('chatPlaceholder');$('.chat-send').setAttribute('aria-label',t('chatSend'));$('#chat-mode').textContent=t('chatMode');
     $('#chat-suggestions').innerHTML=['chatSuggestionSkin','chatSuggestionHair','chatSuggestionOrder','chatSuggestionCompany'].map(k=>`<button type="button" data-chat-prompt="${esc(t(k))}">${t(k)}</button>`).join('');updateMode();controls();draw();
   }
-  function open(){panel.hidden=false;$('#chat-launcher').setAttribute('aria-expanded','true');$('#chat-launcher').classList.add('chat-is-open');if(!matchMedia('(max-width:700px)').matches)input.focus();draw()}
-  function close(){panel.hidden=true;$('#chat-launcher').setAttribute('aria-expanded','false');$('#chat-launcher').classList.remove('chat-is-open')}
+  function open(){panel.hidden=false;$('#chat-launcher').setAttribute('aria-expanded','true');$('#chat-launcher').classList.add('chat-is-open');fitMobileViewport();if(mobileLayout.matches)$('#chat-close').focus({preventScroll:true});else input.focus();draw()}
+  function close(){input.blur();panel.hidden=true;$('#chat-launcher').setAttribute('aria-expanded','false');$('#chat-launcher').classList.remove('chat-is-open');fitMobileViewport()}
+  function askProduct(id){
+    if(busy||cooldownUntil>Date.now())return;
+    const product=window.OLIVECO_PRODUCTS.find(p=>p.id===id);if(!product)return;
+    const lastQuestion=[...conversation].reverse().find(m=>m.role==='user'&&/[a-z\u1000-\u102a]/i.test(m.text))?.text||'';
+    const language=/[\u1000-\u102a]/.test(lastQuestion)?'my':/[a-z]/i.test(lastQuestion)?'en':I.lang;
+    context=[id];
+    const draft=input.value;
+    send(I.t('chatAskName',{name:I.name(product,language)},language));
+    input.value=draft;
+  }
   async function send(text,{retry=false}={}){
     text=text.trim().slice(0,500);if(!text||busy||cooldownUntil>Date.now())return;
     input.value='';
@@ -105,9 +150,18 @@
   $('#chat-reset').addEventListener('click',()=>{generation++;requestController?.abort();requestController=null;busy=false;conversation=[];context=[];input.value='';lastReplyWarning=null;noticeKey=null;retryQuestion=null;try{sessionStorage.removeItem('oliveco-chat');}catch{}updateMode();controls();draw();input.focus()});
   $('#chat-retry').addEventListener('click',()=>{if(retryQuestion)send(retryQuestion,{retry:true});});
   $('#chat-form').addEventListener('submit',e=>{e.preventDefault();send(input.value)});
+  host.addEventListener('click',e=>{const product=e.target.closest('[data-chat-product]');if(product)askProduct(product.dataset.chatProduct);});
   host.addEventListener('click',e=>{const prompt=e.target.closest('[data-chat-prompt]');if(prompt)send(prompt.dataset.chatPrompt);const enquiry=e.target.closest('[data-chat-enquiry]');if(enquiry){document.dispatchEvent(new CustomEvent('oliveco:enquire',{detail:{productIds:cleanIds(enquiry.dataset.chatEnquiry.split(',')),question:[...conversation].reverse().find(m=>m.role==='user')?.text||''}}));}if(e.target.closest('[data-chat-selection]')){close();shop.showSelection()}if(e.target.closest('[data-category]'))close()});
-  host.addEventListener('keydown',e=>{if(e.key==='Escape'){close();$('#chat-launcher').focus()}});
-  document.addEventListener('oliveco:ask',e=>{open();if(e.detail?.productId){const p=window.OLIVECO_PRODUCTS.find(p=>p.id===e.detail.productId);if(p){context=[p.id];send(t('chatAskName',{name:I.name(p)}))}}});
+  host.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){close();$('#chat-launcher').focus();}
+    if(e.key==='Tab'&&!panel.hidden&&mobileLayout.matches){
+      const controls=[...panel.querySelectorAll('button:not(:disabled),a[href],input:not(:disabled)')].filter(el=>el.getClientRects().length);
+      const first=controls[0],last=controls.at(-1);
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}
+    }
+  });
+  document.addEventListener('oliveco:ask',e=>{open();if(e.detail?.productId)askProduct(e.detail.productId);});
   document.addEventListener('oliveco:language',translate);
   document.addEventListener('oliveco:enquiry-opening',close);
   translate();refreshConnection().catch(()=>{});

@@ -203,6 +203,7 @@ html[lang="my"] .enquiry-heading h2 { letter-spacing: 0; }
 .chat-suggestions button:hover { background: #e4f2d3; }
 .chat-form input, .enquiry-fallback { background: #ffffff; }
 .chat-header > div { min-width: 0; }
+.chat-header { flex-shrink: 0; }
 .chat-header .icon-button { min-width: 44px; min-height: 44px; flex-shrink: 0; }
 .chat-header svg { width: 20px; height: 20px; }
 .chat-bubble p { font-size: 14px; }
@@ -212,7 +213,7 @@ html[lang=my] .chat-bubble p { font-size: 14px; }
 .chat-recovery p { color: var(--forest); font-size: 12px; line-height: 1.7; margin: 6px 0; overflow-wrap: anywhere; }
 .chat-recovery p:empty { display: none; }
 .chat-recovery .chat-action { min-height: 44px; margin-block: 6px; color: var(--forest); font-size: 12px; }
-.chat-suggestions button:disabled, .chat-recovery button:disabled { opacity: .55; cursor: wait; }
+.chat-suggestions button:disabled, .chat-recovery button:disabled, .chat-product:disabled { opacity: .55; cursor: wait; }
 ::-webkit-scrollbar-thumb { background: #b0cf90; }
 
 @media (max-width: 1150px) {
@@ -548,3 +549,27 @@ html[lang=my] .heritage-intro h1 { line-height: 1.7; letter-spacing: 0; font-siz
 .contact-link[data-contact="viber"] [data-icon] { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0; background: none; border-radius: 0; flex-shrink: 0; }
 .contact-link[data-contact="viber"] .viber-icon { width: 24px; height: 24px; }
 .footer-contact-links .contact-link[data-contact="viber"] [data-icon], .footer-contact-links .contact-link[data-contact="viber"] .viber-icon { width: 20px; height: 20px; }
+
+/* Keep the mobile conversation inside the screen above the software keyboard. */
+@media (max-width: 700px) {
+  body.mobile-chat-open { position: fixed; top: var(--chat-page-top, 0px); width: 100%; overflow: hidden; }
+  .mobile-chat-open #assistant-widget {
+    position: fixed; inset-inline: 0; top: var(--chat-viewport-top, 0px);
+    height: var(--chat-viewport-height, 100dvh); z-index: 40;
+    background: #283d1c33;
+  }
+  .mobile-chat-open .chat-panel,
+  .mobile-chat-open.has-selection .chat-panel {
+    position: absolute; inset: 8px; width: auto; height: auto; max-height: none;
+    margin: 0; animation: none;
+  }
+  .mobile-chat-open .chat-launcher,
+  .mobile-chat-open .selection-summary { display: none; }
+  .chat-compact .chat-suggestions,
+  .chat-compact .chat-mode,
+  .chat-compact .chat-header p { display: none; }
+  .chat-compact .chat-header { padding: 8px 12px; }
+  .chat-compact .chat-messages { padding: 12px; }
+  .chat-compact .chat-form { padding: 8px 12px 12px; }
+  .chat-compact .chat-recovery { max-height: 20%; overflow-y: auto; }
+}

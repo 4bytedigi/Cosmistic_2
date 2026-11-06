@@ -83,12 +83,21 @@
     const ranked=search(message,knowledge);
     const comparing=/compar|difference|\bvs\b|versus|နှိုင်းယှဉ်|ကွာခြား/.test(q);
     const detailsRequested=/tell me more|more detail|detailed information|how.*(?:use|apply)|directions|အသုံးပြု|အသေးစိတ်|ထပ်ပြော/.test(q);
+    // A named detail request should not expand into every product sharing
+    // generic words such as "hair oil" in the selected product's full name.
+    let focused=ranked;
+    if(detailsRequested&&!comparing){
+      const exact=ranked.map(entry=>({...entry,names:[entry.p.name,I.names[entry.p.id]].filter(Boolean).map(norm).filter(name=>q.includes(name))})).filter(entry=>entry.names.length);
+      const named=exact.length?exact.filter(entry=>!exact.some(other=>other!==entry&&other.names.some(longName=>entry.names.some(shortName=>longName!==shortName&&longName.includes(shortName))))):ranked.filter(({p})=>namedProduct(p,discoveryWords(message)));
+      if(named.length)focused=named;
+      if(named.length>1&&validContext.length===1&&named.some(({p})=>p.id===validContext[0])&&named.every(({p})=>p.name===named[0].p.name))focused=named.filter(({p})=>p.id===validContext[0]);
+    }
     const ingredientQuestion=/ingredient|contain|made (?:of|with)|ပါဝင်/.test(q);
     const followup=/\bit\b|\bthis\b|\bthese\b|\bthem\b|\bboth\b|ingredients|size|ဘယ်လို|ပါဝင်|ဒီပစ္စည်း|အရွယ်|ဘာအတွက်/.test(q)||detailsRequested||comparing;
     const contextualIngredient=ingredientQuestion&&validContext.length&&/\bit\b|\bthis\b|ဒီပစ္စည်း/.test(q)&&!products.some(p=>q.includes(norm(p.name))||q.includes(norm(p.id)));
     const ordinal=/\bfirst (?:one|product|bottle)\b|ပထမ/.test(q)?0:/\bsecond (?:one|product|bottle)\b|ဒုတိယ/.test(q)?1:/\bthird (?:one|product|bottle)\b|တတိယ/.test(q)?2:-1;
     const selectedContext=ordinal>=0&&validContext[ordinal]?[validContext[ordinal]]:validContext;
-    const matches=(contextualIngredient||ordinal>=0&&selectedContext.length)?selectedContext.map(id=>products.find(p=>p.id===id)):ranked.length?ranked.slice(0,3).map(x=>x.p):followup&&validContext.length?selectedContext.map(id=>products.find(p=>p.id===id)):[];
+    const matches=(contextualIngredient||ordinal>=0&&selectedContext.length)?selectedContext.map(id=>products.find(p=>p.id===id)):focused.length?focused.slice(0,3).map(x=>x.p):followup&&validContext.length?selectedContext.map(id=>products.find(p=>p.id===id)):[];
     const ids=matches.map(p=>p.id);
     const response=(text,extra={})=>({text,products:ids,actions:[],context:ids.length?ids:validContext,mode:'guide',...extra});
     if(/ignore.{0,35}(?:previous|instruction|rule|system)|(?:reveal|show|print|repeat).{0,35}(?:system prompt|hidden instruction|api key|secret)|jailbreak|developer mode|\b(?:sk-proj-|password|api key|python|javascript|sql|programming|coding|homework|politics|bitcoin|recipe|poem|essay)\b/.test(q))return response(choose('Oliveco ထုတ်ကုန်များ၊ ကုမ္ပဏီနှင့် ဝယ်ယူမှုအကြောင်းကို ကူညီပေးနိုင်ပါတယ်။ ဘာပစ္စည်းကို စိတ်ဝင်စားပါသလဲ။','I can help with Oliveco products, company information and buying enquiries. Which product are you interested in?'),{products:[],actions:[],definitive:true});
@@ -175,7 +184,7 @@
     }
     if(/(?:what|which).*(?:sell|products|carry)|all products|product (?:range|catalogue|catalog)|ထုတ်ကုန်.*(?:ရှိ|ရောင်း)|ဘာတွေ.*(?:ရောင်း|ရှိ)/.test(q))return response(choose(`ကျွန်ုပ်တို့၏ ကတ်တလောက်တွင် ထုတ်ကုန် ${new Intl.NumberFormat('my').format(products.length)} မျိုး ပါရှိပါတယ်။ အသားအရေ၊ ဆံပင်၊ တစ်ကိုယ်ရေ၊ အိမ်သုံးနှင့် ဆေးဝါးအမျိုးအစားများကို ကြည့်နိုင်ပါတယ်။ ဘယ်အမျိုးအစားကို စိတ်ဝင်စားပါသလဲ။`,`Our catalogue lists ${products.length} products across skincare, hair care, personal care, home care and medical collections. Which collection are you looking for?`),{products:[],actions:['category:skin','category:hair','category:home'],definitive:true});
     const cat=category(q);
-    if(cat){const list=products.filter(p=>p.category===cat).slice(0,3);return response(choose('ဒီအမျိုးအစားထဲက ပစ္စည်းလေးတွေကို ကြည့်နိုင်ပါတယ်။ အသုံးပြုပုံကို သိချင်ရင် ပစ္စည်းနာမည်နဲ့ မေးပါ သို့မဟုတ် အသေးစိတ်ခလုတ်ကို နှိပ်ပါ။','Here are a few products in this collection. Ask about one by name, or open its details to learn what it’s for.'),{products:list.map(p=>p.id),context:list.map(p=>p.id),actions:[`category:${cat}`]});}
+    if(cat){const list=products.filter(p=>p.category===cat).slice(0,3);return response(choose('ဒီအမျိုးအစားထဲက ပစ္စည်းလေးတွေပါ။ စိတ်ဝင်စားတဲ့ပစ္စည်းကို နှိပ်လိုက်ရင် ဒီမှာပဲ ထပ်ရှင်းပြပေးမယ်နော်။','Here are a few options. Tap one and I can tell you more about it here.'),{products:list.map(p=>p.id),context:list.map(p=>p.id),actions:[`category:${cat}`]});}
     if(/^(thanks|thank you|thank you so much|ကျေးဇူး(?:ပါ|တင်ပါတယ်|အများကြီးတင်ပါတယ်)?)$/.test(q))return response(choose('ရပါတယ်။ ထပ်သိချင်တာရှိရင် မေးနိုင်ပါတယ်။','You’re welcome! I’m here if you need anything else.'),{products:[],definitive:true});
     if(/^(hi|hello|hey|မင်္ဂလာပါ)$/.test(q))return response(choose('မင်္ဂလာပါ။ Oliveco မှ ကြိုဆိုပါတယ်။ ဘာပစ္စည်းရှာပေးရမလဲ။','Hi! Welcome to Oliveco. What can I help you find?'),{products:[],definitive:true});
     if(detailsRequested&&!matches.length)return response(choose('ဘယ်ပစ္စည်းအကြောင်း ပိုသိချင်ပါသလဲ။ ပစ္စည်းနာမည် သို့မဟုတ် ဘာအတွက်သုံးချင်တာလဲ ပြောပေးပါ။','Which product would you like to know more about, or what would you like it to help with?'),{products:[]});

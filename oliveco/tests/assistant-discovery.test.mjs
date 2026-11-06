@@ -89,3 +89,15 @@ test('explicit misuse and medical suitability still bypass the paid model',()=>{
   const medical=reply('Can I buy something for my baby?');
   assert.equal(medical.definitive,true);assert.match(medical.text,/healthcare professional/);
 });
+
+test('product-card detail questions stay on the selected product in either language',()=>{
+  const info=fixture.window.OlivecoI18n;
+  for(const product of fixture.window.OLIVECO_PRODUCTS){
+    for(const language of ['en','my']){
+      const message=info.t('chatAskName',{name:info.name(product,language)},language);
+      const result=reply(message,{context:[product.id],language:language==='en'?'my':'en'});
+      assert.deepEqual(Array.from(result.products),[product.id],message);
+      assert.deepEqual(Array.from(result.actions),[],message);
+    }
+  }
+});
