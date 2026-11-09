@@ -1,5 +1,13 @@
 # Oliveco project context
 
+## Customer-led recommendations and new hostname — 9 November 2026
+
+- User requests recommendations that follow the customer's typed needs, English replies to English and Burmese replies to Burmese, followed by moving the public website to `https://oliveco.aungmyin.com`.
+- Reproduced a local fallback bug: “not for my hands, for my hair” and equivalent Burmese corrections still selected skincare. Use-area matching now removes rejected uses first. Model instructions explicitly preserve applicable preferences/exclusions and prioritize the latest correction over earlier product cards. Provider output in the wrong language is replaced by the correctly localized guide without another paid request; official product names can stay untranslated.
+- Added checks for English → Burmese → English in a single history, wrong-language model output, named Burmese brands inside otherwise English replies, and negated/revised uses in both languages. Build, 76 automated tests and the existing four-size sales/offline browser checks passed before publication.
+- Hosting UI confirms project `oliveco2`, source `4bytedigi/Cosmistic_2/main`, root `oliveco`, app port 4173, build `npm run check`, start `env HOST=0.0.0.0 PUBLIC_ORIGIN=https://oliveco2.aungmyin.com npm start`. Website-address settings explicitly require connecting DNS/tunnel first and take the previous address offline when saved. No domain or origin setting has been changed yet.
+- The target hostname currently returns NXDOMAIN; the existing site returns HTTPS 200. Hosting's domain inventory has no connected Cloudflare account for DNS changes. An in-app Cloudflare sign-in tab is open and the user has been asked to sign in. The server tunnel is healthy, gateway `127.0.0.1:9080`, but its UI only registers inventory; it does not publish routes. Direct SSH to the existing server remains unavailable: the saved Tailscale profile was stopped, reconnect entered a stuck starting state, and service restart lacked Windows service-control permission. Do not take the working hostname offline before the new route works. The saved project start command's inline origin must be updated with the hostname, as well as any configured environment origin. Await Cloudflare access or restored server access to finish that migration.
+
 ## Mobile chat while typing
 
 - User screenshot: iPhone keyboard pushes the chat header/messages off-screen while the launcher and selected-product bar occupy the remaining space. Reproduced with a 610px panel in a 360px visual viewport; the previous `100dvh` sizing did not follow keyboard resize/panning.

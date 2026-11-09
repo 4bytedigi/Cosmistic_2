@@ -32,7 +32,7 @@ test('ordinary needs find the relevant catalogue products in English and Myanmar
 test('more-detail requests stay with the product instead of forcing a sales handoff',async()=>{
   for(const message of ['I want more detailed information','Tell me more','အသေးစိတ် သိချင်ပါတယ်']){
     let request;
-    const result=await make({env:{AI_API_KEY:'test-only-placeholder'},generate:async input=>{request=input;return {output:answer};}}).reply({message,language:'en',context:['silk-shine']});
+    const result=await make({env:{AI_API_KEY:'test-only-placeholder'},generate:async input=>{request=input;return {output:/[\u1000-\u102a]/u.test(message)?{...answer,answer:'Silk & Shine မှာ ဂျိုဂျိုဘာဆီ ပါဝင်ပါတယ်။'}:answer};}}).reply({message,language:'en',context:['silk-shine']});
     assert.equal(result.mode,'ai',message);
     assert.deepEqual(result.actions,[]);
     assert.match(detailsFrom(request)[0].approvedDetails,/[\u1000-\u102a]/.test(message)?/ဂျိုဂျိုဘာ/:/jojoba/);

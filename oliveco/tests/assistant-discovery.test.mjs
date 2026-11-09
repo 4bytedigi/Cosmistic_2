@@ -101,3 +101,20 @@ test('product-card detail questions stay on the selected product in either langu
     }
   }
 });
+
+test('a rejected body use does not override the newly requested use in either language',()=>{
+  const cases=[
+    ['Not for my hands, for my dry hair','hair'],
+    ['Not for my face. I need something for my hair','hair'],
+    ["I don't want anything for my hands, I need hair care",'hair'],
+    ['Not hair, something for dry hands','skin'],
+    ['လက်အတွက်မဟုတ်ဘူး ဆံပင်ခြောက်လို့ပါ','hair'],
+    ['မျက်နှာအတွက်မဟုတ်ပါဘူး ဆံပင်အတွက်ပါ','hair'],
+    ['ဆံပင်အတွက်မဟုတ်ဘူး လက်အသားအရေခြောက်လို့ပါ','skin']
+  ];
+  for(const [message,category] of cases){
+    const result=reply(message,{context:['herbal-lotion']});
+    assert.ok(result.products.length,message);
+    assert.ok(result.products.every(id=>fixture.window.OLIVECO_PRODUCTS.find(p=>p.id===id).category===category),message);
+  }
+});

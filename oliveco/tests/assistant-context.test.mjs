@@ -63,3 +63,27 @@ test('English discovery replies in English even when the interface defaults to M
   const result=await service.reply({message:'Anything with olives in it?',language:'my'});
   assert.equal(result.mode,'ai');assert.match(request.instructions,/Reply in English/);assert.deepEqual(result.actions,[]);
 });
+
+test('each new message switches response language regardless of earlier conversation language',async()=>{
+  const requests=[];
+  const service=createAssistant({...base,env:{AI_API_KEY:'test-only-placeholder'},generate:async input=>{
+    requests.push(input);return {output:{answer:requests.length===2?'ဆံပင်အတွက် ပစ္စည်းရှာနေတာလား။':'What would you like it to help with?',productIds:[],contactSeller:false}};
+  }});
+  const history=[];
+  for(const [message,expected] of [['Something for dry hands','English'],['လက်အတွက်မဟုတ်ဘူး ဆံပင်အတွက်ပါ','natural Myanmar'],['Actually, I mean my hands','English']]){
+    const result=await service.reply({message,language:'my',history});
+    assert.equal(result.mode,'ai');assert.match(requests.at(-1).instructions,new RegExp('Reply in '+expected));
+    history.push({role:'user',content:message},{role:'assistant',content:result.text});
+  }
+});
+
+test('a provider reply in the wrong language uses the correctly localized guide without a retry',async()=>{
+  for(const [message,wrong,expected] of [['သံလွင်ဆီပါတာရှိလား','This is an English answer.','my'],['သံလွင်ဆီပါတာရှိလား','Silk & Shine ဆံပင်လိမ်းဆီ is for daily hair care.','my'],['Anything containing olive?','ဆံပင်အတွက်ပါ။','en']]){
+    let attempts=0;
+    const service=createAssistant({...base,env:{AI_API_KEY:'test-only-placeholder'},generate:async()=>{attempts++;return {output:{answer:wrong,productIds:['silk-shine'],contactSeller:false}};}});
+    const result=await service.reply({message,language:expected==='en'?'my':'en'});
+    assert.equal(result.mode,'guide');assert.equal(attempts,1);
+    assert.equal(/[\u1000-\u102a]/u.test(result.text),expected==='my');
+    assert.deepEqual(Array.from(result.actions),[]);
+  }
+});

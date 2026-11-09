@@ -36,6 +36,10 @@
   const discoveryWords=s=>norm(s).replace(/\bolives\b/g,'olive').replace(/\boils\b/g,'oil').replace(/\bmoisturiz/g,'moisturis').replace(/သံလွင်(?:ဆီ)?/g,' olive ').replace(/ဂျိုဂျိုဘာ(?:ဆီ)?/g,' jojoba ').replace(/အုန်းဆီ/g,' coconut oil ').replace(/ဂလစ်ဆရင်/g,' glycerin ').replace(/ဗီတာမင်\s*e/gi,' vitamin e ').replace(/\s+/g,' ').trim();
   const includesTerm=(q,term)=>/[a-z0-9]/.test(term)?(' '+q+' ').includes(' '+term+' '):q.includes(term);
   function useArea(q){
+    // A rejected use is not a recommendation target: "not for my hands,
+    // for my hair" must follow the positive need in either language.
+    q=q.replace(/\b(?:not\s+(?:for\s+)?|no\s+|(?:do not|don(?:['’]|\s)?t)\s+(?:want|need|use)\s+(?:(?:anything|something|products?)\s+)?(?:for\s+)?)(?:(?:my|your|the)\s+)?(?:skin|face|hands?|palms?|body|feet|heels?|lips?|hair|scalp)\b/g,' ')
+      .replace(/(?:လက်|မျက်နှာ|အသားအရေ|အရေပြား|ဆံပင်|ဆံသား|နှုတ်ခမ်း|ဖနောင့်)[^\s၊။]{0,24}မဟုတ်(?:ပါဘူး|ဘူး|ပါ)?/g,' ');
     if(/\bskin\b|\bface\b|\bhands?\b|\bpalms?\b|\bbody\b|\bfeet\b|\bheels?\b|\blips?\b|မျက်နှာ|အသားအရေ|အရေပြား|လက်(?:အသားအရေ|အရေပြား|ဖဝါး|ခြောက်|လိမ်း|အတွက်|မှာ)|နှုတ်ခမ်း|ဖနောင့်/.test(q))return 'skin';
     if(/\bhair\b|\bscalp\b|ဆံပင်|ဆံသား/.test(q))return 'hair';
     return null;
