@@ -17,7 +17,7 @@ Open [localhost:4173](http://localhost:4173/). Node.js 22 or newer is required. 
 
 ## Server deployment
 
-Use `oliveco/` as the application root with Node.js 22 or newer: install with `npm ci`, build with `npm run build`, and start with `npm start`. The default port is 4173. For a container deployment, set `HOST=0.0.0.0` and `PUBLIC_ORIGIN=https://oliveco2.aungmyin.com`. See the [deployment guide](../DEPLOYMENT.md) for environment settings, verification and the existing production repository connection.
+Use `oliveco/` as the application root with Node.js 22 or newer: install with `npm ci`, build with `npm run build`, and start with `npm start`. The default port is 4173. For a container deployment, set `HOST=0.0.0.0` and `PUBLIC_ORIGIN=https://oliveco.aungmyin.com`. See the [deployment guide](../DEPLOYMENT.md) for environment settings, verification and the existing production repository connection.
 
 ## Included
 

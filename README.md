@@ -2,14 +2,14 @@
 
 The Myanmar/English product catalogue and customer enquiry website for Olive Marketing Group Co., Ltd.
 
-[Live website](https://oliveco2.aungmyin.com/) · [GitHub repository](https://github.com/4bytedigi/OliveCo_Website)
+[Live website](https://oliveco.aungmyin.com/) · [GitHub repository](https://github.com/4bytedigi/OliveCo_Website)
 
 ## Features
 
 - Myanmar-first browsing with an English switch.
-- 28 products across five collections, with packaging photographs, search, filters, saved products and a dedicated [Shop page](https://oliveco2.aungmyin.com/shop).
+- 28 products across five collections, with packaging photographs, search, filters, saved products and a dedicated [Shop page](https://oliveco.aungmyin.com/shop).
 - A persistent product selection with quantities and copyable enquiry lists.
-- Product chat with conversation context, confirmed catalogue facts and a local guide fallback. The configured default AI model is `gpt-5-nano`.
+- Product chat with conversation context, confirmed catalogue facts and a local guide fallback. Production uses `gemini-3.1-flash-lite`.
 - A bilingual enquiry form that prepares the customer's name, callback phone, question and selected products for Viber.
 
 Customers copy their enquiry, open Viber, paste and send it themselves. Automatic Viber delivery, checkout, payments and live inventory are not connected. Unconfirmed prices and business details are not invented.

@@ -14,7 +14,7 @@ The website runs as a Node application. Its HTTP server serves the frontend and 
 | Build command | `npm run build` |
 | Start command | `npm start` |
 | Internal port | `4173`, or the host's configured `PORT` |
-| Public website | `https://oliveco2.aungmyin.com` |
+| Public website | `https://oliveco.aungmyin.com` |
 
 Run the commands inside `oliveco/`. The build refreshes public contact data, asset versions and syntax checks. Deploy the entire application directory, including `assistant-knowledge.json`, the server modules and package lockfile; only files inside `dist/` are served as static files.
 
@@ -40,7 +40,7 @@ Configure these in the host's private environment settings. The tracked [`olivec
 | `CHAT_SESSION_SECRET` | random per process | Optional private random cookie-signing secret, at least 32 characters recommended |
 | `TRUST_PROXY` | `false` | Trust Cloudflare's client header only from a private/loopback proxy peer; direct public access must remain blocked |
 
-For the existing public domain, use `PUBLIC_ORIGIN=https://oliveco2.aungmyin.com`. Restart/redeploy after server environment or knowledge changes. Keep real keys outside Git, browser scripts, screenshots and issue/commit descriptions.
+For the existing public domain, use `PUBLIC_ORIGIN=https://oliveco.aungmyin.com`. Restart/redeploy after server environment or knowledge changes. Keep real keys outside Git, browser scripts, screenshots and issue/commit descriptions.
 
 ### Gemini setup
 
@@ -79,6 +79,8 @@ Implementation guidance: [OpenAI safety best practices](https://developers.opena
 ## Current production connection
 
 The production source was checked again on 1 November 2026: the self-hosted server manager still follows `4bytedigi/Cosmistic_2` on `main`. `OliveCo_Website` is the canonical local `origin`. Until a separate hosting-source migration, publish the same verified commit to the retained `legacy` remote for an automatic live deployment. The repository handoff did not change DNS or the Cloudflare tunnel.
+
+On 10 November 2026, the public address moved to `https://oliveco.aungmyin.com` and the Server Management project is named `oliveco`. Both its private `PUBLIC_ORIGIN` environment variable and inline start-command origin use the new address. The existing locally managed Cloudflare tunnel routes the hostname to `http://127.0.0.1:9080`; the application port remains 4173. Server access uses the existing NetBird connection. The former `oliveco2.aungmyin.com` address no longer serves the application.
 
 To deploy future changes from `OliveCo_Website`:
 
