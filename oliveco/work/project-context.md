@@ -1,5 +1,11 @@
 # Oliveco project context
 
+## Contact correction - 13 November 2026
+
+- The user explicitly supplied **09-2150440** as the correct mobile/Viber number, replacing the `09-4150440` shown in their screenshot. Use `+9592150440` for call and Viber links. This supersedes the 1 November contact correction. The two landline numbers remain confirmed.
+- Updated the canonical business record, contact FAQs, generated website contacts and chatbot contact data together. Device/account identity and actual Viber message delivery remain separate from verifying the displayed number and link.
+- Validation: the build and all 76 existing automated tests passed. All three public HTML pages and shared contact data were checked for the corrected display number, `tel:+9592150440` and `viber://chat?number=%2B9592150440`, with no old mobile number remaining in those files. Contact answers and enquiry handoffs use the same approved record; no paid model calls are needed. Publish to both existing remotes and verify the live website; local evidence is kept under ignored `output/phone-correction-live.*`.
+
 ## Domain migration completed - 10 November 2026
 
 - The public site is now https://oliveco.aungmyin.com. Server Management shows project `oliveco` at that address, still following `4bytedigi/Cosmistic_2/main`, root `oliveco`, port 4173. `OliveCo_Website` remains the canonical local origin; publish the same commit to both existing remotes.
@@ -87,7 +93,7 @@
 
 - Improve the existing chatbot as a bilingual sales/customer-service assistant, including products, company enquiries, reliable error recovery, a header restart button and protection against spam/misuse. Preserve the existing logo and design.
 - The user supplied a company profile: Oliveco was established in 1986; its cosmetic ranges combine research/modern methods with Myanmar traditional and Indian Ayurvedic cosmetic methods, and mention aloe vera, neem, thanaka and herbs. Attribute this to the profile; do not claim independent market leadership, medical efficacy or these ingredients in every product.
-- The latest request asks to correct Viber using the repeated client screenshot. **09-4150440** is now the Viber and primary mobile call destination; it supersedes the earlier typed 092150440. Shared generated contacts, chat and enquiry links must agree on `+9594150440`. Device/account verification and actual Viber delivery remain separate from browser link verification.
+- On 1 November, the screenshot led to a correction to 09-4150440. The user's explicit 13 November correction above supersedes that record: use **09-2150440** and `+9592150440` for mobile calls, Viber, chat and enquiry links. Device/account verification and actual Viber delivery remain separate from browser link verification.
 - Implemented free company/range/size/ingredient/policy answers, product comparisons and follow-up guidance, bounded AI instructions/output, and sales enquiry handoff. Fixed an English substring alias that matched `R C` inside `your company`. Missing hours/email/prices/stock/policies remain unconfirmed.
 - Restart cancels pending fetches, invalidates stale replies and clears history/context/input. Explicit network/offline/timeout/busy/limit notices and manual retry retain usable local product/company help. Both pages now load the local guide for network recovery; unchanged log entries reuse DOM nodes to avoid repeatedly announcing chat history.
 - Added signed HttpOnly/SameSite chat sessions, required allowed Origin, bounded input/body/history/output, per-IP/session HTTP quotas, client/day and site/day AI caps, one AI call per client/three site-wide, failure cooldowns and restricted proxy-header trust. Quotas stay on the server when chat restarts. In-memory limits reset with the Node process; deployments with multiple instances require a shared limiter.
@@ -113,8 +119,8 @@
 
 - Preserve the existing Oliveco green/yellow identity and logo. Logo replacement is explicitly deferred until the user supplies the new asset.
 - Keep Myanmar as the default reading language, with English available throughout shopping, chat and the new enquiry flow.
-- Replace the earlier Facebook-sourced phone with the client's supplied call numbers: 02-4036795, 02-2832238 and 09-4150440.
-- The earlier Viber destination 092150440 was superseded by the 1 November correction above; use **09-4150440** now.
+- Use the client's supplied call numbers: 02-4036795, 02-2832238 and **09-2150440**, incorporating the 13 November mobile correction.
+- The current Viber destination is **09-2150440**, explicitly confirmed by the user's 13 November correction.
 - Customers can ask product questions, then prepare an enquiry with their name, callback phone, product selection and question for the client.
 - The user confirmed there is **no Viber API connection** and authorized completing the available customer-controlled handoff without more questions tonight. Prepare/copy the enquiry and open the client's Viber chat. Never claim it was sent or an order was accepted.
 - Publish changes to the existing GitHub main branch and verify the live site at https://oliveco.aungmyin.com/.
@@ -152,7 +158,7 @@ Project-context and the website skill collection routed this as a refinement in 
 
 ## Follow-up for the client
 
-- Replacement logo asset; confirmed email and hours; exact address text; verify the corrected 09-4150440 Viber account on a device.
+- Replacement logo asset; confirmed email and hours; exact address text; verify the corrected 09-2150440 Viber account on a device.
 - Automatic delivery later needs a supported Viber bot/business integration with server-only credentials and the relevant recipient/subscription setup. No automatic delivery is configured now.
 
 ## Photographic Our Story update, 1 November 2026

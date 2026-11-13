@@ -85,8 +85,8 @@ async def main():
                 await ask(page, 'What size is it?')
                 await expect(page.locator('.chat-bubble.assistant').last).to_contain_text('100 g')
                 await ask(page, 'I want to buy this')
-                await expect(page.locator('.chat-bubble.assistant').last).to_contain_text('09-4150440')
-                assert await page.locator('.chat-action[href^="viber:"]').last.get_attribute('href') == 'viber://chat?number=%2B9594150440'
+                await expect(page.locator('.chat-bubble.assistant').last).to_contain_text('09-2150440')
+                assert await page.locator('.chat-action[href^="viber:"]').last.get_attribute('href') == 'viber://chat?number=%2B9592150440'
                 await page.get_by_role('button', name='Prepare an enquiry').last.click()
                 await expect(page.locator('.enquiry-dialog')).to_be_visible()
                 await page.keyboard.press('Escape')

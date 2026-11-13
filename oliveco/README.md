@@ -53,7 +53,7 @@ Send [the client questionnaire](CLIENT-CHATBOT-QUESTIONS.md) to the client. Ente
 
 Keep confirmed retail prices in `dist/prices.js` so product cards and chat use the same amounts. Real-time stock, order tracking, payment processing and sending enquiries are not connected.
 
-Contacts live in `assistant-knowledge.json`: `phone` is the primary call number, `phones` lists all call numbers, `viber` is the Viber destination, and `email` remains `null` until confirmed. On 1 November 2026, the user requested correcting Viber using the client screenshot: **09-4150440** now serves both calls and Viber, superseding the earlier typed number. Run `npm run build` after contact changes to refresh both page footers, the homepage contact section and public contact/guide data. The same record includes the client-supplied company profile and 1986 founding year. Company-level ingredient examples are not treated as ingredients of every product. The address still contains only the confirmed ward, township and city.
+Contacts live in `assistant-knowledge.json`: `phone` is the primary call number, `phones` lists all call numbers, `viber` is the Viber destination, and `email` remains `null` until confirmed. On 13 November 2026, the user explicitly corrected the mobile and Viber number to **09-2150440**. Run `npm run build` after contact changes to refresh all page footers, contact sections and public contact/guide data. The same record includes the client-supplied company profile, 1986 founding year and full confirmed Mandalay address. Company-level ingredient examples are not treated as ingredients of every product.
 
 ## Customer enquiries and Viber
 

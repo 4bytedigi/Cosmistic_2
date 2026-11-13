@@ -77,8 +77,8 @@ test('client call numbers and corrected Viber mobile agree without AI calls',asy
   const service=make({generate:async()=>{throw new Error('Must not run');}});
   const call=await service.reply({message:'What is your phone number?',language:'en'});
   const viber=await service.reply({message:'Viber number?',language:'en'});
-  assert.equal(call.text,'02-4036795, 02-2832238, 09-4150440');
-  assert.equal(viber.text,'09-4150440');
+  assert.equal(call.text,'02-4036795, 02-2832238, 09-2150440');
+  assert.equal(viber.text,'09-2150440');
   assert.equal(viber.mode,'guide');
 });
 
@@ -87,7 +87,7 @@ test('purchase and human-detail requests offer the enquiry handoff with product 
   for(const message of ['I want to buy this','Can I talk to a sales person?','Can a person call me?','ဒီပစ္စည်းကို ဝယ်ချင်ပါတယ်']){
     const result=await service.reply({message,language:'en',context:['herbal-q10']});
     assert.ok(result.actions.includes('enquiry'),message);
-    assert.match(result.text,/09-4150440/);
+    assert.match(result.text,/09-2150440/);
     assert.deepEqual(result.context,['herbal-q10']);
     assert.equal(result.definitive,true);
     assert.doesNotMatch(result.text,/has been sent|order is confirmed/);
@@ -153,7 +153,7 @@ test('company profile and founding year work in both languages without AI',async
 
 test('multiple business questions include each fact and keep missing policies unknown',async()=>{
   const answer=await make().reply({message:'What is your company phone number, Viber and opening hours?',language:'en'});
-  assert.match(answer.text,/02-4036795/);assert.match(answer.text,/Viber number: 09-4150440/);
+  assert.match(answer.text,/02-4036795/);assert.match(answer.text,/Viber number: 09-2150440/);
   assert.match(answer.text,/don't have confirmed information.*hours/);
 });
 
@@ -167,7 +167,7 @@ test('broad sales questions explain the range; a founding year never invents a f
 
 test('order problems go to a person without claiming order-system access',async()=>{
   const answer=await make({generate:async()=>{throw new Error('Must not run');}}).reply({message:'Can you track my order? One item was damaged.',language:'en'});
-  assert.match(answer.text,/can’t look up orders/);assert.match(answer.text,/09-4150440/);
+  assert.match(answer.text,/can’t look up orders/);assert.match(answer.text,/09-2150440/);
   assert.ok(answer.actions.includes('enquiry'));assert.equal(answer.mode,'guide');
 });
 

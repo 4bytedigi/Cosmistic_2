@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-04",
+  "updatedAt": "2026-11-13",
   "business": {
     "name": "Olive Marketing Group Co., Ltd.",
     "founded": 1986,
@@ -15,13 +15,13 @@
       "en": "No. N-8/(29+36), 69th Street, between 37th and 38th Streets, Maha Myaing (1) Ward, Maha Aung Myay Township, Mandalay, Myanmar.",
       "my": "အမှတ် N-8/(29+36)၊ ၆၉ လမ်း၊ ၃၇ လမ်းနှင့် ၃၈ လမ်းကြား၊ မဟာမြိုင် (၁) ရပ်ကွက်၊ မဟာအောင်မြေမြို့နယ်၊ မန္တလေးမြို့၊ မြန်မာ။"
     },
-    "phone": "09-4150440",
+    "phone": "09-2150440",
     "phones": [
       "02-4036795",
       "02-2832238",
-      "09-4150440"
+      "09-2150440"
     ],
-    "viber": "09-4150440",
+    "viber": "09-2150440",
     "email": null,
     "delivery": null,
     "payment": null,
@@ -31,12 +31,12 @@
   },
   "sources": {
     "phone": {
-      "source": "Client contact details supplied by the user in the 29 October 2026 screenshot; supersedes the Facebook phone.",
-      "checkedAt": "2026-10-29"
+      "source": "Landline numbers supplied by the user in the 29 October 2026 screenshot. The user explicitly corrected the mobile number to 09-2150440 on 13 November 2026.",
+      "checkedAt": "2026-11-13"
     },
     "viber": {
-      "source": "Corrected at the user's request on 1 November 2026 to the mobile number 09-4150440 repeated in the client screenshot. Supersedes the earlier typed 092150440. Actual Viber account identity still needs verification on a device with Viber.",
-      "checkedAt": "2026-11-01"
+      "source": "The user explicitly supplied 09-2150440 as the correct Viber number on 13 November 2026. Actual Viber account identity still needs verification on a device with Viber.",
+      "checkedAt": "2026-11-13"
     },
     "profile": {
       "source": "Oliveco company profile image supplied by the user on 1 November 2026. Company-level ingredient examples do not confirm the ingredients or medical efficacy of individual products.",
@@ -651,8 +651,8 @@
         "my": "ဘယ်လိုမှာယူပြီး ဈေးနှုန်းမေးရမလဲ။"
       },
       "answer": {
-        "en": "Add products to My selection, then prepare an enquiry. Copy your message, open Viber and paste and send it to 09-4150440. You can also call Oliveco directly. Our team will confirm current prices, pack sizes and availability before you place an order.",
-        "my": "စိတ်ဝင်စားသောပစ္စည်းများကို ရွေးချယ်စာရင်းထဲ ထည့်ပြီး မေးမြန်းမှုဖောင်ကို ဖြည့်ပါ။ မေးမြန်းစာကို ကူးယူ၍ Viber ဖွင့်ပြီး 09-4150440 သို့ ကူးထည့်ပို့ပါ။ Oliveco ကို တိုက်ရိုက်ဖုန်းဆက်နိုင်ပါသည်။ မမှာယူမီ လက်ရှိဈေးနှုန်း၊ ထုပ်ပိုးအရွယ်အစားနှင့် လက်ကျန်ကို အဖွဲ့က အတည်ပြုပေးပါမည်။"
+        "en": "Add products to My selection, then prepare an enquiry. Copy your message, open Viber and paste and send it to 09-2150440. You can also call Oliveco directly. Our team will confirm current prices, pack sizes and availability before you place an order.",
+        "my": "စိတ်ဝင်စားသောပစ္စည်းများကို ရွေးချယ်စာရင်းထဲ ထည့်ပြီး မေးမြန်းမှုဖောင်ကို ဖြည့်ပါ။ မေးမြန်းစာကို ကူးယူ၍ Viber ဖွင့်ပြီး 09-2150440 သို့ ကူးထည့်ပို့ပါ။ Oliveco ကို တိုက်ရိုက်ဖုန်းဆက်နိုင်ပါသည်။ မမှာယူမီ လက်ရှိဈေးနှုန်း၊ ထုပ်ပိုးအရွယ်အစားနှင့် လက်ကျန်ကို အဖွဲ့က အတည်ပြုပေးပါမည်။"
       }
     },
     {
@@ -681,8 +681,8 @@
         "my": "Oliveco က ဘယ်မှာရှိသလဲ။"
       },
       "answer": {
-        "en": "No. N-8/(29+36), 69th Street, between 37th and 38th Streets, Maha Myaing (1) Ward, Maha Aung Myay Township, Mandalay, Myanmar. Call 02-4036795, 02-2832238 or 09-4150440 to confirm opening hours before visiting.",
-        "my": "အမှတ် N-8/(29+36)၊ ၆၉ လမ်း၊ ၃၇ လမ်းနှင့် ၃၈ လမ်းကြား၊ မဟာမြိုင် (၁) ရပ်ကွက်၊ မဟာအောင်မြေမြို့နယ်၊ မန္တလေးမြို့၊ မြန်မာ။ လာရောက်မည့်အချိန်နှင့် ဆိုင်ဖွင့်ချိန်ကို 02-4036795၊ 02-2832238 သို့မဟုတ် 09-4150440 သို့ ဖုန်းဆက်အတည်ပြုပါ။"
+        "en": "No. N-8/(29+36), 69th Street, between 37th and 38th Streets, Maha Myaing (1) Ward, Maha Aung Myay Township, Mandalay, Myanmar. Call 02-4036795, 02-2832238 or 09-2150440 to confirm opening hours before visiting.",
+        "my": "အမှတ် N-8/(29+36)၊ ၆၉ လမ်း၊ ၃၇ လမ်းနှင့် ၃၈ လမ်းကြား၊ မဟာမြိုင် (၁) ရပ်ကွက်၊ မဟာအောင်မြေမြို့နယ်၊ မန္တလေးမြို့၊ မြန်မာ။ လာရောက်မည့်အချိန်နှင့် ဆိုင်ဖွင့်ချိန်ကို 02-4036795၊ 02-2832238 သို့မဟုတ် 09-2150440 သို့ ဖုန်းဆက်အတည်ပြုပါ။"
       }
     }
   ]
