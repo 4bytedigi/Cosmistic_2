@@ -11,14 +11,14 @@
   <link rel="apple-touch-icon" sizes="192x192" href="assets/favicon-v2-192.png">
   <link rel="stylesheet" href="styles.css?v=33fb25774cb8">
   <link rel="stylesheet" href="assets/myanmar-font.css?v=463c6be92854">
-  <link rel="stylesheet" href="enhancements.css?v=bd2a1d697ce7">
-  <link rel="stylesheet" href="theme.css?v=c439266c3545">
+  <link rel="stylesheet" href="enhancements.css?v=47164812dc5c">
+  <link rel="stylesheet" href="theme.css?v=54e103838912">
   <script src="products.js?v=6e33b2923aea" defer></script>
   <script src="prices.js?v=94d36e8d86e0" defer></script>
   <script src="contact-data.js?v=2adf922946f3" defer></script>
   <script src="enquiry-message.js?v=4dc12f10831d" defer></script>
-  <script src="i18n.js?v=bf39ecc84165" defer></script>
-  <script src="app.js?v=5442236a735a" defer></script>
+  <script src="i18n.js?v=faf7002aa7b6" defer></script>
+  <script src="app.js?v=3441c8c78d28" defer></script>
   <script src="enquiry.js?v=6d33921f54df" defer></script>
   <script src="assistant-engine.js?v=05689fc60e03" defer></script>
   <script src="assistant.js?v=fcef0f1b76d3" defer></script>
@@ -27,10 +27,10 @@
   <a class="skip-link" href="#collection">Skip to products</a>
   <header class="header">
     <a class="wordmark" href="/" aria-label="Oliveco home"><span class="brand-art"><img src="assets/oliveco-group-logo.png?v=8ddaf1801650" alt="Oliveco Marketing Group Co., Ltd." width="2168" height="725"></span></a>
-    <nav class="desktop-nav" aria-label="Main navigation"><a href="/">Home</a><a class="active" href="/shop" aria-current="page">Shop</a><a href="/#categories">Collections</a><a href="/our-story">Our story</a><a href="/#contact">Contact</a></nav>
+    <nav class="desktop-nav" aria-label="Main navigation"><a data-nav="home" href="/"><span data-copy data-en="Home" data-my="မူလစာမျက်နှာ">Home</span></a><a data-nav="shop" href="/shop" class="active" aria-current="page"><span data-copy data-en="Shop" data-my="ထုတ်ကုန်များ">Shop</span></a><a data-nav="story" href="/our-story"><span data-copy data-en="Our story" data-my="ကျွန်ုပ်တို့အကြောင်း">Our story</span></a><a data-nav="contact" href="/#contact"><span data-copy data-en="Contact" data-my="ဆက်သွယ်ရန်">Contact</span></a></nav>
     <div class="header-actions"><select class="language-switch" id="language-switch" aria-label="Language / ဘာသာစကား"><option value="my">မြန်မာ</option><option value="en">EN</option></select><button class="icon-button" id="search-toggle" aria-label="Search products" aria-expanded="false" aria-controls="search-panel"><span data-icon="search"></span></button><button class="icon-button saved-button" id="saved-toggle" aria-label="View saved products" aria-pressed="false"><span data-icon="heart"></span><span class="saved-count" hidden>0</span></button><span class="action-divider"></span><button class="bag-button" id="bag-toggle" aria-label="Open enquiry bag, 0 items"><span data-icon="bag"></span><span class="bag-label">My selection</span><span id="bag-count">0</span></button><button class="icon-button mobile-menu" id="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span data-icon="menu"></span></button></div>
     <div class="search-panel" id="search-panel" hidden><label for="header-search">Find your everyday essentials</label><div class="search-field"><span data-icon="search"></span><input id="header-search" type="search" placeholder="Try facial foam, hair oil, or Vertex…" autocomplete="off"><button class="icon-button" id="search-close" aria-label="Close search"><span data-icon="close"></span></button></div></div>
-    <nav id="mobile-nav" aria-label="Mobile navigation" hidden><a href="/shop">Shop</a><a href="/#categories">Collections</a><a href="/our-story">Our story</a><a href="/#contact">Contact Oliveco</a><button id="mobile-saved" type="button">Saved products</button></nav>
+    <nav id="mobile-nav" aria-label="Mobile navigation" hidden><a data-nav="home" href="/"><span data-copy data-en="Home" data-my="မူလစာမျက်နှာ">Home</span></a><a data-nav="shop" href="/shop" class="active" aria-current="page"><span data-copy data-en="Shop" data-my="ထုတ်ကုန်များ">Shop</span></a><a data-nav="story" href="/our-story"><span data-copy data-en="Our story" data-my="ကျွန်ုပ်တို့အကြောင်း">Our story</span></a><a data-nav="contact" href="/#contact"><span data-copy data-en="Contact" data-my="ဆက်သွယ်ရန်">Contact</span></a><button id="mobile-saved" type="button">Saved products</button></nav>
   </header>
   <main>
     <section class="collection-section page-width shop-collection" id="collection" aria-labelledby="collection-heading"><div class="section-heading"><h1 id="collection-heading">All products</h1><span class="shop-count" id="collection-count"></span></div><div class="shop-search"><label class="sr-only" for="shop-search">Search products</label><span data-icon="search"></span><input id="shop-search" type="search" placeholder="Try facial foam, hair oil, or Vertex…" maxlength="120" autocomplete="off"></div><div class="collection-toolbar"><div class="filter-tabs" role="group" aria-label="Filter products by collection"><button class="filter-tab selected" data-filter="all" aria-pressed="true">All products</button><button class="filter-tab" data-filter="skin" aria-pressed="false">Skincare</button><button class="filter-tab" data-filter="hair" aria-pressed="false">Hair care</button><button class="filter-tab" data-filter="personal" aria-pressed="false">Personal care</button><button class="filter-tab" data-filter="home" aria-pressed="false">Home care</button><button class="filter-tab" data-filter="medical" aria-pressed="false">Medical</button></div><label class="sort-label"><span data-icon="sliders"></span><select id="sort-products" aria-label="Sort products"><option value="featured">Featured</option><option value="az">Name: A–Z</option><option value="za">Name: Z–A</option></select></label></div><div class="active-query" id="active-query" hidden><span></span><button class="text-link" id="clear-filters">Clear filters <span data-icon="close"></span></button></div><div class="product-grid" id="product-grid" aria-live="polite"></div><p class="sr-only" id="product-progress"></p></section>

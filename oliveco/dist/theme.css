@@ -270,6 +270,22 @@ html { scroll-padding-top: 90px; }
 .footer .footer-bottom > span:last-child { display: inline; }
 .search-panel { top: calc(100% - 8px); }
 #mobile-nav { top: calc(100% - 6px); }
+@media (max-width: 900px) {
+  .header .desktop-nav { display: none; }
+  .header .mobile-menu { display: inline-flex; }
+  .header .saved-button { display: none; }
+  #mobile-nav {
+    position: absolute; inset-inline: 18px; top: calc(100% - 6px);
+    border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: var(--shadow); padding: 12px 20px;
+  }
+  #mobile-nav a, #mobile-nav button {
+    display: block; width: 100%; padding: 12px 0; font-size: 13px;
+    text-align: start; background: transparent; border: 0;
+    border-bottom: 1px solid var(--line); border-radius: 0;
+  }
+  #mobile-nav > :last-child { border-bottom: 0; }
+}
 .hero { height: 600px; }
 .hero-copy, html[lang=my] .hero-copy {
   height: 100%;

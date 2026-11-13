@@ -201,4 +201,5 @@
   document.addEventListener('oliveco:language',()=>{categoryNames=I.categories();hydrateIcons();renderCategories();renderProducts();if(bagDialog.open)renderBag();if(detailDialog.open&&activeDetailId)openDetails(activeDetailId)});
   window.OlivecoShop={openDetails,chooseCategory,addToBag,selection:()=>products.filter(p=>bag[p.id]).map(p=>({id:p.id,quantity:bag[p.id]})),showSelection(){renderBag();bagDialog.showModal()},icon};
   I.apply();hydrateIcons();renderCategories();syncSearchInputs();$('#sort-products').value=state.sort;renderProducts();updateCounts();
+  if(isShopPage&&params.get('selection')==='1'){renderBag();bagDialog.showModal();}
 })();

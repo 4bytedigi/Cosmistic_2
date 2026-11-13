@@ -6,6 +6,32 @@ import {fileURLToPath} from 'node:url';
 const dist=fileURLToPath(new URL('./dist/',import.meta.url));
 const {business,products:productKnowledge}=JSON.parse(fs.readFileSync(new URL('./assistant-knowledge.json',import.meta.url),'utf8'));
 const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const headerTemplate=fs.readFileSync(path.join(dist,'index.html'),'utf8').match(/<header\b[^>]*>[\s\S]*?<\/header>/)?.[0];
+if(!headerTemplate)throw new Error('The shared site header is missing.');
+const navigation=[
+  {key:'home',href:'/',en:'Home',my:'မူလစာမျက်နှာ',page:'index.html'},
+  {key:'shop',href:'/shop',en:'Shop',my:'ထုတ်ကုန်များ',page:'shop.html'},
+  {key:'story',href:'/our-story',en:'Our story',my:'ကျွန်ုပ်တို့အကြောင်း',page:'our-story.html'},
+  {key:'contact',href:'/#contact',en:'Contact',my:'ဆက်သွယ်ရန်'}
+];
+function headerFor(page){
+  const links=navigation.map(item=>`<a data-nav="${item.key}" href="${item.href}"${item.page===page?' class="active" aria-current="page"':''}><span data-copy data-en="${escape(item.en)}" data-my="${escape(item.my)}">${item.en}</span></a>`).join('');
+  const saved=page==='our-story.html'
+    ? '<a id="mobile-saved" href="/shop?saved=1"><span data-copy data-en="Saved products" data-my="သိမ်းထားသော ပစ္စည်းများ">Saved products</span></a>'
+    : '<button id="mobile-saved" type="button">Saved products</button>';
+  let header=headerTemplate
+    .replace(/<nav class="desktop-nav"[^>]*>[\s\S]*?<\/nav>/,`<nav class="desktop-nav" aria-label="Main navigation">${links}</nav>`)
+    .replace(/<nav id="mobile-nav"[^>]*>[\s\S]*?<\/nav>/,`<nav id="mobile-nav" aria-label="Mobile navigation" hidden>${links}${saved}</nav>`);
+  if(page==='our-story.html'){
+    for(const [id,href] of [['saved-toggle','/shop?saved=1'],['bag-toggle','/shop?selection=1']]){
+      header=header.replace(new RegExp(`<button([^>]*id="${id}"[^>]*)>([\\s\\S]*?)<\\/button>`),(_,attributes,body)=>`<a${attributes.replace(/ aria-pressed="[^"]*"/,'')} href="${href}">${body}</a>`);
+    }
+    header=header.replace(/<div class="search-field">([\s\S]*?)<\/div>/,'<form class="search-field" action="/shop" method="get">$1</form>')
+      .replace('id="header-search"','id="header-search" name="q" maxlength="120"')
+      .replace('id="search-close"','id="search-close" type="button"');
+  }
+  return header;
+}
 function phone(value){
   if(typeof value!=='string'||!/^\+?[0-9][0-9 ()-]{5,24}$/.test(value))throw new Error('Use a plain, confirmed contact phone number.');
   const digits=value.replace(/[ ()-]/g,'');
@@ -47,6 +73,8 @@ for(const page of ['index.html','shop.html','our-story.html']){
   const file=path.join(dist,page);
   const original=fs.readFileSync(file,'utf8');
   const rendered=original
+    .replace(/<header\b[^>]*>[\s\S]*?<\/header>/,headerFor(page))
+    .replace(/<footer\b[^>]*>[\s\S]*?<\/footer>/,footer=>footer.replace(/<a\b[^>]*href="\/?#categories"[^>]*>[\s\S]*?<\/a>/g,''))
     .replace(/<!-- contact-details -->[\s\S]*?<!-- \/contact-details -->/g,`<!-- contact-details -->${contactLinks()}<!-- /contact-details -->`)
     .replace(/<!-- footer-contacts -->[\s\S]*?<!-- \/footer-contacts -->/g,`<!-- footer-contacts -->${contactLinks(true)}<!-- /footer-contacts -->`);
   const versioned=rendered.replace(/(src|href)="([a-zA-Z0-9_/-]+\.(?:js|css)|assets\/oliveco-group-logo\.png)(?:\?v=[a-f0-9]+)?"/g,(_,attribute,asset)=>{

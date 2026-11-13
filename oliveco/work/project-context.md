@@ -1,11 +1,19 @@
 # Oliveco project context
 
+## Navigation correction - 13 November 2026
+
+- Remove the **Collections navigation link** throughout the desktop/mobile menus and Our Story footer. The user's screenshots identify the navigation; product categories and catalogue filtering retain their existing roles.
+- Our Story previously had a separate header with only a language selector, causing different alignment and missing search/saved/selection controls. The build now derives every header from the Home header and a single four-link navigation list in `version-assets.mjs`; the current page is marked consistently. Translation uses named navigation keys rather than link positions.
+- Our Story search opens the same search panel and submits to Shop. Saved products open the saved view; selection opens the existing Shop selection dialog. Counts read the existing browser storage, and the language selector, mobile menu, Escape handling and focus recovery remain usable. No customer enquiry is sent by these controls.
+- Removed obsolete positional rules that hid navigation entries. The compact menu now starts at 900px, keeping Burmese labels and controls from overlapping; saved products are available in that menu and as a header icon on wider screens.
+- Validation: build/syntax checks and all 76 existing tests passed. The optional `tests/navigation-browser.mjs` regression passed for all three pages in English/Myanmar at 320, 390, 701, 768, 901, 1024 and 1440px, including header fit, correct active labels and mobile menus. Full search/saved/selection journeys passed at 320/1440px, preserving and updating existing selections across pages, with Escape/focus checks and no browser errors or paid AI calls. Local captures are under ignored `output/navigation/`; live evidence is kept under `output/navigation-live.*`.
+
 ## Approved logo wording - 13 November 2026
 
 - The user requested a picture preview changing the small logo tagline to **MARKETING GROUP  CO.,LTD**, then approved replacing the website logo. Keep the olive symbols, yellow/green wordmark and existing layout.
 - Prepared a clean transparent logo with the built-in image generation tool and installed it as `dist/assets/oliveco-group-logo.png`. The first transparent export had background artifacts and was discarded. The selected asset preserves the original logo framing and uses the approved wording. Both earlier images remain separate from the website asset.
 - Updated all seven logo placements across Home, Shop and Our Story, including headers, footer and story artwork. Accessible logo text now says Oliveco Marketing Group Co., Ltd. The new filename and build-generated content-hash query avoid cached old logos and Cloudflare's cached pre-deployment missing-image response.
-- Build/syntax checks passed. Publish through both existing remotes and check the live desktop and mobile logo; local evidence is kept under ignored `output/logo-group-live.*`.
+- Build/syntax checks passed. Published the final versioned logo release `0cafdb1` to both remotes and verified all seven live placements plus desktop and 320/390px phone layouts. Local evidence is under ignored `output/logo-group-live.*`.
 
 ## Contact correction - 13 November 2026
 

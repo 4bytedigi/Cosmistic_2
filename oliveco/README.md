@@ -25,6 +25,7 @@ Use `oliveco/` as the application root with Node.js 22 or newer: install with `n
 - 28 product entries with real packaging photos extracted from the supplied source materials.
 - Five collections, bilingual search, sorting, product details and saved products.
 - A dedicated `/shop` page with the full catalogue and shareable category, search, sort and saved-product filters. The homepage shows eight products and links to the Shop page.
+- Home, Shop, Our story and Contact share a consistent responsive header. Our Story search and saved-product links open the corresponding Shop view; its selection link opens the existing selection dialog with the customer's stored items.
 - A product selection list with quantities, persistent browser storage, and a copyable enquiry in the selected language.
 - Phone layouts, horizontal collection tabs, larger touch controls, and a bottom selection summary.
 - A contextual chat panel that answers product questions and shows relevant product cards.
