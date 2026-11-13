@@ -4,7 +4,7 @@
 
 - The user requested a picture preview changing the small logo tagline to **MARKETING GROUP  CO.,LTD**, then approved replacing the website logo. Keep the olive symbols, yellow/green wordmark and existing layout.
 - Prepared a clean transparent logo with the built-in image generation tool and installed it as `dist/assets/oliveco-group-logo.png`. The first transparent export had background artifacts and was discarded. The selected asset preserves the original logo framing and uses the approved wording. Both earlier images remain separate from the website asset.
-- Updated all seven logo placements across Home, Shop and Our Story, including headers, footer and story artwork. Accessible logo text now says Oliveco Marketing Group Co., Ltd. The new filename avoids browsers reusing the old cached logo.
+- Updated all seven logo placements across Home, Shop and Our Story, including headers, footer and story artwork. Accessible logo text now says Oliveco Marketing Group Co., Ltd. The new filename and build-generated content-hash query avoid cached old logos and Cloudflare's cached pre-deployment missing-image response.
 - Build/syntax checks passed. Publish through both existing remotes and check the live desktop and mobile logo; local evidence is kept under ignored `output/logo-group-live.*`.
 
 ## Contact correction - 13 November 2026

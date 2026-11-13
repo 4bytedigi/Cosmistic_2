@@ -49,7 +49,7 @@ for(const page of ['index.html','shop.html','our-story.html']){
   const rendered=original
     .replace(/<!-- contact-details -->[\s\S]*?<!-- \/contact-details -->/g,`<!-- contact-details -->${contactLinks()}<!-- /contact-details -->`)
     .replace(/<!-- footer-contacts -->[\s\S]*?<!-- \/footer-contacts -->/g,`<!-- footer-contacts -->${contactLinks(true)}<!-- /footer-contacts -->`);
-  const versioned=rendered.replace(/(src|href)="([a-zA-Z0-9_/-]+\.(?:js|css))(?:\?v=[a-f0-9]+)?"/g,(_,attribute,asset)=>{
+  const versioned=rendered.replace(/(src|href)="([a-zA-Z0-9_/-]+\.(?:js|css)|assets\/oliveco-group-logo\.png)(?:\?v=[a-f0-9]+)?"/g,(_,attribute,asset)=>{
     const hash=createHash('sha256').update(fs.readFileSync(path.join(dist,asset))).digest('hex').slice(0,12);
     return `${attribute}="${asset}?v=${hash}"`;
   });
