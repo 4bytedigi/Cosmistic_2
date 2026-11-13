@@ -1,10 +1,17 @@
 # Oliveco project context
 
+## Approved logo wording - 13 November 2026
+
+- The user requested a picture preview changing the small logo tagline to **MARKETING GROUP  CO.,LTD**, then approved replacing the website logo. Keep the olive symbols, yellow/green wordmark and existing layout.
+- Prepared a clean transparent logo with the built-in image generation tool and installed it as `dist/assets/oliveco-group-logo.png`. The first transparent export had background artifacts and was discarded. The selected asset preserves the original logo framing and uses the approved wording. Both earlier images remain separate from the website asset.
+- Updated all seven logo placements across Home, Shop and Our Story, including headers, footer and story artwork. Accessible logo text now says Oliveco Marketing Group Co., Ltd. The new filename avoids browsers reusing the old cached logo.
+- Build/syntax checks passed. Publish through both existing remotes and check the live desktop and mobile logo; local evidence is kept under ignored `output/logo-group-live.*`.
+
 ## Contact correction - 13 November 2026
 
 - The user explicitly supplied **09-2150440** as the correct mobile/Viber number, replacing the `09-4150440` shown in their screenshot. Use `+9592150440` for call and Viber links. This supersedes the 1 November contact correction. The two landline numbers remain confirmed.
 - Updated the canonical business record, contact FAQs, generated website contacts and chatbot contact data together. Device/account identity and actual Viber message delivery remain separate from verifying the displayed number and link.
-- Validation: the build and all 76 existing automated tests passed. All three public HTML pages and shared contact data were checked for the corrected display number, `tel:+9592150440` and `viber://chat?number=%2B9592150440`, with no old mobile number remaining in those files. Contact answers and enquiry handoffs use the same approved record; no paid model calls are needed. Publish to both existing remotes and verify the live website; local evidence is kept under ignored `output/phone-correction-live.*`.
+- Validation: the build and all 76 existing automated tests passed. All three public HTML pages and shared contact data were checked for the corrected display number, `tel:+9592150440` and `viber://chat?number=%2B9592150440`, with no old mobile number remaining in those files. Published `28eb74a` to both remotes and verified all three live pages plus free chatbot contact answers. Live evidence is under ignored `output/phone-correction-live.*`; no paid model calls were used.
 
 ## Domain migration completed - 10 November 2026
 

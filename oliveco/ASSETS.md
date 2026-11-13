@@ -1,6 +1,16 @@
 # Asset sources
 
-The Oliveco mark is cropped from the brand reference image supplied by the user. Product images are crops of the embedded images in the three supplied catalogues; no product packaging was generated. The PDFs remain source materials outside the website and are not served or linked.
+The original Oliveco mark was cropped from the brand reference image supplied by the user. Its current tagline version is described below. Product images are crops of the embedded images in the three supplied catalogues; no product packaging was generated. The PDFs remain source materials outside the website and are not served or linked.
+
+## Approved Marketing Group logo
+
+Web asset: [`dist/assets/oliveco-group-logo.png`](dist/assets/oliveco-group-logo.png), 2168 x 725, with transparency.
+
+On 13 November 2026 the user requested the small tagline **MARKETING GROUP  CO.,LTD**, reviewed a generated preview, and approved replacing the website logo. The built-in image generation tool edited the original transparent logo using the approved preview as the wording reference. The earlier `dist/assets/oliveco-logo.png` remains available for rollback; it is no longer used by the pages. No product image or company contact was changed by this logo replacement.
+
+Final edit prompt:
+
+> Precise text edit of Image 1, the original transparent Oliveco website logo. Keep its existing transparent background genuinely empty. Keep both round symbols and the large lowercase oliveco wordmark EXACTLY as in Image 1. Replace ONLY the small old tagline with "MARKETING GROUP  CO.,LTD" in the same outlined condensed italic uppercase style. Image 2 is the approved wording/style preview for the new tagline; do not copy its white backdrop or black bars. Maintain the original wide canvas, existing artwork scale, original logo positions, and original tagline baseline/right alignment. Clean crisp flat logo artwork on genuine alpha transparency. Every pixel outside the logo and lettering must be completely transparent. Absolutely no white remnants, clouds, speckles, paper texture, black background, checkerboard background, glow or shadow.
 
 Manrope is self-hosted from Google Fonts, https://fonts.google.com/specimen/Manrope (SIL Open Font License). The accompanying font licence is in `dist/assets/Manrope-OFL.txt`.
 
